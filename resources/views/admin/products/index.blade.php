@@ -16,8 +16,10 @@
                     <th>STT</th>
                     <th>Image</th>
                     <th>Name</th>
+                    <th>SKU</th>
                     <th>Price</th>
                     <th>Category</th>
+                    <th>Supplier</th>
                     <th><a class="btn btn-sm btn-success" href="{{route('products.create')}}"><i class="fas fa-plus"></i></a></th>
                 </tr>
             </thead>
@@ -27,8 +29,10 @@
                     <td>1</td>
                     <td><a href=""><img width="100" src="{{$product->image}}" alt=""></a>  </td>
                     <td>{{$product->name}}</td>
+                    <td>{{ $product->sku }}</td>
                     <td>{{$product->sell_price}}</td>
                     <td>{{ $product->cate_name }}</td>
+                    <td>{{ $product->supplier_id }}</td>
                     <td>
                         <a class="btn btn-sm btn-info" href=""><i class="fas fa-eye"></i></a>
                         <a class="btn btn-sm btn-warning" href=""><i class="fas fa-pen"></i></a>

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 
-class ProductController extends Controller
+class ProductController  extends Controller
 {
     // 1. Eloquent(ORM)
     // 2. Query Builder BD('products')
@@ -26,5 +26,24 @@ class ProductController extends Controller
     public function create()
     {
         return view('admin.products.create');
+    }
+    public function store(Request $request)
+    {
+        // Eloquent 
+        $product = new Product();
+
+        $product->name = $request->name;
+        $product->slug = $request->slug;
+        $product->sku = 'GG'.time();
+        $product->description = $request->description;
+        $product->short_description = $request->short_description;
+        $product->list_price = $request->list_price;
+        $product->sell_price = $request->sell_price;
+        $product->supplier_id = $request->supplier_id;
+        $product->category_id = $request->category_id;
+        $product->image = 'https://static.toiimg.com/photo/71335454.cms';
+        $product->save();
+        return redirect()->route('products.index');
+
     }
 }
