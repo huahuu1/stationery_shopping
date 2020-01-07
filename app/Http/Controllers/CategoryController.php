@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -15,7 +16,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.categories.index');
+        $categories = Category::all();
+        
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -46,7 +49,7 @@ class CategoryController extends Controller
         $category->parent_id = $request->parent_id;
         $category->description = $request->description;
         $category->save();
-        
+
         return redirect(route('categories.index'));
     }
 
