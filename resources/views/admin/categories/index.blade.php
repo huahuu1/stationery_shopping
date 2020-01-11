@@ -1,11 +1,10 @@
 @extends('layouts.admin')
 
-@section('title', 'Categories List')
+@section('title', 'Product List')
 
 @section('page_title')
-    Category List
+<p>Category List</p>
 @endsection
-
 
 @section('content')
 <div class="row">
@@ -37,7 +36,6 @@
                     </td>
                 </tr>
                 @endforeach
-
             </tbody>
         </table>
     </div>
