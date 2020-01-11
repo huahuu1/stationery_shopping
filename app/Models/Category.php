@@ -15,6 +15,5 @@ class Category extends Model
             $cate = self::find($id);
             return $cate->name;
         }
-       
     }
 }

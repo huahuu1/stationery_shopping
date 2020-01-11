@@ -32,6 +32,17 @@ Route::put('/categories/{id}', 'CategoryController@update')->name('categories.up
 
 Route::get('/categories/{id}/edit', 'CategoryController@edit')->name('categories.edit');
 
+// Supplier Routes
+Route::get('/suppliers/create', 'SupplierController@create')->name('suppliers.create');
+Route::get('/suppliers', 'SupplierController@index')->name('suppliers.index');
+Route::post('/suppliers', 'SupplierController@store')->name('suppliers.store');
+
+Route::get('/suppliers/{id}', 'SupplierController@show')->name('suppliers.show');
+Route::delete('/suppliers/{id}', 'SupplierController@destroy')->name('suppliers.destroy');
+Route::put('/suppliers/{id}', 'SupplierController@update')->name('suppliers.update');
+
+Route::get('/suppliers/{id}/edit', 'SupplierController@edit')->name('suppliers.edit');
+
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 // Route::get('/products', function () {
 
@@ -40,4 +51,3 @@ Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 //    return $users;
 //     return view('products.index', compact('products'));
 // });
- 

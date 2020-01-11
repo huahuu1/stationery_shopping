@@ -22,4 +22,3 @@ Route::get('/products', function () {
    return $users;
     return view('products.index', compact('products'));
 });
- 
