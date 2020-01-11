@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
-@section('title', 'Categories List')
+@section('title', 'Suppliers List')
 
 @section('page_title')
-    Category List
+    Supplier List
 @endsection
 
 
@@ -23,13 +23,14 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($categories as $category)
+                @foreach ($suppliers as $supplier)g
                 <tr>
                     <td>1</td>
-                    <td>{{$category->name}}</td>
-                    <td>{{$category->image}}</td>
-                    <td>{{$category->description}}</td>
-                    <td>{{ $category->getParentName($category->parent_id) }}</td>
+                    <td><a href=""><img width="100" src="{{$supplier->image}}" alt=""></a>  </td>
+                    <td>{{$supplier->name}}</td>
+                    <td>{{ $supplier->image }}</td>
+                    <td>{{$supplier->description}}</td>
+                    <td>{{ $supplier->parent_id }}</td>
                     <td>
                         <a class="btn btn-sm btn-info" href=""><i class="fas fa-eye"></i></a>
                         <a class="btn btn-sm btn-warning" href=""><i class="fas fa-pen"></i></a>
