@@ -8,6 +8,7 @@
 
 @section('content')
 <div class="row">
+    <input type="text" class="form-control">
     <div class="col-md-12">
         <table class="table table-bordered">
             <thead>
@@ -27,7 +28,7 @@
                 @foreach ($products as $product)
                 <tr>
                     <td>1</td>
-                    <td><a href=""><img width="100" src="{{$product->image}}" alt=""></a>  </td>
+                    <td><a href="{{route('products.show', $product->id)}}"><img width="100" src="{{$product->image}}" alt=""></a>  </td>
                     <td>{{$product->name}}</td>
                     <td>{{ $product->sku }}</td>
                     <td>{{$product->sell_price}}</td>

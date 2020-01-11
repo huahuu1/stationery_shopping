@@ -1,5 +1,6 @@
 <?php
 use App\User;
+use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,4 +22,8 @@ Route::get('/products', function () {
    // Query Builder
    return $users;
     return view('products.index', compact('products'));
+});
+Route::get('delete-all', function(){
+    DB::table('products')->delete();
+    echo 'delete all';
 });

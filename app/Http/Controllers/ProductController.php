@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 class ProductController  extends Controller
 {
@@ -17,7 +18,11 @@ class ProductController  extends Controller
         
         foreach($products as $product){
             $cate = Category::find($product->category_id);
-            $product->cate_name = $cate->name;
+            
+            if($cate){
+                $product->cate_name = $cate->name;
+            }
+            
         }
         // dd($products);
         return view('admin.products.index', compact('products'));
@@ -45,5 +50,19 @@ class ProductController  extends Controller
         $product->save();
         return redirect()->route('products.index');
 
+    }
+    public function show($id)
+    {
+        // Eloquent way
+        $product = Product::find($id);
+        $product->category;
+        // $products = $product->category;
+       //  return($product);
+        // $product = DB::table('products')->where('id','=', $id)->first();
+        // $data = $product;
+        // return response()->json($data);
+        // $product = DB::select(DB::raw("select p.*, c.name as category_name, c.id as categroy_id from products as p left join categories as c on p.category_id = c.id "));
+        // dd($product);
+        return view('admin.products.show', compact('product'));
     }
 }
