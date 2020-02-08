@@ -27,3 +27,6 @@ Route::get('delete-all', function(){
     DB::table('products')->delete();
     echo 'delete all';
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

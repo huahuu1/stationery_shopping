@@ -8,7 +8,11 @@
 
 @section('content')
 <div class="row">
-    <input type="text" class="form-control">
+    
+    <form action="" class="form-inline form-group">
+        <input type="text" value="{{$keyword}}" class="form-control" name="keyword">
+        <button type="submit" class="btn btn btn-info"><i class="nav-icon fas fa-search"></i></button>
+    </form>
     <div class="col-md-12">
         <table class="table table-bordered">
             <thead>
@@ -27,8 +31,8 @@
             <tbody>
                 @foreach ($products as $product)
                 <tr>
-                    <td>1</td>
-                    <td><a href="{{route('products.show', $product->id)}}"><img width="100" src="{{$product->image}}" alt=""></a>  </td>
+                    <td>{{$loop->iteration}}</td>
+                    <td><a href="{{route('products.show', $product->id)}}"><img width="100" src="{{asset($product->image)}}" alt=""></a>  </td>
                     <td>{{$product->name}}</td>
                     <td>{{ $product->sku }}</td>
                     <td>{{$product->sell_price}}</td>
@@ -44,6 +48,7 @@
                 
             </tbody>
         </table>
+        {{$products->links()}}
     </div>
 </div>
 @endsection

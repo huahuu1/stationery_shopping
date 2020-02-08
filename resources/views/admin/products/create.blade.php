@@ -11,11 +11,14 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <form action="{{ route('products.store') }}" method="POST">
+            <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label for="">Product Name</label>
+                    <label for="">Product Name <span class="text text-danger">*</span></label>
                     <input type="text" class="form-control" name="name" placeholder="Product Name">
+                    @if($errors->has('name'))
+                    <span class="text text-danger">{{$errors->first('name')}}</span>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="">Slug</label>
@@ -23,23 +26,31 @@
                 </div>
                 <div class="form-group">
                     <label for="">Image</label>
-                    <input type="text" name="image" class="form-control" placeholder="Image">
+                    <input type="file" name="image" class="form-control" >
                 </div>
                 <div class="form-group">
                     <label for="">Description</label>
+                   
                     <textarea name="description" class="form-control" cols="30" rows="10"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="">Short Description</label>
                     <textarea name="short_description" class="form-control" cols="30" rows="10"></textarea>
                 </div>
+                @if($errors->has('description'))
+                <span class="text text-danger">{{$errors->first('description')}}</span>
+                @endif
                 <div class="form-group">
                     <label for="">List Price</label>
                     <input type="number" name="list_price" class="form-control" placeholder="List Price">
+                    
                 </div>
                 <div class="form-group">
                     <label for="">Sell Price</label>
                     <input type="number" name="sell_price" class="form-control" placeholder="Sell Price">
+                    @if($errors->has('sell_price'))
+                    <span class="text text-danger">{{$errors->first('sell_price')}}</span>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="">Category</label>
@@ -48,6 +59,9 @@
                         <option value="2">Category 2</option>
                         <option value="3">Category 3</option>
                     </select>
+                    @if($errors->has('category_id'))
+                    <span class="text text-danger">{{$errors->first('category_id')}}</span>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="">Supplier</label>

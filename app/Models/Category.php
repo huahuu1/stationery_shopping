@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
+    
+    public $table = 'categories';
     //
+    // category_tables
     public function getParentName($id)
     {
         if($id <= 0){
