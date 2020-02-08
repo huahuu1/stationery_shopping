@@ -25,17 +25,6 @@
                     <label for="">Description</label>
                     <textarea name="description" class="form-control" cols="30" rows="10"></textarea>
                 </div>
-
-                <div class="form-group">
-                    <label for="">Parent ID</label>
-                    <select name="parent_id" id="" class="form-control">
-                        <option value="0">Choose Category</option>
-                        <option value="1">Category 1</option>
-                        <option value="2">Category 2</option>
-                        <option value="3">Category 3</option>
-                    </select>
-                </div>
-
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Submit</button>
                 </div>

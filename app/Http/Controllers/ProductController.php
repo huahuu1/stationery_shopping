@@ -5,22 +5,42 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 class ProductController  extends Controller
 {
-    // 1. Eloquent(ORM)
-    // 2. Query Builder BD('products')
-    // 3. Raw query ('select * from products where id > 20')
-    public function index()
+
+
+    public function index(Request $request)
     {
-        $products = Product::all();
+    
+        $keyword = $request->keyword;
+        $pageSize = $request->pageSize ?? 5; 
+
+        $path = '';
+        if(!$keyword){
+            $path .= "?pageSize=$pageSize";
+            $products = Product::orderBy('id', 'DESC')->paginate($pageSize);
+        } else {
+            $path .= "?pageSize=$pageSize&keyword=$keyword";
+            $products = Product::where('name', 'like', "%$keyword%")
+                                ->orWhere('description', 'like', "%$keyword%")
+                                ->orderBy('id', 'DESC')
+                                ->paginate($pageSize);
+        }
+
+        $products->withPath($path);
         
         foreach($products as $product){
             $cate = Category::find($product->category_id);
-            $product->cate_name = $cate->name;
+            
+            if($cate){
+                $product->cate_name = $cate->name;
+            }
+            
         }
         // dd($products);
-        return view('admin.products.index', compact('products'));
+        return view('admin.products.index', compact('products', 'keyword'));
     }
 
     public function create()
@@ -29,6 +49,12 @@ class ProductController  extends Controller
     }
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'sell_price' => 'required',
+            'description' => 'required',
+            'category_id' => 'required'
+        ]);
         // Eloquent 
         $product = new Product();
 
@@ -41,9 +67,24 @@ class ProductController  extends Controller
         $product->sell_price = $request->sell_price;
         $product->supplier_id = $request->supplier_id;
         $product->category_id = $request->category_id;
-        $product->image = 'https://static.toiimg.com/photo/71335454.cms';
+
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $fileName = 'uploads/products/'.time().$file->getClientOriginalName();
+            request()->image->move(public_path('uploads/products'), $fileName);
+            $product->image = $fileName;
+        }
+        
         $product->save();
         return redirect()->route('products.index');
 
+    }
+    public function show($id)
+    {
+        // Eloquent way
+        $product = Product::find($id);
+        $product->category;
+
+        return view('admin.products.show', compact('product'));
     }
 }

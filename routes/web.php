@@ -1,5 +1,6 @@
 <?php
 use App\User;
+use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,3 +23,10 @@ Route::get('/products', function () {
    return $users;
     return view('products.index', compact('products'));
 });
+Route::get('delete-all', function(){
+    DB::table('products')->delete();
+    echo 'delete all';
+});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

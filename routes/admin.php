@@ -20,11 +20,12 @@ Route::post('/products', 'ProductController@store')->name('products.store');
 
 Route::get('/products/create', 'ProductController@create')->name('products.create');
 
-
+Route::get('products/{id}', 'ProductController@show')->name('products.show');
 // Category Routes
 Route::get('/categories/create', 'CategoryController@create')->name('categories.create');
 Route::get('/categories', 'CategoryController@index')->name('categories.index');
 Route::post('/categories', 'CategoryController@store')->name('categories.store');
+Route::get('categories/{id}', 'CategoryController@show')->name('categories.show');
 
 Route::get('/categories/{id}', 'CategoryController@show')->name('categories.show');
 Route::delete('/categories/{id}', 'CategoryController@destroy')->name('categories.destroy');
@@ -51,3 +52,11 @@ Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 //    return $users;
 //     return view('products.index', compact('products'));
 // });
+Route::get('users', 'UserController@index')->name('users.index');
+Route::get('users/{id}', 'UserController@show')->name('users.show');
+Route::get('users/create', 'UserController@show')->name('users.create');
+Route::post('users/{id}', 'UserController@update')->name('users.update');
+Route::post('users', 'UserController@store')->name('users.store');
+// Route::post('users', 'UserController@index')->name('users.index');
+// Route::get('users', 'UserController@index')->name('users.index');
+// Route::get('users', 'UserController@index')->name('users.index');

@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
+    
+    public $table = 'categories';
     //
+    // category_tables
     public function getParentName($id)
     {
         if($id <= 0){
@@ -15,5 +18,9 @@ class Category extends Model
             $cate = self::find($id);
             return $cate->name;
         }
+    }
+    public function products()
+    {
+        return $this->hasMany(Product::class);
     }
 }
