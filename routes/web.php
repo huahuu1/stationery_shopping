@@ -20,7 +20,7 @@ Route::get('/products', function () {
 
  $users = User::all();
    // Query Builder
-   return $users;
+    return $users;
     return view('products.index', compact('products'));
 });
 Route::get('delete-all', function(){

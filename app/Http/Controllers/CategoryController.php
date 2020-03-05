@@ -66,8 +66,6 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         $category->products;
-        
-
 
         // return $category;
         return view('admin.categories.show', compact('category'));
