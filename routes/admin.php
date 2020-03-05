@@ -32,6 +32,7 @@ Route::delete('/categories/{id}', 'CategoryController@destroy')->name('categorie
 Route::put('/categories/{id}', 'CategoryController@update')->name('categories.update');
 
 Route::get('/categories/{id}/edit', 'CategoryController@edit')->name('categories.edit');
+// Route::post('/categories/{id}', 'CategoryController@update')->name('categories.update');
 
 // Supplier Routes
 Route::get('/suppliers/create', 'SupplierController@create')->name('suppliers.create');

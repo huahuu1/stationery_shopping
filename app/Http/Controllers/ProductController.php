@@ -7,13 +7,13 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 
+
 class ProductController  extends Controller
 {
 
 
     public function index(Request $request)
     {
-    
         $keyword = $request->keyword;
         $pageSize = $request->pageSize ?? 5; 
 

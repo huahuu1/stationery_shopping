@@ -31,7 +31,7 @@
                     <td>{{ $category->getParentName($category->parent_id) }}</td>
                     <td>
                         <a class="btn btn-sm btn-info" href=""><i class="fas fa-eye"></i></a>
-                        <a class="btn btn-sm btn-warning" href=""><i class="fas fa-pen"></i></a>
+                        <a class="btn btn-sm btn-warning" href="{{route('categories.edit', $category->id)}}"><i class="fas fa-pen"></i></a>
                         <a class="btn btn-sm btn-danger" href=""><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>

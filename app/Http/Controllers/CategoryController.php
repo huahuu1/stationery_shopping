@@ -7,9 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Models\Product;
+use App\Repositories\Category\CategoryInterface;
 
 class CategoryController extends Controller
 {
+    public $model;
+    public function __construct(CategoryInterface $categories){
+        $this->model = $categories;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,8 +22,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-
+        $categories = $this->model->getAll();
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -42,14 +46,15 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $category = new Category();
+        // $category = new Category();
 
-        $category->name = $request->name;
-        $category->slug = Str::slug($request->name, '-').'.html';
-        $category->image = $request->image;
-        $category->parent_id = $request->parent_id;
-        $category->description = $request->description;
-        $category->save();
+        // $category->name = $request->name;
+        // $category->slug = Str::slug($request->name, '-').'.html';
+        // $category->image = $request->image;
+        // $category->parent_id = $request->parent_id;
+        // $category->description = $request->description;
+        // $category->save();
+        $this->model->create($request->only($this->model->getModel()->fillable));
 
         return redirect(route('categories.index'));
     }
@@ -63,11 +68,10 @@ class CategoryController extends Controller
     public function show(Category $category, $id)
     {
         //
-        $category = Category::find($id);
+        $category = $this->model->getById($id);
 
         $category->products;
 
-        // return $category;
         return view('admin.categories.show', compact('category'));
     }
 
@@ -77,9 +81,12 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Category $category, $id)
     {
-        return view('admin.categories.edit');
+        $categories = $this->model->getAll();
+        // dd($categories);
+        $category = $this->model->getById($id);
+        return view('admin.categories.edit', compact('category', 'categories'));
     }
 
     /**
@@ -89,9 +96,13 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Category $category, $id)
     {
-        //
+
+        $this->model->update($id, $request->only($this->model->getModel()->fillable));
+
+
+        return redirect(route('categories.index'));
     }
 
     /**
