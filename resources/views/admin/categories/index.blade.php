@@ -12,7 +12,6 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-
                     <th>STT</th>
                     <th>Name</th>
                     <th>Image</th>
@@ -24,7 +23,7 @@
             <tbody>
                 @foreach ($categories as $category)
                 <tr>
-                    <td>1</td>
+                    <td>{{$loop->iteration}}</td>
                     <td>{{$category->name}}</td>
                     <td>{{$category->image}}</td>
                     <td>{{$category->description}}</td>

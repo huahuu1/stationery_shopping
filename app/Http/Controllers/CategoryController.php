@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Repositories\Category\CategoryInterface;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Models\Product;
-use App\Repositories\Category\CategoryInterface;
 
 class CategoryController extends Controller
 {

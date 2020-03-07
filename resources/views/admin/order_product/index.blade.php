@@ -14,7 +14,7 @@
                 <tr>
 
                     <th>STT</th>
-                    {{-- <th>Product Image</th> --}}
+                    <th>Product Image</th>
                     <th>Quantity</th>
                     <th>User Name</th>
                     <th>Total</th>
@@ -23,17 +23,13 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($orders as $order)
-                    {{-- @foreach ($order_product as $op) --}}
-                        <tr>
-                            <td>{{$loop->iteration}}</td>
-                            {{-- <td>{{$order->getProductImage($op->product_id)}}</td> --}}
-                            <td>{{$order->quantity}}</td>
-                            <td>{{$order->getUserName($order->user_id)}}</td>
-                            <td>{{$order->total}}</td>
-                            <td>{{$order->getOrderStatus($order->status)}}</td>
-                        </tr>
-                    {{-- @endforeach --}}
+                @foreach ($order_product as $op)
+                    <tr>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$op->order_id}}</td>
+                        <td>{{$op->product_id}}</td>
+
+                    </tr>
                 @endforeach
             </tbody>
         </table>

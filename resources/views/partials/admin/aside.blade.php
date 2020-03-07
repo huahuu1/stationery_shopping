@@ -224,7 +224,13 @@
                   <p>View Orders</p>
                 </a>
               </li>
-              
+              <li class="nav-item">
+                <a href="{{route('order_product.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View Order_Product</p>
+                </a>
+              </li>
+
             </ul>
           </li>
           <li class="nav-item has-treeview">
