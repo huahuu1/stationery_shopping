@@ -8,7 +8,7 @@
 
 @section('content')
 <div class="row">
-    
+
     <form action="" class="form-inline form-group">
         <input type="text" value="{{$keyword}}" class="form-control" name="keyword">
         <button type="submit" class="btn btn btn-info"><i class="nav-icon fas fa-search"></i></button>
@@ -17,7 +17,7 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    
+
                     <th>STT</th>
                     <th>Image</th>
                     <th>Name</th>
@@ -45,7 +45,7 @@
                     </td>
                 </tr>
                 @endforeach
-                
+
             </tbody>
         </table>
         {{$products->links()}}

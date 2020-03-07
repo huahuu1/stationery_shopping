@@ -10,7 +10,12 @@ class Category extends Model
     //
     // category_tables
     protected $fillable = [
-        'name', 'image', 'parent_id', 'description',
+        'name',
+        'slug',
+        'image',
+        'description',
+        'status',
+        'parent_id',
     ];
     public function getParentName($id)
     {

@@ -6,6 +6,10 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use App\Repositories\Category\CategoryInterface;
 use App\Repositories\Category\CategoryRepository;
+use App\Repositories\Order\OrderInterface;
+use App\Repositories\Order\OrderRepository;
+use App\Repositories\Order_product\Order_ProductInterface;
+use App\Repositories\Order_product\Order_ProductRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         $this->app->singleton(CategoryInterface::class, CategoryRepository::class);
+        $this->app->singleton(OrderInterface::class, OrderRepository::class);
+        $this->app->singleton(Order_ProductInterface::class,Order_ProductRepository::class);
     }
 
     /**

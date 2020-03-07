@@ -61,3 +61,7 @@ Route::post('users', 'UserController@store')->name('users.store');
 // Route::post('users', 'UserController@index')->name('users.index');
 // Route::get('users', 'UserController@index')->name('users.index');
 // Route::get('users', 'UserController@index')->name('users.index');
+
+Route::get('/orders', 'OrderController@index')->name('orders.index');
+
+Route::get('/order_product', 'OrderProductController@index')->name('order_product.index');

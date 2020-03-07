@@ -11,3 +11,4 @@
 @section('content')
     <h1>This is content of Dashboard</h1>
 @endsection
+
