@@ -19,6 +19,7 @@
                     <th>User Name</th>
                     <th>Total</th>
                     <th>Status</th>
+                    <th>View</th>
                     {{-- <th><a class="btn btn-sm btn-success" href="{{route('categories.create')}}"><i class="fas fa-plus"></i></a></th> --}}
                 </tr>
             </thead>
@@ -32,6 +33,7 @@
                             <td>{{$order->getUserName($order->user_id)}}</td>
                             <td>{{$order->total}}</td>
                             <td>{{$order->getOrderStatus($order->status)}}</td>
+                            <td><a class="btn btn-info" href="{{route('orders.show', $order->id)}}"><i class="fas fa-eye"></i></a></td>
                         </tr>
                     {{-- @endforeach --}}
                 @endforeach
