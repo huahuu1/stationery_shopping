@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Repositories\Order\OrderInterface;
 use Illuminate\Http\Request;
+use App\Models\Order_product;
+use DB;
 
 class OrderController extends Controller
 {
@@ -50,9 +52,17 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(Order $order, Request $request, $id)
     {
-        //
+        $order = Order::find($id);
+        $products = $order->products;
+
+        $product_order = DB::table('order_product')->get();
+        foreach($products as $key=> $product){
+            $product->quantity = $product_order[$key]->product_quantity;
+        }
+
+        return view('admin.orders.show', compact('order', 'products'));
     }
 
     /**

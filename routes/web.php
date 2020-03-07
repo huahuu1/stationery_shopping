@@ -12,9 +12,12 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', 'WebController@index')->name('web.index');
+Route::get('/add-to-cart', 'WebController@addToCart')->name('carts.add_to_cart');
 
 Route::get('/products', function () {
 

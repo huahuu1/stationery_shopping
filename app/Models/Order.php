@@ -29,12 +29,17 @@ class Order extends Model
     }
 
     public function getUserName($id) {
-        if ($id <= 0) {
-            return 'Guest';
+        $user = User::find($id);
+        if($user){
+            if ($id <= 0) {
+                return 'Guest';
+            } else {
+                return $user->name;
+            }
         } else {
-            $user = User::find($id);
-            return $user->name;
+            return 'No User';
         }
+        
     }
 
     public function getProductImage($product_id){
@@ -49,4 +54,8 @@ class Order extends Model
     public function order_product() {
         return $this->hasMany(Order_product::class);
     }
+    public function products() {
+        return $this->belongsToMany(Product::class);
+    }
+    
 }
