@@ -12,9 +12,12 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', 'WebController@index')->name('web.index');
+Route::post('/add-to-cart', 'WebController@addToCart')->name('carts.add_to_cart');
 
 Route::get('/products', function () {
 
@@ -30,3 +33,6 @@ Route::get('delete-all', function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/danh-muc/{slug}', 'WebController@getProductsByCategoryId');
+Route::get('/san-pham/{item}', 'WebController@getProductDetail')->name('products.detail');
+// Route::get('/carts/add-to-cart', 'WebController@addToCart')->name('carts.add_to_cart');

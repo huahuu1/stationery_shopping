@@ -2,18 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
-use App\Repositories\Order\OrderInterface;
+use App\Models\Cart;
 use Illuminate\Http\Request;
-use App\Models\Order_product;
-use DB;
 
-class OrderController extends Controller
+class CartController extends Controller
 {
-    public $model;
-    public function __construct(OrderInterface $orders) {
-        $this->model = $orders;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -21,8 +14,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = $this->model->getAll();
-        return view('admin.orders.index', compact('orders'));
+        //
     }
 
     /**
@@ -49,29 +41,21 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order, Request $request, $id)
+    public function show(Cart $cart)
     {
-        $order = Order::find($id);
-        $products = $order->products;
-
-        $product_order = DB::table('order_product')->get();
-        foreach($products as $key=> $product){
-            $product->quantity = $product_order[$key]->product_quantity;
-        }
-
-        return view('admin.orders.show', compact('order', 'products'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit(Cart $cart)
     {
         //
     }
@@ -80,10 +64,10 @@ class OrderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, Cart $cart)
     {
         //
     }
@@ -91,10 +75,10 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy(Cart $cart)
     {
         //
     }
