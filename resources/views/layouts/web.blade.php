@@ -1,711 +1,447 @@
 <!DOCTYPE html>
+
 <html lang="en">
-  <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,500,700&amp;display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
-    <link rel="stylesheet" href="{{asset('web/css/styles.css')}}"/>
-  </head>
-  <body>
-    <div class="container-fluid">
-      <div class="wrapper-nav position-relative">
-        <section class="menu-nav">
-          <div class="container">
-            <div class="top-navbar flex-row">
-              <div class="logo"><a class="nav-brand" href="../../../dist/html/pages/index.html" alt="logo"><img src="../../assets/images/logo-officemona.png" alt="logo"/></a></div>
-              <div class="search-form-wrapper">
-                <div class="search-form">
-                  <form action="" method="get">
-                    <div class="nav-search flex-row">
-                      <div class="flex-col flex-grow">
-                        <input class="search-field mb-0" type="search" placeholder="Tìm nhanh sản phẩm ..."/>
-                      </div>
-                      <div class="flex-col">
-                        <button class="search-submit mb-0 btn" type="submit"><i class="icon-search fas fa-search"></i></button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-              <div class="account justify-content-end">
-                <ul class="nav">
-                  <li class="account-item"><a class="nav-top-link nav-top-not-logged-in"><span>đăng ký</span></a></li>
-                  <li class="header-divider"></li>
-                  <li class="account-item"><a class="nav-top-link nav-top-not-logged-in"><span>đăng nhập</span></a></li>
-                  <li class="header-divider"></li>
-                  <li class="cart-item"><a><span class="header-cart-title">giỏ hàng&nbsp</span><span class="cart-price"><span class="amount">/ 0&nbsp<span class="symbol">đ</span><i class="fas fa-shopping-basket icon-basket"></i></span></span></a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="bot-navbar flex-row">
-              <ul class="nav">
-                <li class="hover-nav"><a href="#"><i class="fas fa-star"></i><span>giúp bạn chọn</span></a></li>
-                <li class="hover-nav"><a href="#"><span>dụng cụ văn phòng</span><i class="fas fa-chevron-down arrow-down"></i></a>
-                  <ul class="nav-dropdown">
-                    <li class="nav-hover-dropdown"><a href="#">Bấm kim</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Bấm lỗ</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Dao kéo</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Kim bấm</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Kẹp sách - Gáy sách</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Băng keo - Cắt keo</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Keo dán</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Thước - Compa</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Dây buộc</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Đóng dấu - Tampon</a></li>
-                  </ul>
-                </li>
-                <li class="hover-nav"><a href="#"><span>giấy</span><i class="fas fa-chevron-down arrow-down"></i></a>
-                  <ul class="nav-dropdown">
-                    <li class="nav-hover-dropdown"><a href="#">Giấy in ấn</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Giấy in fax - liên tục</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Giấy notes</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Giấy chuyên dụng</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Khăn giấy - giấy vệ sinh</a></li>
-                  </ul>
-                </li>
-                <li class="hover-nav"><a href="#"><span>bìa hồ sơ</span><i class="fas fa-chevron-down arrow-down"></i></a>
-                  <ul class="nav-dropdown">
-                    <li class="nav-hover-dropdown"><a href="#">Bìa còng</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Bìa lưu trữ</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Bìa phân trang</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Bìa album</a></li>
-                  </ul>
-                </li>
-                <li class="hover-nav"><a href="#"><span>bút viết</span><i class="fas fa-chevron-down arrow-down"></i></a>
-                  <ul class="nav-dropdown">
-                    <li class="nav-hover-dropdown"><a href="#">Bút bi - Gel</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Bút chì</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Bút lông - Dạ quang</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Bút chuyên dụng</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Ruột bút</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Phụ kiện bút</a></li>
-                  </ul>
-                </li>
-                <li class="hover-nav"><a href="#"><span>tập sổ</span><i class="fas fa-chevron-down arrow-down"></i></a>
-                  <ul class="nav-dropdown">
-                    <li class="nav-hover-dropdown"><a href="#">Sổ tập</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Phiếu - Biểu mẫu</a></li>
-                  </ul>
-                </li>
-                <li class="hover-nav"><a href="#"><span>lưu trữ</span><i class="fas fa-chevron-down arrow-down"></i></a>
-                  <ul class="nav-dropdown">
-                    <li class="nav-hover-dropdown"><a href="#">Khay kệ</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Hộp cầm bút</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Dụng cụ lưu trữ</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Khay Brochure - Menu</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Bao thư</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Bảng tên</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Khung hình</a></li>
-                  </ul>
-                </li>
-                <li class="hover-nav"><a href="#"><span>thiết bị</span><i class="fas fa-chevron-down arrow-down"></i></a>
-                  <ul class="nav-dropdown">
-                    <li class="nav-hover-dropdown"><a href="#">CD - DVD - USB</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Bàn phím - Chuột</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Pin</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Máy tính</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Dụng cụ - Máy VP</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Thiết bị điện</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Bảng</a></li>
-                  </ul>
-                </li>
-                <li class="hover-nav"><a href="#"><span>tiện ích</span><i class="fas fa-chevron-down arrow-down"></i></a>
-                  <ul class="nav-dropdown">
-                    <li class="nav-hover-dropdown"><a href="#">DC vệ sinh</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Dung dịch tẩy rửa</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Gia dụng</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Thực phẩm</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Dược phẩm</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Tiện ích cá nhân</a></li>
-                  </ul>
-                </li>
-                <li class="hover-nav"><a href="#"><span>mực - ruban</span><i class="fas fa-chevron-down arrow-down"></i></a>
-                  <ul class="nav-dropdown">
-                    <li class="nav-hover-dropdown"><a href="#">Mực máy in</a></li>
-                    <li class="nav-hover-dropdown"><a href="#">Ruban - Film Fax</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-        <section class="banner">
-          <div class="owl-carousel owl-theme banner-inner slider-main">
-            <div class="item">
-              <div class="owl-lazy" data-src="http://mauweb.monamedia.net/officexinh/wp-content/uploads/2018/06/banner-01.jpg"></div>
-            </div>
-            <div class="item">
-              <div class="owl-lazy" data-src="http://mauweb.monamedia.net/officexinh/wp-content/uploads/2018/06/banner-02.jpg"></div>
-            </div>
-          </div>
-        </section>
-      </div>
-      <section class="product-content">
-        <div class="tabs">
-          <div class="tabbed-product">
-            <ul class="nav-center nav navbar tab-links">
-              <li class="active"><a href="#tab_dung-cu-van-phong">dụng cụ văn phòng</a></li>
-              <li><a href="#tab_giay">giấy</a></li>
-              <li><a href="#tab_bia_ho_so">bìa hồ sơ</a></li>
-              <li><a href="#tab_but_viet">bút viết</a></li>
-              <li><a href="#tab_tap_so">tập sổ</a></li>
-            </ul>
-          </div>
-          <div class="wrapper-product">
-            <div class="tab-content">
-              <div class="tab active" id="tab_dung-cu-van-phong">
-                <div class="row">
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/Deli-7510-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Đóng số 10 tự động</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">800,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/rope-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Dây thừng lớn</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">8,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/DraftingCompass-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Compa kỹ thuật</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">50,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/YP003-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Keo khô</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">140,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/scotch-magic-810-invisible-tape-19mm-x-33m-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Băng keo dán tiền</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">45,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="w-100"></div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/jumbo-push-pins-100-count-colorful-clear-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Đinh ấn màu</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">10,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/kb-23-23-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Kim bấm 23/23 – 190 tờ</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">30,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/ban-cat-giay-a3-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Bàn cắt giấy A3</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">210,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/bam_lo_978-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Bấm 2 lổ 978 – 30 tờ</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">90,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/bk-50la-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Bấm kim 50LA – 210 tờ</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">350,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="tab" id="tab_giay">
-                <div class="row">
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/8339a2117dc1707076a4e42cad823dfa-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Khăn giấy Pulppy</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">22,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/giay-lua-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Giấy lụa</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">5,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/Message-Flag-with-Dispenser-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Giấy notes – “Sign Here”</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">70,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/POS-Paper-receipt-bond-thermo-paper-roll-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Giấy cảm nhiệt POS</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">8,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/idea-a4-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Giấy Idea A4 80</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">75,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="w-100"></div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#"></a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">&nbsp;</span><span class="woocommerce-price-currencySymbol"></span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#"></a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">&nbsp;</span><span class="woocommerce-price-currencySymbol"></span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#"></a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">&nbsp;</span><span class="woocommerce-price-currencySymbol"></span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#"></a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">&nbsp;</span><span class="woocommerce-price-currencySymbol"></span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#"></a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">&nbsp;</span><span class="woocommerce-price-currencySymbol"></span></span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="tab" id="tab_bia_ho_so">
-                <div class="row">
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/display-books-a4-40-pockets-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Bìa simili 40 lá</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">72,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/phan-trang-10-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Phân trang nhựa 10</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">10,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/master_ALV226-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Tấm lót cắt</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">150,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/bia-cong-10f-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Bìa còng King Jim 10f</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">85,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#"></a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">&nbsp;</span><span class="woocommerce-price-currencySymbol"></span></span></div>
-                    </div>
-                  </div>
-                  <div class="w-100"></div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#"></a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">&nbsp;</span><span class="woocommerce-price-currencySymbol"></span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#"></a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">&nbsp;</span><span class="woocommerce-price-currencySymbol"></span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#"></a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">&nbsp;</span><span class="woocommerce-price-currencySymbol"></span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#"></a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">&nbsp;</span><span class="woocommerce-price-currencySymbol"></span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#"></a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">&nbsp;</span><span class="woocommerce-price-currencySymbol"></span></span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="tab" id="tab_but_viet">
-                <div class="row">
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/got-but-chi-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Gọt chì siêu nhân Guangbo</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">45,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/montblanc-rollerball-mozart-refill-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Ruột bút Montblanc Legrand</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">280,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/stained-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Bút viết lên áo – giày</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">100,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/but-da-quang-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Bút lông bảng Pentel Maxiflo</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">35,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/pencil-marco-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Bút chì Macro</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">72,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="w-100"></div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/but-ky-parker-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Bút ký Parker</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">480,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#"></a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">&nbsp;</span><span class="woocommerce-price-currencySymbol"></span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#"></a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">&nbsp;</span><span class="woocommerce-price-currencySymbol"></span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#"></a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">&nbsp;</span><span class="woocommerce-price-currencySymbol"></span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#"></a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">&nbsp;</span><span class="woocommerce-price-currencySymbol"></span></span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="tab" id="tab_tap_so">
-                <div class="row">
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/calendar-cute-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Bảng lịch văn phòng</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">40,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/small-notebook-companion-600x600.jpg" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#">Sổ da ghi chép</a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">35,000&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#"></a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">&nbsp;</span><span class="woocommerce-price-currencySymbol"></span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#"></a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">&nbsp;</span><span class="woocommerce-price-currencySymbol"></span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#"></a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">&nbsp;</span><span class="woocommerce-price-currencySymbol"></span></span></div>
-                    </div>
-                  </div>
-                  <div class="w-100"></div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#"></a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">&nbsp;</span><span class="woocommerce-price-currencySymbol"></span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#"></a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">&nbsp;</span><span class="woocommerce-price-currencySymbol"></span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#"></a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">&nbsp;</span><span class="woocommerce-price-currencySymbol"></span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#"></a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">&nbsp;</span><span class="woocommerce-price-currencySymbol"></span></span></div>
-                    </div>
-                  </div>
-                  <div class="product-item col-lg col-md-3 col-sm-6">
-                    <div class="product-image"><a href="#"><img src="../../assets/images/" alt=""/></a></div>
-                    <div class="product-text">
-                      <div class="title-wrapper"><a href="#"></a></div>
-                      <div class="price-wrapper"><span class="price"><span class="woocommerce-price-amount">&nbsp;</span><span class="woocommerce-price-currencySymbol"></span></span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="footer">
-        <div class="line"></div>
-        <div class="footer-content">
-          <div class="top-content row">
-            <div class="company-info col-sm-6 col-lg-3">
-              <div class="title">
-                <div class="title-img"><img src="../../../dist/assets/images/logo-officemona.png"/></div>
-              </div>
-              <div class="content">
-                <div class="icon-box d-flex">
-                  <div class="icon-box-img"><i class="fas fa-map-marker-alt"></i></div>
-                  <div class="icon-box-text"><span>319 C16 Lý Thường Kiệt, Phường 15, Quận 11, Tp.HCM</span></div>
-                </div>
-                <div class="icon-box d-flex">
-                  <div class="icon-box-img"><i class="fas fa-phone-square"></i></div>
-                  <div class="icon-box-text"><span>0126 922 0162</span></div>
-                </div>
-                <div class="icon-box d-flex">
-                  <div class="icon-box-img"><i class="fas fa-envelope"></i></div>
-                  <div class="icon-box-text"><span>demonhunter@gmail.com</span></div>
-                </div>
-                <div class="icon-box d-flex">
-                  <div class="icon-box-img"><i class="fab fa-skype"></i></div>
-                  <div class="icon-box-text"><span>demonhunterp</span></div>
-                </div>
-              </div>
-            </div>
-            <div class="top-seller col-sm-6 col-lg-3">
-              <div class="title">
-                <h3>sản phẩm bán chạy</h3>
-              </div>
-              <div class="content row">
-                <div class="content-item col-lg-4"><img src="../../assets/images/but-da-quang-600x600.jpg" alt=""/></div>
-                <div class="content-item col-lg-4"><img src="../../assets/images/bk-50la-600x600.jpg" alt=""/></div>
-                <div class="content-item col-lg-4"><img src="../../assets/images/bam_lo_978-600x600.jpg" alt=""/></div>
-                <div class="content-item col-lg-4"><img src="../../assets/images/POS-Paper-receipt-bond-thermo-paper-roll-600x600.jpg" alt=""/></div>
-                <div class="content-item col-lg-4"><img src="../../assets/images/small-notebook-companion-600x600.jpg" alt=""/></div>
-                <div class="content-item col-lg-4"><img src="../../assets/images/stained-600x600.jpg" alt=""/></div>
-              </div>
-            </div>
-            <div class="menu col-sm-6 col-lg-3">
-              <div class="title">
-                <h3>menu</h3>
-              </div>
-              <div class="content">
-                <div class="icon-box d-flex">
-                  <div class="icon-box-img"><i class="fas fa-book"></i></div>
-                  <div class="icon-box-text"><a href="#">Trang chủ</a></div>
-                </div>
-                <div class="icon-box d-flex">
-                  <div class="icon-box-img"><i class="fas fa-book"></i></div>
-                  <div class="icon-box-text"><a href="#">Giới thiệu</a></div>
-                </div>
-                <div class="icon-box d-flex">
-                  <div class="icon-box-img"><i class="fas fa-book"></i></div>
-                  <div class="icon-box-text"><a href="#">Cửa hàng</a></div>
-                </div>
-                <div class="icon-box d-flex">
-                  <div class="icon-box-img"><i class="fas fa-book"></i></div>
-                  <div class="icon-box-text"><a href="#">Tin tức</a></div>
-                </div>
-                <div class="icon-box d-flex">
-                  <div class="icon-box-img"><i class="fas fa-book"></i></div>
-                  <div class="icon-box-text"><a href="#">Liên hệ</a></div>
-                </div>
-              </div>
-            </div>
-            <div class="list-product col-sm-6 col-lg-3">
-              <div class="title">
-                <h3>danh mục sản phẩm</h3>
-              </div>
-              <div class="content d-flex">
-                <div class="content-part">
-                  <div class="icon-box d-flex">
-                    <div class="icon-box-img"><i class="fas fa-book"></i></div>
-                    <div class="icon-box-text"><a href="#">Dụng cụ văn phòng</a></div>
-                  </div>
-                  <div class="icon-box d-flex">
-                    <div class="icon-box-img"><i class="fas fa-book"></i></div>
-                    <div class="icon-box-text"><a href="#">Bìa hồ sơ</a></div>
-                  </div>
-                  <div class="icon-box d-flex">
-                    <div class="icon-box-img"><i class="fas fa-book"></i></div>
-                    <div class="icon-box-text"><a href="#">Tập sổ</a></div>
-                  </div>
-                  <div class="icon-box d-flex">
-                    <div class="icon-box-img"><i class="fas fa-book"></i></div>
-                    <div class="icon-box-text"><a href="#">Thiết bị</a></div>
-                  </div>
-                  <div class="icon-box d-flex">
-                    <div class="icon-box-img"><i class="fas fa-book"></i></div>
-                    <div class="icon-box-text"><a href="#">Mực – Ruban</a></div>
-                  </div>
-                </div>
-                <div class="content-part">
-                  <div class="icon-box d-flex">
-                    <div class="icon-box-img"><i class="fas fa-book"></i></div>
-                    <div class="icon-box-text"><a href="#">Giấy</a></div>
-                  </div>
-                  <div class="icon-box d-flex">
-                    <div class="icon-box-img"><i class="fas fa-book"></i></div>
-                    <div class="icon-box-text"><a href="#">Bút viết</a></div>
-                  </div>
-                  <div class="icon-box d-flex">
-                    <div class="icon-box-img"><i class="fas fa-book"></i></div>
-                    <div class="icon-box-text"><a href="#">Lưu trữ</a></div>
-                  </div>
-                  <div class="icon-box d-flex">
-                    <div class="icon-box-img"><i class="fas fa-book"></i></div>
-                    <div class="icon-box-text"><a href="#">Tiện ích</a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="bottom-content row">
-            <div class="social-network col-sm-6 col-lg-3">
-              <div class="divider-line"></div>
-              <div class="title">
-                <h3>kết nối với chúng tôi</h3>
-              </div>
-              <div class="content d-flex">
-                <div class="icon-box d-flex">
-                  <div class="icon-box-img"><i class="fab fa-facebook-f"></i></div>
-                </div>
-                <div class="icon-box d-flex">
-                  <div class="icon-box-img"><i class="fab fa-instagram"></i></div>
-                </div>
-                <div class="icon-box d-flex">
-                  <div class="icon-box-img"><i class="fab fa-twitter"></i></div>
-                </div>
-              </div>
-            </div>
-            <div class="payments col-sm-6 col-lg-3">
-              <div class="divider-line"></div>
-              <div class="title">
-                <h3>chấp nhận thanh toán</h3>
-              </div>
-              <div class="content"><img src="../../assets/images/image-paypal.png" alt=""/></div>
-            </div>
-            <div class="register col-sm-12 col-lg-6">
-              <div class="divider-line"></div>
-              <div class="wrapper-regiter d-flex">
-                <div class="register-text col-sm-12 col-lg-6">
-                  <div class="title">
-                    <h3>đăng ký</h3>
-                  </div>
-                  <div class="content">
-                    <p>Đăng ký để nhận được được thông tin mới nhất từ chúng tôi.</p>
-                  </div>
-                </div>
-                <div class="register-button col-sm-12 col-lg-6 d-flex">
-                  <div class="btn btn-danger"><a href="#">ĐĂNG KÝ</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script src="{{asset('web\js\owl-carousel.js')}}"></script>
-    <script type="text/javascript" src="{{asset('web\js\navigation.js')}}"></script>
-    <script type="text/javascript" src="{{asset('web\js\product.js')}}"></script>
-    <script type="text/javascript" src="{{asset('web\js\index.js')}}"></script>
-  </body>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Home | E-Shopper</title>
+    <link href="{{asset('web/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('web/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{asset('web/css/price-range.css')}}" rel="stylesheet">
+    <link href="{{asset('web/css/prettyPhoto.css')}}" rel="stylesheet">
+    <link href="{{asset('web/css/animate.css')}}" rel="stylesheet">
+	<link href="{{asset('web/css/main.css')}}" rel="stylesheet">
+	<link href="{{asset('web/css/responsive.css')}}" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="{{asset('web/js/html5shiv.js')}}"></script>
+    <script src="{{asset('web/js/respond.min.js')}}"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="{{asset('web/images/ico/favicon.ico')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset('web/images/ico/apple-touch-icon-144-precomposed.png')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('web/images/ico/apple-touch-icon-114-precomposed.png')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('web/images/ico/apple-touch-icon-72-precomposed.png')}}">
+	<link rel="apple-touch-icon-precomposed" href="{{asset('web/images/ico/apple-touch-icon-57-precomposed.png')}}">
+	@yield('styles')
+</head><!--/head-->
+
+<body>
+	<header id="header"><!--header-->
+		<div class="header_top"><!--header_top-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="contactinfo">
+							<ul class="nav nav-pills">
+								<li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="social-icons pull-right">
+							<ul class="nav navbar-nav">
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+								<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header_top-->
+
+		<div class="header-middle"><!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="logo pull-left">
+							<a href="index.html"><img src="images/home/logo.png" alt="" /></a>
+						</div>
+						<div class="btn-group pull-right">
+							<div class="btn-group">
+								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+									USA
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a href="#">Canada</a></li>
+									<li><a href="#">UK</a></li>
+								</ul>
+							</div>
+
+							<div class="btn-group">
+								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+									DOLLAR
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a href="#">Canadian Dollar</a></li>
+									<li><a href="#">Pound</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-8">
+						<div class="shop-menu pull-right">
+							<ul class="nav navbar-nav">
+								<li><a href="#"><i class="fa fa-user"></i> Account</a></li>
+								<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
+								<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+								<li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-middle-->
+
+		<div class="header-bottom"><!--header-bottom-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-9">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+						<div class="mainmenu pull-left">
+							<ul class="nav navbar-nav collapse navbar-collapse">
+								<li><a href="{{URL::to('/')}}" class="active">Home</a></li>
+								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="shop.html">Products</a></li>
+										<li><a href="product-details.html">Product Details</a></li>
+										<li><a href="checkout.html">Checkout</a></li>
+										<li><a href="cart.html">Cart</a></li>
+										<li><a href="login.html">Login</a></li>
+                                    </ul>
+                                </li>
+								<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="blog.html">Blog List</a></li>
+										<li><a href="blog-single.html">Blog Single</a></li>
+                                    </ul>
+                                </li>
+								<li><a href="404.html">404</a></li>
+								<li><a href="contact-us.html">Contact</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="search_box pull-right">
+							<input type="text" placeholder="Search"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-bottom-->
+	</header><!--/header-->
+
+	<section id="slider"><!--slider-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+							<li data-target="#slider-carousel" data-slide-to="1"></li>
+							<li data-target="#slider-carousel" data-slide-to="2"></li>
+						</ol>
+
+						<div class="carousel-inner">
+							<div class="item active">
+								<div class="col-sm-6">
+									<h1><span>E</span>-SHOPPER</h1>
+									<h2>Free E-Commerce Template</h2>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<button type="button" class="btn btn-default get">Get it now</button>
+								</div>
+								<div class="col-sm-6">
+									<img src="{{asset('web/images/home/girl1.jpg')}}" class="girl img-responsive" alt="" />
+									<img src="{{asset('web/images/home/pricing.png')}}"  class="pricing" alt="" />
+								</div>
+							</div>
+							<div class="item">
+								<div class="col-sm-6">
+									<h1><span>E</span>-SHOPPER</h1>
+									<h2>100% Responsive Design</h2>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<button type="button" class="btn btn-default get">Get it now</button>
+								</div>
+								<div class="col-sm-6">
+									<img src="{{asset('web/images/home/girl2.jpg')}}" class="girl img-responsive" alt="" />
+									<img src="{{asset('web/images/home/pricing.png')}}"  class="pricing" alt="" />
+								</div>
+							</div>
+
+							<div class="item">
+								<div class="col-sm-6">
+									<h1><span>E</span>-SHOPPER</h1>
+									<h2>Free Ecommerce Template</h2>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<button type="button" class="btn btn-default get">Get it now</button>
+								</div>
+								<div class="col-sm-6">
+									<img src="{{asset('web/images/home/girl3.jpg')}}" class="girl img-responsive" alt="" />
+									<img src="{{asset('web/images/home/pricing.png')}}" class="pricing" alt="" />
+								</div>
+							</div>
+
+						</div>
+
+						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+							<i class="fa fa-angle-left"></i>
+						</a>
+						<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+							<i class="fa fa-angle-right"></i>
+						</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section><!--/slider-->
+
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="left-sidebar">
+						<h2>Category</h2>
+						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
+							@foreach ($cates as $item)
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="{{URL::to('danh-muc/'.$item->slug) }}">{{$item->name}} </a></h4>
+								</div>
+							</div>
+							@endforeach
+
+
+
+
+						</div><!--/category-products-->
+
+						<div class="brands_products"><!--brands_products-->
+							<h2>Brands</h2>
+							<div class="brands-name">
+								<ul class="nav nav-pills nav-stacked">
+									<li><a href="#"> <span class="pull-right">(50)</span>Acne</a></li>
+									<li><a href="#"> <span class="pull-right">(56)</span>Grüne Erde</a></li>
+									<li><a href="#"> <span class="pull-right">(27)</span>Albiro</a></li>
+									<li><a href="#"> <span class="pull-right">(32)</span>Ronhill</a></li>
+									<li><a href="#"> <span class="pull-right">(5)</span>Oddmolly</a></li>
+									<li><a href="#"> <span class="pull-right">(9)</span>Boudestijn</a></li>
+									<li><a href="#"> <span class="pull-right">(4)</span>Rösch creative culture</a></li>
+								</ul>
+							</div>
+						</div><!--/brands_products-->
+
+						<div class="price-range"><!--price-range-->
+							<h2>Price Range</h2>
+							<div class="well text-center">
+								 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
+								 <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
+							</div>
+						</div><!--/price-range-->
+
+						<div class="shipping text-center"><!--shipping-->
+							<img src="images/home/shipping.jpg" alt="" />
+						</div><!--/shipping-->
+
+					</div>
+				</div>
+
+				<div class="col-sm-9 padding-right">
+					@yield('feature_items')
+					@yield('category_tab')
+
+
+
+					<div class="recommended_items"><!--recommended_items-->
+						{{-- <h2 class="title text-center">recommended items</h2> --}}
+
+						@yield('recommended_items')
+					</div><!--/recommended_items-->
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer id="footer"><!--Footer-->
+		<div class="footer-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-2">
+						<div class="companyinfo">
+							<h2><span>e</span>-shopper</h2>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
+						</div>
+					</div>
+					<div class="col-sm-7">
+						<div class="col-sm-3">
+							<div class="video-gallery text-center">
+								<a href="#">
+									<div class="iframe-img">
+										<img src="images/home/iframe1.png" alt="" />
+									</div>
+									<div class="overlay-icon">
+										<i class="fa fa-play-circle-o"></i>
+									</div>
+								</a>
+								<p>Circle of Hands</p>
+								<h2>24 DEC 2014</h2>
+							</div>
+						</div>
+
+						<div class="col-sm-3">
+							<div class="video-gallery text-center">
+								<a href="#">
+									<div class="iframe-img">
+										<img src="images/home/iframe2.png" alt="" />
+									</div>
+									<div class="overlay-icon">
+										<i class="fa fa-play-circle-o"></i>
+									</div>
+								</a>
+								<p>Circle of Hands</p>
+								<h2>24 DEC 2014</h2>
+							</div>
+						</div>
+
+						<div class="col-sm-3">
+							<div class="video-gallery text-center">
+								<a href="#">
+									<div class="iframe-img">
+										<img src="images/home/iframe3.png" alt="" />
+									</div>
+									<div class="overlay-icon">
+										<i class="fa fa-play-circle-o"></i>
+									</div>
+								</a>
+								<p>Circle of Hands</p>
+								<h2>24 DEC 2014</h2>
+							</div>
+						</div>
+
+						<div class="col-sm-3">
+							<div class="video-gallery text-center">
+								<a href="#">
+									<div class="iframe-img">
+										<img src="images/home/iframe4.png" alt="" />
+									</div>
+									<div class="overlay-icon">
+										<i class="fa fa-play-circle-o"></i>
+									</div>
+								</a>
+								<p>Circle of Hands</p>
+								<h2>24 DEC 2014</h2>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="address">
+							<img src="images/home/map.png" alt="" />
+							<p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="footer-widget">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-2">
+						<div class="single-widget">
+							<h2>Service</h2>
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="#">Online Help</a></li>
+								<li><a href="#">Contact Us</a></li>
+								<li><a href="#">Order Status</a></li>
+								<li><a href="#">Change Location</a></li>
+								<li><a href="#">FAQ’s</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="single-widget">
+							<h2>Quock Shop</h2>
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="#">T-Shirt</a></li>
+								<li><a href="#">Mens</a></li>
+								<li><a href="#">Womens</a></li>
+								<li><a href="#">Gift Cards</a></li>
+								<li><a href="#">Shoes</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="single-widget">
+							<h2>Policies</h2>
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="#">Terms of Use</a></li>
+								<li><a href="#">Privecy Policy</a></li>
+								<li><a href="#">Refund Policy</a></li>
+								<li><a href="#">Billing System</a></li>
+								<li><a href="#">Ticket System</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="single-widget">
+							<h2>About Shopper</h2>
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="#">Company Information</a></li>
+								<li><a href="#">Careers</a></li>
+								<li><a href="#">Store Location</a></li>
+								<li><a href="#">Affillate Program</a></li>
+								<li><a href="#">Copyright</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-3 col-sm-offset-1">
+						<div class="single-widget">
+							<h2>About Shopper</h2>
+							<form action="#" class="searchform">
+								<input type="text" placeholder="Your email address" />
+								<button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
+								<p>Get the most recent updates from <br />our site and be updated your self...</p>
+							</form>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
+					<p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
+				</div>
+			</div>
+		</div>
+
+	</footer><!--/Footer-->
+
+
+
+    <script src="{{asset('web/js/jquery.js')}}"></script>
+	<script src="{{asset('web/js/bootstrap.min.js')}}"></script>
+	<script src="{{asset('web/js/jquery.scrollUp.min.js')}}"></script>
+	<script src="{{asset('web/js/price-range.js')}}"></script>
+    <script src="{{asset('web/js/jquery.prettyPhoto.js')}}"></script>
+    <script src="{{asset('web/js/main.js')}}"></script>
+</body>
 </html>

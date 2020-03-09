@@ -10,6 +10,8 @@ use App\Repositories\Order\OrderInterface;
 use App\Repositories\Order\OrderRepository;
 use App\Repositories\Order_product\Order_ProductInterface;
 use App\Repositories\Order_product\Order_ProductRepository;
+use Illuminate\Support\Facades\View;
+use App\Models\Category;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,6 +35,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        
+        View::share('cates', Category::all());
         Schema::defaultStringLength(191);
     }
 }
