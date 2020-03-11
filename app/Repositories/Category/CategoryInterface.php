@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Repositories\Category;
 
 interface CategoryInterface {
@@ -6,5 +6,5 @@ interface CategoryInterface {
     public function getById($id);
     public function create(array $attributes);
     public function update($id, array $attributes);
-
+    public function delete($id);
 }

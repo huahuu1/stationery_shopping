@@ -11,27 +11,21 @@
     <div class="col-md-12">
         <table class="table table-bordered">
             <thead>
-                <tr>
+                <tr class="text-center">
                     <th>STT</th>
                     <th>Name</th>
-                    <th>Image</th>
-                    <th>Description</th>
-                    <th>Parent ID</th>
-                    <th><a class="btn btn-sm btn-success" href="{{route('categories.create')}}"><i class="fas fa-plus"></i></a></th>
+                    <th>Functions</i></a></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($categories as $category)
-                <tr>
+                <tr class="text-center">
                     <td>{{$loop->iteration}}</td>
                     <td>{{$category->name}}</td>
-                    <td>{{$category->image}}</td>
-                    <td>{{$category->description}}</td>
-                    <td>{{ $category->getParentName($category->parent_id) }}</td>
-                    <td>
-                        <a class="btn btn-sm btn-info" href=""><i class="fas fa-eye"></i></a>
-                        <a class="btn btn-sm btn-warning" href="{{route('categories.edit', $category->id)}}"><i class="fas fa-pen"></i></a>
-                        <a class="btn btn-sm btn-danger" href=""><i class="fas fa-trash"></i></a>
+                    <td style="width: 9%;" class="text-center">
+                        <a class="btn btn-primary btn-sm" href="#">
+                            <i class="fas fa-folder"></i> View
+                        </a>
                     </td>
                 </tr>
                 @endforeach

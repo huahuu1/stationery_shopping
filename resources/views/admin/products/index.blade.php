@@ -21,11 +21,15 @@
                     <th>STT</th>
                     <th>Image</th>
                     <th>Name</th>
-                    <th>SKU</th>
                     <th>Price</th>
                     <th>Category</th>
                     <th>Supplier</th>
-                    <th><a class="btn btn-sm btn-success" href="{{route('products.create')}}"><i class="fas fa-plus"></i></a></th>
+                    <th>Status</th>
+                    <th>
+                        <a class="btn btn-sm btn-success" href="{{route('products.create')}}">
+                            <i class="fas fa-plus"></i> Add New
+                        </a>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -34,14 +38,20 @@
                     <td>{{$loop->iteration}}</td>
                     <td><a href="{{route('products.show', $product->id)}}"><img width="100" src="{{asset($product->image)}}" alt=""></a>  </td>
                     <td>{{$product->name}}</td>
-                    <td>{{ $product->sku }}</td>
                     <td>{{$product->sell_price}}</td>
                     <td>{{ $product->cate_name }}</td>
-                    <td>{{ $product->supplier_id }}</td>
-                    <td>
-                        <a class="btn btn-sm btn-info" href=""><i class="fas fa-eye"></i></a>
-                        <a class="btn btn-sm btn-warning" href=""><i class="fas fa-pen"></i></a>
-                        <a class="btn btn-sm btn-danger" href=""><i class="fas fa-trash"></i></a>
+                    <td>{{ $product->getSupplierName($product->supplier_id )}}</td>
+                    <td>{{ $product->getStatusName($product->status) }}</td>
+                    <td style="width: 24%;" class="text-center">
+                        <a class="btn btn-primary btn-sm" href="#">
+                            <i class="fas fa-folder"></i> View
+                        </a>
+                        <a class="btn btn-info btn-sm" href="">
+                            <i class="fas fa-pencil-alt"></i> Edit
+                        </a>
+                        <a class="btn btn-danger btn-sm" href="">
+                            <i class="fas fa-trash"></i> Delete
+                        </a>
                     </td>
                 </tr>
                 @endforeach

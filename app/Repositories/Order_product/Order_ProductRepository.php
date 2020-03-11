@@ -37,5 +37,10 @@ class Order_ProductRepository implements Order_ProductInterface {
     public function update($id, array $attributes) {
         return $this->model->find($id)->update($attributes);
     }
+
+    public function delete($id)
+    {
+        return $this->model->find($id)->delete($id);
+    }
 }
 ?>

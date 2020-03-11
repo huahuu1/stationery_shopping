@@ -1,0 +1,10 @@
+<?php
+namespace App\Repositories\Supplier;
+
+interface SupplierInterface {
+    public function getAll();
+    public function getById($id);
+    public function create(array $attributes);
+    public function update($id, array $attributes);
+    public function delete($id);
+}

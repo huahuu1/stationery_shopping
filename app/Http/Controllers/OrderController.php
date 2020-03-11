@@ -6,7 +6,7 @@ use App\Models\Order;
 use App\Repositories\Order\OrderInterface;
 use Illuminate\Http\Request;
 use App\Models\Order_product;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -22,6 +22,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = $this->model->getAll();
+
         return view('admin.orders.index', compact('orders'));
     }
 

@@ -22,7 +22,6 @@ class CategoryRepository implements CategoryInterface {
     {
         return $this->model->create($attributes);
     }
-    public function getPrice($price){}
 
     public function getModel()
     {
@@ -39,8 +38,14 @@ class CategoryRepository implements CategoryInterface {
     {
         return $this->model->with($relation);
     }
+
     public function update($id, array $attributes)
     {
         return $this->model->find($id)->update($attributes);
+    }
+
+    public function delete($id)
+    {
+        return $this->model->find($id)->delete($id);
     }
 }

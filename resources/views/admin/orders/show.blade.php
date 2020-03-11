@@ -11,54 +11,48 @@
     <div class="col-md-12">
         <table class="table table-bordered">
             <thead>
-                <tr>
-
+                <tr class="text-center">
                     <th>STT</th>
                     <th>Product Image</th>
                     <th>Product Name</th>
                     <th>Quantity</th>
                     <th>Price</th>
-                    <th>Discount</th>
                 </tr>
-               
+
             </thead>
             <tbody>
-                
+
                @foreach ($products as $item)
-                   <tr>
+                   <tr class="text-center">
                        <td>{{$loop->iteration}}</td>
                        <td><a href=""><img width="80" src="{{asset($item->image)}}" alt=""></a></td>
                        <td>{{Str::limit($item->name, 40)}}</td>
                        <td>{{$item->quantity}}</td>
                        <td>{{$item->sell_price}}</td>
-                       <td>{{$item->list_price == null ? '0%' : ($item->list_price - $item->sell_price)/$item->list_price*100 .' %' }}</td>
                    </tr>
                @endforeach
             </tbody>
             <tfoot>
                 <tr>
-                    <th colspan="2">tong</th>
-                    <th></th>
-                    <th>
-                        @php 
+                    <th colspan="3" class="text-center">Total:</th>
+                    <th class="text-center">
+                        @php
                             $qty = 0;
                             foreach ($products as $key => $item) {
                                 $qty += $item->quantity;
-                            } 
-                            echo $qty;   
+                            }
+                            echo $qty;
                         @endphp
                     </th>
-                    <th colspan="2">
-                        @php 
+                    <th colspan="2" class="text-center">
+                        @php
                             $total = 0;
                             foreach ($products as $key => $item) {
                                 $total += $item->quantity*$item->sell_price;
-                            } 
-                            echo $total . ' VND';   
+                            }
+                            echo $total . ' VND';
                         @endphp
                     </th>
-                   
- 
                 </tr>
             </tfoot>
         </table>

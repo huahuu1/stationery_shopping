@@ -4,8 +4,14 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use App\Repositories\User\UserInterface;
+use App\Repositories\User\UserRepository;
 use App\Repositories\Category\CategoryInterface;
 use App\Repositories\Category\CategoryRepository;
+use App\Repositories\Product\ProductInterface;
+use App\Repositories\Product\ProductRepository;
+use App\Repositories\Supplier\SupplierInterface;
+use App\Repositories\Supplier\SupplierRepository;
 use App\Repositories\Order\OrderInterface;
 use App\Repositories\Order\OrderRepository;
 use App\Repositories\Order_product\Order_ProductInterface;
@@ -23,7 +29,10 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        $this->app->singleton(UserInterface::class, UserRepository::class);
         $this->app->singleton(CategoryInterface::class, CategoryRepository::class);
+        $this->app->singleton(SupplierInterface::class, SupplierRepository::class);
+        $this->app->singleton(ProductInterface::class, ProductRepository::class);
         $this->app->singleton(OrderInterface::class, OrderRepository::class);
         $this->app->singleton(Order_ProductInterface::class,Order_ProductRepository::class);
     }
@@ -35,7 +44,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        
+
         View::share('cates', Category::all());
         Schema::defaultStringLength(191);
     }

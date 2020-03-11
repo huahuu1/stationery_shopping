@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Repositories\Product\ProductInterface;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 
@@ -15,7 +16,7 @@ class ProductController  extends Controller
     public function index(Request $request)
     {
         $keyword = $request->keyword;
-        $pageSize = $request->pageSize ?? 5; 
+        $pageSize = $request->pageSize ?? 5;
 
         $path = '';
         if(!$keyword){
@@ -30,16 +31,13 @@ class ProductController  extends Controller
         }
 
         $products->withPath($path);
-        
+
         foreach($products as $product){
             $cate = Category::find($product->category_id);
-            
             if($cate){
                 $product->cate_name = $cate->name;
             }
-            
         }
-        // dd($products);
         return view('admin.products.index', compact('products', 'keyword'));
     }
 
@@ -55,12 +53,11 @@ class ProductController  extends Controller
             'description' => 'required',
             'category_id' => 'required'
         ]);
-        // Eloquent 
+        // Eloquent
         $product = new Product();
 
         $product->name = $request->name;
         $product->slug = $request->slug;
-        $product->sku = 'GG'.time();
         $product->description = $request->description;
         $product->short_description = $request->short_description;
         $product->list_price = $request->list_price;
@@ -74,7 +71,7 @@ class ProductController  extends Controller
             request()->image->move(public_path('uploads/products'), $fileName);
             $product->image = $fileName;
         }
-        
+
         $product->save();
         return redirect()->route('products.index');
 
@@ -83,7 +80,7 @@ class ProductController  extends Controller
     {
         // Eloquent way
         $product = Product::find($id);
-        $product->category;
+
 
         return view('admin.products.show', compact('product'));
     }

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use Illuminate\Http\Request;
 use App\Repositories\Category\CategoryInterface;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Models\Product;
@@ -33,7 +33,6 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        // dd('create');
         return view('admin.categories.create');
     }
 
@@ -70,7 +69,7 @@ class CategoryController extends Controller
         //
         $category = $this->model->getById($id);
 
-        $category->products;
+        // $category->products;
 
         return view('admin.categories.show', compact('category'));
     }
@@ -100,8 +99,6 @@ class CategoryController extends Controller
     {
 
         $this->model->update($id, $request->only($this->model->getModel()->fillable));
-
-
         return redirect(route('categories.index'));
     }
 

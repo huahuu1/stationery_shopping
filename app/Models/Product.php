@@ -12,22 +12,35 @@ class Product extends Model
     // category_tables
     protected $fillable = [
         'name',
-        'sku',
         'slug',
         'image',
         'description',
-        'short_description',
-        'list_price',
         'sell_price',
+        'category_id',
         'supplier_id',
         'status',
-        'category_id',
     ];
     // map Product Model to products table
     public function getCategoryName($id)
     {
         $cat = Category::find($id);
         return $cat->name;
+    }
+
+    public function getStatusName($id)
+    {
+        $p = Product::find($id);
+        if($p->status == 1) {
+            return 'In stock';
+        } else {
+            return 'Out of stock';
+        }
+    }
+
+    public function getSupplierName($id)
+    {
+        $sup = Supplier::find($id);
+        return $sup->name;
     }
 
     public function category()

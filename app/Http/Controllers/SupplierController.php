@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Supplier;
+use App\Repositories\Supplier\SupplierInterface;
 use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
+    public $model;
+    public function __construct(SupplierInterface $suppliers){
+        $this->model = $suppliers;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $suppliers = Supplier::all();
+        // $suppliers = Supplier::all();
+        $suppliers = $this->model->getAll();
         return view('admin.suppliers.index', compact('suppliers'));
     }
 
@@ -36,7 +42,7 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->model->create($request->only($this->model->getModel()->fillable));
     }
 
     /**
@@ -45,9 +51,10 @@ class SupplierController extends Controller
      * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function show(Supplier $supplier)
+    public function show($id)
     {
-        //
+        $supplier = $this->model->getById($id);
+        return view('admin.suppliers.show', compact('supplier'));
     }
 
     /**
@@ -56,9 +63,11 @@ class SupplierController extends Controller
      * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function edit(Supplier $supplier)
+    public function edit(Supplier $supplier, $id)
     {
-        //
+        $suppliers = $this->model->getAll();
+        $supplier = $this->model->getById($id);
+        return view('admin.suppliers.edit', compact('suppliers', 'supplier'));
     }
 
     /**
@@ -68,9 +77,10 @@ class SupplierController extends Controller
      * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Supplier $supplier)
+    public function update(Request $request, $id)
     {
-        //
+        $this->model->update($id, $request->only($this->model->getModel()->fillable));
+        return redirect(route('suppliers.index'));
     }
 
     /**
@@ -79,8 +89,9 @@ class SupplierController extends Controller
      * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Supplier $supplier)
+    public function destroy($id)
     {
-        //
+        $this->model->delete($id);
+        return redirect(route('suppliers.index'));
     }
 }

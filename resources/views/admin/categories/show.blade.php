@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Product List')
+@section('title', 'Category List')
 
 @section('page_title')
 <p>Category Detail</p>
@@ -17,7 +17,7 @@
             <li>{{ $product->name }}</li>
         </ul>
         @endforeach
-        
+
     </div>
 </div>
 @endsection

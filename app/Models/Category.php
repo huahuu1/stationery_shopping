@@ -11,21 +11,8 @@ class Category extends Model
     // category_tables
     protected $fillable = [
         'name',
-        'slug',
-        'image',
-        'description',
-        'status',
-        'parent_id',
     ];
-    public function getParentName($id)
-    {
-        if($id <= 0){
-            return 'Danh Muc Goc';
-        } else {
-            $cate = self::find($id);
-            return $cate->name;
-        }
-    }
+
     public function products()
     {
         return $this->hasMany(Product::class);
