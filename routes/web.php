@@ -1,5 +1,6 @@
 <?php
 use App\User;
+use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,23 +12,27 @@ use App\User;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', 'WebController@index')->name('web.index');
+Route::post('/add-to-cart', 'WebController@addToCart')->name('carts.add_to_cart');
 
 Route::get('/products', function () {
-    // return response()->json([$name, $id]);
-    // $products = [
-    //     ['id' => 1, 'name' => 'product 1', 'price' => 100],
-    //     ['id' => 2, 'name' => 'product 2', 'price' => 200],
-    //     ['id' => 3, 'name' => 'product 3', 'price' => 300],
-    //     ['id' => 4, 'name' => 'product 4', 'price' => 400]
-    // ];
-    // return $products;
-//    $users = DB::table('users')->get();
+
  $users = User::all();
    // Query Builder
-   return $users;
+    return $users;
     return view('products.index', compact('products'));
 });
- 
+Route::get('delete-all', function(){
+    DB::table('products')->delete();
+    echo 'delete all';
+});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/danh-muc/{slug}', 'WebController@getProductsByCategoryId');
+Route::get('/san-pham/{item}', 'WebController@getProductDetail')->name('products.detail');
+// Route::get('/carts/add-to-cart', 'WebController@addToCart')->name('carts.add_to_cart');

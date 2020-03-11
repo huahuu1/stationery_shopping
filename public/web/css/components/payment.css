@@ -1,0 +1,74 @@
+.account a, .coupon a, .payment a {
+  padding: 0 1rem;
+  text-decoration: none; }
+  .account a:hover, .coupon a:hover, .payment a:hover {
+    color: inherit; }
+
+.account input, .coupon input, .payment input {
+  font-size: 2rem;
+  height: 3.5rem; }
+
+.account {
+  margin-top: 2.5rem; }
+  .account .userName {
+    padding: 0 1.5rem 0 0; }
+  .account .password {
+    padding: 0 0 0 1.5rem; }
+  .account .logIn {
+    padding-bottom: 1.5rem; }
+    .account .logIn p {
+      margin: 0.15rem 0 0 0.5rem; }
+  .account .btnLogIn {
+    width: 10rem;
+    background-color: rgba(225, 75, 75, 0.75);
+    color: white;
+    border: 0.1rem solid #e14b4b;
+    border-radius: 0.5rem; }
+  .account .checkRememberPassword {
+    margin-left: 2.5rem; }
+
+.coupon form {
+  border: 0.25rem dashed #e14b4b;
+  padding: 2.5rem 2.5rem; }
+
+.coupon .txtCoupon {
+  width: 80%; }
+
+.coupon .btnApply {
+  width: 20%;
+  background-color: rgba(225, 100, 100, 0.75);
+  border-color: #e16464;
+  color: white; }
+
+.payment {
+  margin-top: 2.5rem; }
+  .payment .paymentInformation {
+    padding: 1.5rem 5rem 1.5rem 0;
+    border-top: 0.25rem solid rgba(225, 225, 225, 0.75); }
+    .payment .paymentInformation .lastName {
+      padding-left: 0; }
+    .payment .paymentInformation .firstName {
+      padding-right: 0; }
+    .payment .paymentInformation .form-control {
+      margin-bottom: 1rem; }
+    .payment .paymentInformation .form-group .row p {
+      margin: 0.2rem 0 0 1rem; }
+  .payment .paymentOrder {
+    border: 0.25rem solid #c84b4b;
+    padding: 1.5rem 2.5rem; }
+    .payment .paymentOrder h2 {
+      margin: 1.5rem 0; }
+    .payment .paymentOrder th {
+      font-weight: 500; }
+    .payment .paymentOrder table {
+      width: 100%; }
+      .payment .paymentOrder table tr {
+        border-bottom: 0.1rem solid #e1e1e1; }
+        .payment .paymentOrder table tr:last-child {
+          border-bottom: 0.25rem solid #e1e1e1; }
+        .payment .paymentOrder table tr td {
+          padding: 1rem 0; }
+    .payment .paymentOrder input {
+      height: 4rem;
+      width: 100%;
+      margin: 2.5rem 0; }
