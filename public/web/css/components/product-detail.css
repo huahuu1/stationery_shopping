@@ -9,7 +9,7 @@
       color: #222;
       text-decoration: none; }
   .container .breadCrumb .divider {
-    margin: auto 0.5rem; }
+    margin: auto 1rem; }
 
 .container .productMain {
   padding: 1.5rem 0; }
@@ -17,20 +17,26 @@
     overflow: hidden; }
     .container .productMain .image img {
       width: 100%;
-      transition: all 1s; }
+      transition: all 1s ease;
+      -webkit-transition: all 1s ease;
+      -moz-transition: all 1s ease;
+      -ms-transition: all 1s ease;
+      -o-transition: all 1s ease; }
     .container .productMain .image:hover img {
-      transform: scale(1.5);
-      -webkit-transform: scale(1.5);
-      -moz-transform: scale(1.5);
-      -ms-transform: scale(1.5);
-      -o-transform: scale(1.5); }
+      transform: scale(1.2);
+      -webkit-transform: scale(1.2);
+      -moz-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      -o-transform: scale(1.2); }
   .container .productMain .content {
     width: 100%;
     color: #1C1C1C;
     padding: 1.5rem 4rem; }
-    .container .productMain .content .nameTag {
+    .container .productMain .content .nameTag h1 {
+      color: #1c1c1c;
       font-weight: bold;
-      font-size: 2.5rem; }
+      font-size: 2.7rem;
+      font-family: "Roboto Slab", sans-serif; }
     .container .productMain .content .divideTag {
       margin: 2rem 0;
       height: 2.5px;
@@ -39,10 +45,21 @@
       width: 100%;
       max-width: 40px; }
     .container .productMain .content .priceTag {
-      font-size: 2.5rem;
-      padding: auto 0; }
-    .container .productMain .content .textTag p {
-      padding: 1rem 0; }
+      align-items: center;
+      font-weight: 500;
+      color: #111; }
+      .container .productMain .content .priceTag p {
+        margin: 0;
+        margin-right: .5rem;
+        font-size: 2.4rem; }
+      .container .productMain .content .priceTag span {
+        font-size: 1.8rem;
+        text-decoration: underline;
+        font-weight: bold; }
+    .container .productMain .content .textTag {
+      margin-bottom: 2rem; }
+      .container .productMain .content .textTag p {
+        font-size: 1.6rem; }
     .container .productMain .content .cartForm .quantityControl .btnMinus, .container .productMain .content .cartForm .quantityControl .btnPlus {
       width: 2.5rem;
       height: 4rem; }
@@ -53,20 +70,33 @@
       margin: 0 5rem;
       width: 15rem;
       height: 4rem;
-      border-radius: 0.5rem; }
+      font-size: 1.6rem;
+      text-transform: uppercase;
+      font-weight: 500; }
 
 .container .productDetail {
   padding: 4rem 0; }
-  .container .productDetail .nav-item::selection {
+  .container .productDetail .nav-item .nav-link.active {
     border-top: 2px solid #fa3264; }
+  .container .productDetail .nav-item {
+    font-family: "Kanit", sans-serif;
+    font-size: 1.5rem;
+    color: #000;
+    font-weight: 500; }
+    .container .productDetail .nav-item .nav-link {
+      padding: 1rem 1.5rem; }
   .container .productDetail .tab-content {
     border: 0.5px solid rgba(100, 100, 100, 0.25);
     border-top: none; }
     .container .productDetail .tab-content .description, .container .productDetail .tab-content .evaluation {
       padding: 2.5rem 5rem; }
-      .container .productDetail .tab-content .description h1, .container .productDetail .tab-content .evaluation h1 {
+      .container .productDetail .tab-content .description h3, .container .productDetail .tab-content .evaluation h3 {
         color: #000;
-        padding: 1.5rem 0; }
+        padding: 1.5rem 0;
+        font-size: 2rem;
+        font-family: 'Roboto Slab', sans-serif; }
+      .container .productDetail .tab-content .description p, .container .productDetail .tab-content .evaluation p {
+        font-size: 1.6rem; }
       .container .productDetail .tab-content .description .comment, .container .productDetail .tab-content .evaluation .comment {
         padding: 2.5rem 2.5rem;
         border: 0.25rem solid #cd3737; }
@@ -78,27 +108,42 @@
         .container .productDetail .tab-content .description .comment form input.btn-info, .container .productDetail .tab-content .evaluation .comment form input.btn-info {
           height: 3.5rem; }
 
-.container .productOthers h1 {
+.container .productOthers h3 {
   color: #000;
-  padding: 1.5rem 0; }
+  padding: 1.5rem 0;
+  font-family: "Roboto Slab", sans-serif;
+  margin: 0 6rem 1.5rem;
+  font-size: 2rem;
+  text-transform: uppercase; }
 
-.container .productOthers .slider-part {
+.container .productOthers .slider-supplier {
+  margin-top: 1rem; }
+  .container .productOthers .slider-supplier img {
+    width: 80%;
+    margin: 0 auto; }
+
+.container .productOthers .slider-part,
+.container .productOthers .slider-supplier {
   margin-bottom: 2rem; }
-  .container .productOthers .slider-part .owl-nav .owl-prev {
+  .container .productOthers .slider-part .owl-nav .owl-prev,
+  .container .productOthers .slider-supplier .owl-nav .owl-prev {
     position: absolute;
     top: 0;
     left: -5%;
     height: 100%;
     width: 10rem;
     margin: 0; }
-  .container .productOthers .slider-part .owl-nav .owl-next {
+  .container .productOthers .slider-part .owl-nav .owl-next,
+  .container .productOthers .slider-supplier .owl-nav .owl-next {
     position: absolute;
     top: 0;
     right: -5%;
     height: 100%;
     width: 10rem;
     margin: 0; }
-  .container .productOthers .slider-part .owl-nav button.owl-prev, .container .productOthers .slider-part .owl-nav button.owl-next {
+  .container .productOthers .slider-part .owl-nav button.owl-prev, .container .productOthers .slider-part .owl-nav button.owl-next,
+  .container .productOthers .slider-supplier .owl-nav button.owl-prev,
+  .container .productOthers .slider-supplier .owl-nav button.owl-next {
     background: transparent;
     opacity: 0;
     transition: all .3s ease;
@@ -106,9 +151,13 @@
     -moz-transition: all .3s ease;
     -ms-transition: all .3s ease;
     -o-transition: all .3s ease; }
-    .container .productOthers .slider-part .owl-nav button.owl-prev:hover, .container .productOthers .slider-part .owl-nav button.owl-next:hover {
+    .container .productOthers .slider-part .owl-nav button.owl-prev:hover, .container .productOthers .slider-part .owl-nav button.owl-next:hover,
+    .container .productOthers .slider-supplier .owl-nav button.owl-prev:hover,
+    .container .productOthers .slider-supplier .owl-nav button.owl-next:hover {
       outline: none; }
-    .container .productOthers .slider-part .owl-nav button.owl-prev i, .container .productOthers .slider-part .owl-nav button.owl-next i {
+    .container .productOthers .slider-part .owl-nav button.owl-prev i, .container .productOthers .slider-part .owl-nav button.owl-next i,
+    .container .productOthers .slider-supplier .owl-nav button.owl-prev i,
+    .container .productOthers .slider-supplier .owl-nav button.owl-next i {
       transition: all .3s ease;
       -webkit-transition: all .3s ease;
       -moz-transition: all .3s ease;
@@ -116,7 +165,9 @@
       -o-transition: all .3s ease;
       color: #111;
       font-size: 2.2rem; }
-    .container .productOthers .slider-part .owl-nav button.owl-prev:hover i, .container .productOthers .slider-part .owl-nav button.owl-next:hover i {
+    .container .productOthers .slider-part .owl-nav button.owl-prev:hover i, .container .productOthers .slider-part .owl-nav button.owl-next:hover i,
+    .container .productOthers .slider-supplier .owl-nav button.owl-prev:hover i,
+    .container .productOthers .slider-supplier .owl-nav button.owl-next:hover i {
       color: #ff0000; }
 
 .container .productOthers .owl-carousel .owl-item .owl-lazy:not([src]), .container .productOthers .owl-carousel .owl-item .owl-lazy[src^=""] {

@@ -26,13 +26,10 @@ Route::get('/products', function () {
     return $users;
     return view('products.index', compact('products'));
 });
-Route::get('delete-all', function(){
-    DB::table('products')->delete();
-    echo 'delete all';
-});
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/danh-muc/{slug}', 'WebController@getProductsByCategoryId');
-Route::get('/san-pham/{item}', 'WebController@getProductDetail')->name('products.detail');
+Route::get('/home-page', 'HomePageController@index')->name('home-page');
+Route::get('/categories/{name}', 'WebController@getProductsByCategoryId');
+Route::get('/products/{item}', 'WebController@getProductDetail')->name('products.detail');
 // Route::get('/carts/add-to-cart', 'WebController@addToCart')->name('carts.add_to_cart');
