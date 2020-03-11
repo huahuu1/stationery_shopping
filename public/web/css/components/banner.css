@@ -6,6 +6,94 @@
   background-size: cover !important;
   background-repeat: no-repeat !important; }
 
+.wrapper-nav .banner .slider-main .owl-stage-outer .owl-stage .owl-item #text-box-1 {
+  position: absolute;
+  left: 11%;
+  top: 32%;
+  margin-left: auto;
+  width: 32%; }
+  .wrapper-nav .banner .slider-main .owl-stage-outer .owl-stage .owl-item #text-box-1 .text {
+    text-align: left; }
+    .wrapper-nav .banner .slider-main .owl-stage-outer .owl-stage .owl-item #text-box-1 .text .text-inner h3 {
+      font-size: 3.2rem;
+      font-family: 'Roboto Slab', sans-serif;
+      color: #1c1c1c;
+      font-weight: 400; }
+    .wrapper-nav .banner .slider-main .owl-stage-outer .owl-stage .owl-item #text-box-1 .text .text-inner h2 {
+      font-size: 5.568rem;
+      font-family: 'Roboto Slab', sans-serif;
+      color: #ff0000;
+      font-weight: 700; }
+    .wrapper-nav .banner .slider-main .owl-stage-outer .owl-stage .owl-item #text-box-1 .text .text-inner p {
+      font-size: 1.6rem;
+      color: #000;
+      font-weight: 400; }
+    .wrapper-nav .banner .slider-main .owl-stage-outer .owl-stage .owl-item #text-box-1 .text .text-inner a {
+      display: inline-block;
+      padding: .5rem 1.8rem .9rem 1.8rem;
+      margin: 1rem 0;
+      border: 2px solid #000;
+      text-decoration: none;
+      transition: all .2s ease;
+      -webkit-transition: all .2s ease;
+      -moz-transition: all .2s ease;
+      -ms-transition: all .2s ease;
+      -o-transition: all .2s ease; }
+      .wrapper-nav .banner .slider-main .owl-stage-outer .owl-stage .owl-item #text-box-1 .text .text-inner a:hover {
+        background-color: #fff;
+        border-color: #fff; }
+        .wrapper-nav .banner .slider-main .owl-stage-outer .owl-stage .owl-item #text-box-1 .text .text-inner a:hover span {
+          color: #666; }
+      .wrapper-nav .banner .slider-main .owl-stage-outer .owl-stage .owl-item #text-box-1 .text .text-inner a span {
+        line-height: 1.6;
+        font-size: 1.6rem;
+        color: #000;
+        font-weight: 500; }
+
+.wrapper-nav .banner .slider-main .owl-stage-outer .owl-stage .owl-item #text-box-2 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40%;
+  margin: 0 auto; }
+  .wrapper-nav .banner .slider-main .owl-stage-outer .owl-stage .owl-item #text-box-2 .text {
+    text-align: center; }
+    .wrapper-nav .banner .slider-main .owl-stage-outer .owl-stage .owl-item #text-box-2 .text .text-inner h3 {
+      font-size: 3.2rem;
+      font-family: 'Roboto Slab', sans-serif;
+      color: #1c1c1c;
+      font-weight: 400; }
+    .wrapper-nav .banner .slider-main .owl-stage-outer .owl-stage .owl-item #text-box-2 .text .text-inner h2 {
+      font-size: 5.568rem;
+      font-family: 'Roboto Slab', sans-serif;
+      color: #ff0000;
+      font-weight: 700; }
+    .wrapper-nav .banner .slider-main .owl-stage-outer .owl-stage .owl-item #text-box-2 .text .text-inner p {
+      font-size: 1.6rem;
+      color: #000;
+      font-weight: 400; }
+    .wrapper-nav .banner .slider-main .owl-stage-outer .owl-stage .owl-item #text-box-2 .text .text-inner a {
+      display: inline-block;
+      padding: .5rem 1.8rem .9rem 1.8rem;
+      margin: 1rem 0;
+      border: 2px solid #000;
+      text-decoration: none;
+      transition: all .2s ease;
+      -webkit-transition: all .2s ease;
+      -moz-transition: all .2s ease;
+      -ms-transition: all .2s ease;
+      -o-transition: all .2s ease; }
+      .wrapper-nav .banner .slider-main .owl-stage-outer .owl-stage .owl-item #text-box-2 .text .text-inner a:hover {
+        background-color: #fff;
+        border-color: #fff; }
+        .wrapper-nav .banner .slider-main .owl-stage-outer .owl-stage .owl-item #text-box-2 .text .text-inner a:hover span {
+          color: #666; }
+      .wrapper-nav .banner .slider-main .owl-stage-outer .owl-stage .owl-item #text-box-2 .text .text-inner a span {
+        line-height: 1.6;
+        font-size: 1.6rem;
+        color: #000;
+        font-weight: 500; }
+
 .wrapper-nav .banner .slider-main .owl-stage-outer .overlay {
   background-color: rgba(190, 190, 190, 0.2);
   position: absolute;
@@ -111,3 +199,28 @@
     height: 75rem; }
     .slider-main .owl-stage .owl-lazy {
       height: 75rem; } }
+
+#text-box-2 {
+  width: 90%; }
+
+#text-box-1 .text,
+#text-box-2 .text {
+  font-size: 80%; }
+
+@media (min-width: 550px) {
+  #text-box-2 {
+    width: 70%; }
+  #text-box-2 .text {
+    font-size: 100%; } }
+
+@media (min-width: 850px) {
+  #text-box-2 {
+    width: 50%; } }
+
+@media (min-width: 850px) {
+  #text-box-1 {
+    width: 31%; } }
+
+@media (min-width: 550px) {
+  #text-box-1 {
+    width: 35%; } }

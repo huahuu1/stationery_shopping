@@ -12,15 +12,13 @@ class WebController extends Controller
     //public
     public function index()
     {
-
-        
         $products = Product::paginate(6);
         return view('web.home', compact('products'));
     }
 
     public function addToCart(Request $request)
     {
-   
+
         $product = Product::find($request->id);
 
         $cart = new Cart();

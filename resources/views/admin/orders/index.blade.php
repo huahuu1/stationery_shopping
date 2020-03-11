@@ -30,8 +30,8 @@
                             <td>
                                 {{$order->getProductQuantity($order->id)}}
                             </td>
-                            <td>{{$order->total}}</td>
-                            {{-- <td>{{$order->total = $order->getProductTotal($order->id)}}</td> --}}
+                            {{-- <td>{{$order->total}}</td> --}}
+                            <td>{{$order->getProductTotal($order->id)}}</td>
                             <td>{{$order->address}}</td>
                             <td>{{$order->getOrderStatus($order->status)}}</td>
                             <td>

@@ -62,27 +62,30 @@ class Order extends Model
         return $qty;
     }
 
-    // public function getProductDetailQuantity($order_id) {
-    //     $order = Order::find($order_id);
-    //     $products = $order->products;
-    //     $order_products = DB::table('order_product')->get();
-    //     $qty = 0;
-    //     foreach($products as $key=> $product){
-    //         $product->quantity = $order_products[$key]->product_quantity;
-    //         $qty = $product->quantity;
-    //     }
-    //     return $qty;
-    // }
+    public function getProductDetailQuantity($order_id) {
+        $order = Order::find($order_id);
+        $products = $order->products;
+        // dd($products);
 
-    // public function getProductTotal($order_id) {
-    //     $order = Order::find($order_id);
-    //     $products = $order->products;
-    //     $total = 0;
-    //     foreach ($products as $item) {
-    //         $total += Order::getProductDetailQuantity($item->id)*$item->sell_price;
-    //     }
-    //     return $total;
-    // }
+        $order_products = DB::table('order_product')->get();
+        $qty = 0;
+        foreach($products as $key=> $product){
+            $product->quantity = $order_products[$key]->product_quantity;
+            $qty = $product->quantity;
+        }
+        return $qty;
+    }
+
+    public function getProductTotal($order_id) {
+        $order = Order::find($order_id);
+        $products = $order->products;
+        $total = 0;
+        // dd($products);
+        foreach ($products as $item) {
+            $total += $this->getProductDetailQuantity($item->id) * $item->sell_price;
+        }
+        return $total;
+    }
 
     public function users() {
         return $this->belongsTo(User::class);
