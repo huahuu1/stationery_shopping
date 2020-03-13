@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Supplier;
 use App\Repositories\Supplier\SupplierInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SupplierController extends Controller
 {
@@ -17,11 +18,25 @@ class SupplierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $suppliers = Supplier::all();
-        $suppliers = $this->model->getAll();
-        return view('admin.suppliers.index', compact('suppliers'));
+        // $suppliers = $this->model->getAll();
+        $keyword = $request->keyword;
+        $pageSize = $request->pageSize ?? 5;
+        $path = '';
+        if(!$keyword){
+            $path .= "?pageSize=$pageSize";
+            $suppliers = Supplier::orderBy('id', 'ASC')->paginate($pageSize);
+        } else {
+            $path .= "?pageSize=$pageSize&keyword=$keyword";
+            $suppliers = Supplier::where('name', 'like', '%'. $keyword .'%')
+                                ->orderBy('id', 'ASC')
+                                ->paginate($pageSize);
+        }
+
+        $suppliers->withPath($path);
+
+        return view('admin.suppliers.index', compact('suppliers', 'keyword'));
     }
 
     /**

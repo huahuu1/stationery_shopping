@@ -9,35 +9,39 @@
 @section('content')
 <div class="row">
     <div class="col-md-12">
-        <table class="table table-bordered">
+        <table class="table table-bordered table-valign-middle">
             <thead>
-                <tr>
-
+                <tr class="text-center">
                     <th>STT</th>
                     <th>Name</th>
-                    <th>Image</th>
-                    <th>Description</th>
-                    <th>Parent ID</th>
-                    <th><a class="btn btn-sm btn-success" href="{{route('users.create')}}"><i class="fas fa-plus"></i></a></th>
+                    <th>Email</th>
+                    <th><a class="btn btn-sm btn-success" href="{{route('users.create')}}">
+                        <i class="fas fa-plus"></i> Add New
+                    </a></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($users as $user)
-                <tr>
-                    <td>1</td>
+                <tr class="text-center">
+                    <td>{{$loop->iteration}}</td>
                     <td>{{$user->name}}</td>
-                    <td><a href="{{route('users.show', $user->id)}}"><img width="60" src="{{$user->profile->avatar}}" alt=""></a></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <a class="btn btn-sm btn-info" href=""><i class="fas fa-eye"></i></a>
-                        <a class="btn btn-sm btn-warning" href=""><i class="fas fa-pen"></i></a>
-                        <a class="btn btn-sm btn-danger" href=""><i class="fas fa-trash"></i></a>
+                    <td>{{$user->email}}</td>
+                    <td style="width: 24%;" class="text-center">
+                        <a class="btn btn-primary btn-sm" href="{{route('users.show', $user->id)}}"><i class="fas fa-folder"></i> View</a>
+                        <a class="btn btn-info btn-sm" href="{{route('users.edit', $user->id)}}"><i class="fas fa-pencil-alt"></i> Edit</a>
+                        <form class="d-inline-block" action="{{ url('admin/users', ['id' => $user->id]) }}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger btn-sm" href="{{route('users.destroy', $user->id)}}">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+        {{-- {{$users->links()}} --}}
     </div>
 </div>
 @endsection

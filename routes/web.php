@@ -29,7 +29,12 @@ Route::get('/products', function () {
 
 Auth::routes();
 
+// website page
 Route::get('/home-page', 'HomePageController@index')->name('home-page');
 Route::get('/categories/{name}', 'WebController@getProductsByCategoryId');
 Route::get('/products/{item}', 'WebController@getProductDetail')->name('products.detail');
+
+// admin page
+Route::get('/home', 'HomeController@index')->name('home');
+
 // Route::get('/carts/add-to-cart', 'WebController@addToCart')->name('carts.add_to_cart');

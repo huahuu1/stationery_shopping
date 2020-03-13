@@ -13,7 +13,7 @@ class WebController extends Controller
     public function index()
     {
         $products = Product::paginate(6);
-        return view('web.home', compact('products'));
+        return view('web.home-page', compact('products'));
     }
 
     public function addToCart(Request $request)

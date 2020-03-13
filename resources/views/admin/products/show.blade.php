@@ -9,12 +9,25 @@
 @section('content')
 <div class="row">
     <div class="col-md-12">
-        <h3>Product name: {{ $product->name }}</h3>
-        <h3>Price: {{ $product->sell_price }}</h3>
-        <hr>
-        <h2><strong>  Category of product</strong></h2>
-        <h2>{{ $product->category->name }}</h2>
-        <a class="btn btn-success" href="{{route('products.index')}}">Come Back</a>
+        <table class="table table-bordered table-valign-middle">
+            <thead>
+                <tr class="text-center">
+                    <th>Product Image</th>
+                    <th>Product Name</th>
+                    <th>Product Description</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-center">
+                    <td><a href=""><img width="80" src="{{asset($product->image)}}" alt=""></a></td>
+                    <td>{{$product->name}}</td>
+                    <td>{{Str::limit($product->description)}}</td>
+                    <td>{{$product->sell_price}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <a class="btn btn-secondary float-right" href="{{route('products.index')}}">Come Back</a>
     </div>
 </div>
 @endsection

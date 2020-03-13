@@ -1,5 +1,6 @@
 <?php
 use App\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,7 +20,7 @@ Route::get('/products', 'ProductController@index')->name('products.index');
 Route::get('/products/create', 'ProductController@create')->name('products.create');
 Route::post('/products', 'ProductController@store')->name('products.store');
 Route::get('/products/{id}', 'ProductController@show')->name('products.show');
-Route::get('/products/{id}/edit', 'ProductController@edit')->name('products.edit');
+Route::get('/products/edit/{id}', 'ProductController@edit')->name('products.edit');
 Route::put('/products/{id}', 'ProductController@update')->name('products.update');
 Route::delete('/products/{id}', 'ProductController@destroy')->name('products.destroy');
 
@@ -34,12 +35,12 @@ Route::get('/categories/{id}', 'CategoryController@show')->name('categories.show
 
 // Supplier Routes
 Route::get('/suppliers', 'SupplierController@index')->name('suppliers.index');
-Route::get('/suppliers/create', 'SupplierController@create')->name('suppliers.create');
-Route::post('/suppliers', 'SupplierController@store')->name('suppliers.store');
+// Route::get('/suppliers/create', 'SupplierController@create')->name('suppliers.create');
+// Route::post('/suppliers', 'SupplierController@store')->name('suppliers.store');
 Route::get('/suppliers/{id}', 'SupplierController@show')->name('suppliers.show');
-Route::get('/suppliers/{id}/edit', 'SupplierController@edit')->name('suppliers.edit');
-Route::put('/suppliers/{id}', 'SupplierController@update')->name('suppliers.update');
-Route::delete('/suppliers/{id}', 'SupplierController@destroy')->name('suppliers.destroy');
+// Route::get('/suppliers/{id}/edit', 'SupplierController@edit')->name('suppliers.edit');
+// Route::put('/suppliers/{id}', 'SupplierController@update')->name('suppliers.update');
+// Route::delete('/suppliers/{id}', 'SupplierController@destroy')->name('suppliers.destroy');
 
 
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
