@@ -9,7 +9,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-12">
-        <table class="table table-bordered">
+        <table class="table table-bordered table-valign-middle">
             <thead>
                 <tr class="text-center">
                     <th>STT</th>
@@ -56,6 +56,7 @@
                 </tr>
             </tfoot>
         </table>
+        <a class="btn btn-secondary float-right" href="{{route('orders.index')}}">Come Back</a>
     </div>
 </div>
 @endsection

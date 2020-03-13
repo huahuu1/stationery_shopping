@@ -9,7 +9,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-12">
-        <table class="table table-bordered">
+        <table class="table table-bordered table-valign-middle">
             <thead>
                 <tr class="text-center">
                     <th>STT</th>
@@ -30,8 +30,8 @@
                             <td>
                                 {{$order->getProductQuantity($order->id)}}
                             </td>
-                            {{-- <td>{{$order->total}}</td> --}}
-                            <td>{{$order->getProductTotal($order->id)}}</td>
+                            <td>{{$order->total}}</td>
+                            {{-- <td>{{$order->getProductTotal($order->id)}}</td> --}}
                             <td>{{$order->address}}</td>
                             <td>{{$order->getOrderStatus($order->status)}}</td>
                             <td>
@@ -45,6 +45,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{$orders->links()}}
     </div>
 </div>
 @endsection

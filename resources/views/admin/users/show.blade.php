@@ -1,26 +1,29 @@
 @extends('layouts.admin')
 
-@section('title', 'Product List')
+@section('title', 'User List')
 
 @section('page_title')
-<p>Category Detail</p>
+<p>User Detail</p>
 @endsection
 
 @section('content')
 <div class="row">
     <div class="col-md-12">
-        <h2>Category Name: {{$user->name}}</h2>
-        <hr>
-        <h2>User Avatar</h2>
-        <div>
-            <img width="300" src="{{$user->profile->avatar}}" alt="">
-        </div>
-        {{-- @foreach ($category->products as $product)
-        <ul>
-            <li>{{ $product->name }}</li>
-        </ul>
-        @endforeach --}}
-        
+        <table class="table table-bordered table-valign-middle">
+            <thead>
+                <tr class="text-center">
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-center">
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->email}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <a class="btn btn-secondary float-right" href="{{route('users.index')}}">Come Back</a>
     </div>
 </div>
 @endsection

@@ -3,24 +3,25 @@
 @section('title', 'Suppliers List')
 
 @section('page_title')
-Supplier List
+<p>Supplier List</p>
 @endsection
 
 
 @section('content')
 <div class="row">
+    <form action="" class="form-inline form-group">
+        <input type="text" value="{{$keyword}}" class="form-control" name="keyword">
+        <button type="submit" class="btn btn btn-info"><i class="nav-icon fas fa-search"></i></button>
+    </form>
+
     <div class="col-md-12">
-        <table class="table table-bordered">
+        <table class="table table-bordered table-valign-middle">
             <thead>
                 <tr class="text-center">
                     <th>STT</th>
                     <th>Name</th>
                     <th>Logo</th>
-                    <th>
-                        <a class="btn btn-sm btn-success" href="{{route('suppliers.create')}}">
-                            <i class="fas fa-plus"></i> Add New
-                        </a>
-                    </th>
+                    <th>Functions</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,26 +36,12 @@ Supplier List
                                 <i class="fas fa-folder"></i> View
                             </button>
                         </form>
-                        <form class="d-inline-block" action="{{ url('admin/suppliers', ['id' => $supplier->id]) }}" method="GET">
-                            <button type="submit" class="btn btn-info btn-sm" href="{{route('suppliers.edit', $supplier->id)}}">
-                                <i class="fas fa-pencil-alt"></i> Edit
-                            </button>
-                        </form>
-                        <form class="d-inline-block" action="{{ url('admin/suppliers', ['id' => $supplier->id]) }}" method="POST">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" class="btn btn-danger btn-sm" href="{{route('suppliers.destroy', $supplier->id)}}">
-                                <i class="fas fa-trash"></i> Delete
-                            </button>
-                        </form>
-
-
                     </td>
                 </tr>
                 @endforeach
-
             </tbody>
         </table>
+        {{$suppliers->links()}}
     </div>
 </div>
 @endsection

@@ -18,6 +18,9 @@ use App\Repositories\Order_product\Order_ProductInterface;
 use App\Repositories\Order_product\Order_ProductRepository;
 use Illuminate\Support\Facades\View;
 use App\Models\Category;
+use App\Models\User;
+use App\Models\Supplier;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -44,8 +47,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
         View::share('cates', Category::all());
         Schema::defaultStringLength(191);
+        // View::share('subcates', Category::where('parent_id', 0));
+        // Schema::defaultStringLength(191);
+        View::share('sups', Supplier::all());
+        Schema::defaultStringLength(191);
+        // View::share('users', User::all());
+        // Schema::defaultStringLength(191);
     }
 }

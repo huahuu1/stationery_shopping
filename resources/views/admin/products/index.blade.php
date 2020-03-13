@@ -8,16 +8,14 @@
 
 @section('content')
 <div class="row">
-
     <form action="" class="form-inline form-group">
         <input type="text" value="{{$keyword}}" class="form-control" name="keyword">
         <button type="submit" class="btn btn btn-info"><i class="nav-icon fas fa-search"></i></button>
     </form>
     <div class="col-md-12">
-        <table class="table table-bordered">
+        <table class="table table-bordered table-valign-middle">
             <thead>
-                <tr>
-
+                <tr class="text-center">
                     <th>STT</th>
                     <th>Image</th>
                     <th>Name</th>
@@ -34,28 +32,27 @@
             </thead>
             <tbody>
                 @foreach ($products as $product)
-                <tr>
+                <tr class="text-center">
                     <td>{{$loop->iteration}}</td>
                     <td><a href="{{route('products.show', $product->id)}}"><img width="100" src="{{asset($product->image)}}" alt=""></a>  </td>
-                    <td>{{$product->name}}</td>
+                    <td class="text-left">{{$product->name}}</td>
                     <td>{{$product->sell_price}}</td>
-                    <td>{{ $product->cate_name }}</td>
-                    <td>{{ $product->getSupplierName($product->supplier_id )}}</td>
+                    <td>{{ $product->getCategoryName($product->category_id) }}</td>
+                    <td>{{ $product->getSupplierName($product->supplier_id) }}</td>
                     <td>{{ $product->getStatusName($product->status) }}</td>
                     <td style="width: 24%;" class="text-center">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder"></i> View
-                        </a>
-                        <a class="btn btn-info btn-sm" href="">
-                            <i class="fas fa-pencil-alt"></i> Edit
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="">
-                            <i class="fas fa-trash"></i> Delete
-                        </a>
+                        <a class="btn btn-primary btn-sm" href="{{route('products.show', $product->id)}}"><i class="fas fa-folder"></i> View</a>
+                        <a class="btn btn-info btn-sm" href="{{route('products.edit', $product->id)}}"><i class="fas fa-pencil-alt"></i> Edit</a>
+                        <form class="d-inline-block" action="{{ url('admin/products', ['id' => $product->id]) }}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger btn-sm" href="{{route('products.destroy', $product->id)}}">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
-
             </tbody>
         </table>
         {{$products->links()}}

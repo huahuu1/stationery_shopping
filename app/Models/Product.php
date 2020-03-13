@@ -21,11 +21,6 @@ class Product extends Model
         'status',
     ];
     // map Product Model to products table
-    public function getCategoryName($id)
-    {
-        $cat = Category::find($id);
-        return $cat->name;
-    }
 
     public function getStatusName($id)
     {
@@ -41,6 +36,12 @@ class Product extends Model
     {
         $sup = Supplier::find($id);
         return $sup->name;
+    }
+
+    public function getCategoryName($id)
+    {
+        $cate = Category::find($id);
+        return $cate->name;
     }
 
     public function category()

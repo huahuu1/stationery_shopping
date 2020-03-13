@@ -20,10 +20,24 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = $this->model->getAll();
-        return view('admin.categories.index', compact('categories'));
+        $keyword = $request->keyword;
+        $pageSize = $request->pageSize ?? 5;
+        $path = '';
+        if(!$keyword){
+            $path .= "?pageSize=$pageSize";
+            $categories = Category::orderBy('id', 'ASC')->paginate($pageSize);
+        } else {
+            $path .= "?pageSize=$pageSize&keyword=$keyword";
+            $categories = Category::where('name', 'like', '%'. $keyword .'%')
+                                ->orderBy('id', 'ASC')
+                                ->paginate($pageSize);
+        }
+
+        $categories->withPath($path);
+
+        return view('admin.categories.index', compact('categories', 'keyword'));
     }
 
     /**

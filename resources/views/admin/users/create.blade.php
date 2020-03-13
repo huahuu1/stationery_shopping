@@ -21,23 +21,33 @@
                     @endif
                 </div>
                 <div class="form-group">
-                    <label for="">Slug <span class="text text-danger">*</span></label>
+                    <label for="">Slug</label>
                     <input type="text" name="slug" class="form-control" placeholder="Example: new-product">
-                    @if($errors->has('slug'))
-                    <span class="text text-danger">{{$errors->first('slug')}}</span>
-                    @endif
                 </div>
                 <div class="form-group">
                     <label for="">Image</label>
                     <input type="file" name="image" class="form-control" >
                 </div>
                 <div class="form-group">
-                    <label for="">Description <span class="text text-danger">*</span></label>
+                    <label for="">Description</label>
+                   
                     <textarea name="description" class="form-control" cols="30" rows="10"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="">Sell Price <span class="text text-danger">*</span></label>
-                    <input type="number" name="sell_price" class="form-control" placeholder="Sell Price" min='0'>
+                    <label for="">Short Description</label>
+                    <textarea name="short_description" class="form-control" cols="30" rows="10"></textarea>
+                </div>
+                @if($errors->has('description'))
+                <span class="text text-danger">{{$errors->first('description')}}</span>
+                @endif
+                <div class="form-group">
+                    <label for="">List Price</label>
+                    <input type="number" name="list_price" class="form-control" placeholder="List Price">
+                    
+                </div>
+                <div class="form-group">
+                    <label for="">Sell Price</label>
+                    <input type="number" name="sell_price" class="form-control" placeholder="Sell Price">
                     @if($errors->has('sell_price'))
                     <span class="text text-danger">{{$errors->first('sell_price')}}</span>
                     @endif
@@ -45,22 +55,26 @@
                 <div class="form-group">
                     <label for="">Category</label>
                     <select name="category_id" id="" class="form-control">
-                        @foreach ($cates as $category)
-                        <option value="{{$category->id}}">{{$category->name}}</option>
-                        @endforeach
+                        <option value="1">Category 1</option>
+                        <option value="2">Category 2</option>
+                        <option value="3">Category 3</option>
                     </select>
+                    @if($errors->has('category_id'))
+                    <span class="text text-danger">{{$errors->first('category_id')}}</span>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="">Supplier</label>
                     <select name="supplier_id" id="" class="form-control">
-                        @foreach ($sups as $supplier)
-                        <option value="{{$supplier->id}}">{{$supplier->name}}</option>
-                        @endforeach
+                        <option value="1">Supplier 1</option>
+                        <option value="2">Supplier 2</option>
+                        <option value="3">Supplier 3</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Submit</button>
                 </div>
+
             </form>
         </div>
     </div>

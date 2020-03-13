@@ -80,12 +80,6 @@
                   <p>List</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="{{route('suppliers.create')}}" class="nav-link">
-                  <i class="fas fa-plus"></i>
-                  <p>Add</p>
-                </a>
-              </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">
