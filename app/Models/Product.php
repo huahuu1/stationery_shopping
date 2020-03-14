@@ -24,12 +24,12 @@ class Product extends Model
 
     public function getStatusName($id)
     {
-        $p = Product::find($id);
-        if($p->status == 1) {
-            return 'In stock';
-        } else {
-            return 'Out of stock';
-        }
+        // $p = Product::find($id);
+        // if($p->status == 1) {
+        //     return 'In stock';
+        // } else {
+        //     return 'Out of stock';
+        // }
     }
 
     public function getSupplierName($id)

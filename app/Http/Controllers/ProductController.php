@@ -147,6 +147,28 @@ class ProductController  extends Controller
         $product->save();
 
         return redirect(route('products.index'));
+
+        // $product = $request->all();
+        // //xu ly upload hinh anh vao thu muc
+        // if($request->hasFile('image')) {
+        //     $file = $request->file('image');
+        //     $extension = $file->getClientOriginalExtension();
+        //     if($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg') {
+        //         return redirect('product/update')->with('loi', 'Bạn chỉ được chọn file có đuôi jpg,png,jpeg');
+        //     }
+        //     $imageName = $file->getClientOriginalName();
+        //     $file->move('images', $imageName);
+        // } else { // khong upload hinh moi giu lai hinh cu
+        //     $p = Product::find($id);
+        //     $imageName = $p->image;
+        // }
+        // $p = Product::find($id);
+        // $p->name = $request->get('name');
+        // $p->price = $request->get('price');
+        // $p->description = $request->get('description');
+        // $p->image = $imageName;
+        // $p->save();
+        // return redirect()->action('ProductController@index');
     }
 
     /**
