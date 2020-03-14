@@ -11,43 +11,33 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label for="">Product Name <span class="text text-danger">*</span></label>
+                    <label for="">User Name <span class="text text-danger">*</span></label>
                     <input type="text" class="form-control" name="name" placeholder="Product Name">
                     @if($errors->has('name'))
                     <span class="text text-danger">{{$errors->first('name')}}</span>
                     @endif
                 </div>
                 <div class="form-group">
-                    <label for="">Slug</label>
+                    <label for="">Email <span class="text text-danger">*</span></label>
                     <input type="text" name="slug" class="form-control" placeholder="Example: new-product">
+                    @if($errors->has('slug'))
+                    <span class="text text-danger">{{$errors->first('slug')}}</span>
+                    @endif
                 </div>
                 <div class="form-group">
-                    <label for="">Image</label>
+                    <label for="">Password</label>
                     <input type="file" name="image" class="form-control" >
                 </div>
                 <div class="form-group">
-                    <label for="">Description</label>
-                   
+                    <label for="">Description <span class="text text-danger">*</span></label>
                     <textarea name="description" class="form-control" cols="30" rows="10"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="">Short Description</label>
-                    <textarea name="short_description" class="form-control" cols="30" rows="10"></textarea>
-                </div>
-                @if($errors->has('description'))
-                <span class="text text-danger">{{$errors->first('description')}}</span>
-                @endif
-                <div class="form-group">
-                    <label for="">List Price</label>
-                    <input type="number" name="list_price" class="form-control" placeholder="List Price">
-                    
-                </div>
-                <div class="form-group">
-                    <label for="">Sell Price</label>
-                    <input type="number" name="sell_price" class="form-control" placeholder="Sell Price">
+                    <label for="">Sell Price <span class="text text-danger">*</span></label>
+                    <input type="number" name="sell_price" class="form-control" placeholder="Sell Price" min='0'>
                     @if($errors->has('sell_price'))
                     <span class="text text-danger">{{$errors->first('sell_price')}}</span>
                     @endif
@@ -55,26 +45,22 @@
                 <div class="form-group">
                     <label for="">Category</label>
                     <select name="category_id" id="" class="form-control">
-                        <option value="1">Category 1</option>
-                        <option value="2">Category 2</option>
-                        <option value="3">Category 3</option>
+                        @foreach ($cates as $category)
+                        <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
                     </select>
-                    @if($errors->has('category_id'))
-                    <span class="text text-danger">{{$errors->first('category_id')}}</span>
-                    @endif
                 </div>
                 <div class="form-group">
                     <label for="">Supplier</label>
                     <select name="supplier_id" id="" class="form-control">
-                        <option value="1">Supplier 1</option>
-                        <option value="2">Supplier 2</option>
-                        <option value="3">Supplier 3</option>
+                        @foreach ($sups as $supplier)
+                        <option value="{{$supplier->id}}">{{$supplier->name}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Submit</button>
                 </div>
-
             </form>
         </div>
     </div>

@@ -8,11 +8,11 @@
 
 @section('content')
 <div class="row">
-    <form action="" class="form-inline form-group">
-        <input type="text" value="{{$keyword}}" class="form-control" name="keyword">
-        <button type="submit" class="btn btn btn-info"><i class="nav-icon fas fa-search"></i></button>
-    </form>
     <div class="col-md-12">
+        <form action="" class="form-inline form-group">
+            <input type="text" value="{{$keyword}}" class="form-control" name="keyword">
+            <button type="submit" class="btn btn btn-info"><i class="nav-icon fas fa-search"></i></button>
+        </form>
         <table class="table table-bordered table-valign-middle">
             <thead>
                 <tr class="text-center">

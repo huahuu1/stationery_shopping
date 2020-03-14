@@ -44,31 +44,50 @@ class ProductController  extends Controller
     }
     public function store(Request $request)
     {
+        //nhan tat ca tham so vao mang product
         $request->validate([
             'name' => 'required',
             'slug' => 'required',
             'sell_price' => 'required',
-            'category_id' => 'required',
-            'Product_id' => 'required',
+            'category_id' => 'required'
         ]);
-        // Eloquent
-        $product = new Product();
-
-        $product->name = $request->name;
-        $product->slug = $request->slug;
-        $product->description = $request->description;
-        $product->sell_price = $request->sell_price;
-        $product->Product_id = $request->Product_id;
-        $product->category_id = $request->category_id;
-
-        if($request->hasFile('image')){
+        $product = $request->all();
+        //xu ly upload hinh anh vao thu muc
+        if($request->hasFile('image')) {
             $file = $request->file('image');
-            $fileName = 'uploads/products/'.time().$file->getClientOriginalName();
-            request()->image->move(public_path('uploads/products'), $fileName);
-            $product->image = $fileName;
+            $extension = $file->getClientOriginalExtension();
+            if($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg') {
+                return redirect('product/create')->with('loi', 'Bạn chỉ được chọn file có đuôi jpg,png,jpeg');
+            }
+            $imageName = 'uploads/products/'.time().$file->getClientOriginalName();
+            $file->move(public_path('uploads/products'), $imageName);
+        } else {
+            $imageName = null;
         }
+        $p = new Product($product);
+        $p->image = $imageName;
+        $p->save();
 
-        $product->save();
+        // return redirect()->route('admin.products.index');
+
+        // // Eloquent
+        // $product = new Product();
+
+        // $product->name = $request->name;
+        // $product->slug = $request->slug;
+        // $product->description = $request->description;
+        // $product->sell_price = $request->sell_price;
+        // $product->category_id = $request->category_id;
+        // $product->supplier_id = $request->supplier_id;
+
+        // if($request->hasFile('image')){
+        //     $file = $request->file('image');
+        //     $fileName = 'uploads/products/'.time().$file->getClientOriginalName();
+        //     request()->image->move(public_path('uploads/products'), $fileName);
+        //     $product->image = $fileName;
+        // }
+
+        // $product->save();
         return redirect()->route('products.index');
 
     }
@@ -109,22 +128,23 @@ class ProductController  extends Controller
             if($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg') {
                 return redirect(route('products.edit'))->with('loi', 'Bạn chỉ được chọn file có đuôi jpg,png,jpeg');
             }
-            $imageName = $file->getClientOriginalName();
+            $imageName = 'uploads/products/'.time().$file->getClientOriginalName();
             $file->move('uploads/products/', $imageName);
         } else { // khong upload hinh moi giu lai hinh cu
-            $p = Product::find($id);
-            $imageName = $p->image;
+            $product = Product::find($id);
+            $imageName = $product->image;
         }
-        $p = Product::find($id);
-        $p->name = $request->get('name');
-        $p->slug = $request->get('slug');
-        $p->image = $imageName;
-        $p->description = $request->get('description');
-        $p->sell_price = $request->get('sell_price');
-        $p->category_id = $request->get('category_id');
-        $p->supplier_id = $request->get('supplier_id');
-        $p->status = $request->get('status');
-        $p->save();
+        $product = Product::find($id);
+        $product->name = $request->name;
+        $product->slug = $request->slug;
+        $product->image = $imageName;
+        $product->description = $request->description;
+        $product->sell_price = $request->sell_price;
+        $product->category_id = $request->category_id;
+        $product->supplier_id = $request->supplier_id;
+        $product->status = $request->status;
+
+        $product->save();
 
         return redirect(route('products.index'));
     }

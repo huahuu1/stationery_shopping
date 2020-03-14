@@ -11,7 +11,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <form action="{{ route('products.update', $product->id) }}" method="POST">
+            <form action="{{ route('users.update', $product->id) }}" method="POST">
                 @method('put')
                 @csrf
                 <div class="form-group">
