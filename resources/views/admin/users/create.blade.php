@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
-@section('title', 'Create Product')
+@section('title', 'Create User')
 
 @section('page_title')
-<p>New Product</p>
+<p>New Account</p>
 @endsection
 
 @section('content')
@@ -11,24 +11,24 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label for="">User Name <span class="text text-danger">*</span></label>
+                    <label for="">Product Name <span class="text text-danger">*</span></label>
                     <input type="text" class="form-control" name="name" placeholder="Product Name">
                     @if($errors->has('name'))
                     <span class="text text-danger">{{$errors->first('name')}}</span>
                     @endif
                 </div>
                 <div class="form-group">
-                    <label for="">Email <span class="text text-danger">*</span></label>
+                    <label for="">Slug <span class="text text-danger">*</span></label>
                     <input type="text" name="slug" class="form-control" placeholder="Example: new-product">
                     @if($errors->has('slug'))
                     <span class="text text-danger">{{$errors->first('slug')}}</span>
                     @endif
                 </div>
                 <div class="form-group">
-                    <label for="">Password</label>
+                    <label for="">Image</label>
                     <input type="file" name="image" class="form-control" >
                 </div>
                 <div class="form-group">

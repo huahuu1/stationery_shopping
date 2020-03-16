@@ -20,8 +20,7 @@ Route::get('/', 'WebController@index')->name('web.index');
 Route::post('/add-to-cart', 'WebController@addToCart')->name('carts.add_to_cart');
 
 Route::get('/products', function () {
-
- $users = User::all();
+    $users = User::all();
    // Query Builder
     return $users;
     return view('products.index', compact('products'));
