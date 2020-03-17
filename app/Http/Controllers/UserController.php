@@ -6,15 +6,14 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
-{
+class UserController extends Controller {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
+
+    public function index(Request $request) {
         $users = User::all();
         return view('admin.users.index', compact('users'));
     }
@@ -24,9 +23,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+
+    public function create() {
+        return view('admin.users.create');
     }
 
     /**
@@ -35,9 +34,34 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+        //take all parameters into 'user' array
+        $request->validate([
+            'name' => 'bail|required|min:5|max:20',
+            'email' => 'bail|required|email|unique:users|max:40',
+            'password' => 'bail|required|password|min:10|max:40',
+            'role' => 'required'
+        ]);
+        $user = $request->all();
+
+        // Auth::table('users')->insert([
+        //     'name'=>$user['name'],
+        //     'email'=>$user['email'],
+        //     'password'=>$user['password'],
+        //     'role'=>intval($user['role'])
+        // ]);
+
+        // Eloquent
+        $user = new User();
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->role = $request->role;
+
+        //$user->save();
+        //return redirect()->route('users.index');
+        return redirect()->action('UserController@index');
     }
 
     /**
@@ -46,8 +70,7 @@ class UserController extends Controller
      * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user, $id)
-    {
+    public function show(User $user, $id) {
         $user = User::find($id);
         return view('admin.users.show', compact('user'));
     }
@@ -58,9 +81,11 @@ class UserController extends Controller
      * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user, $id)
-    {
-        //
+
+    public function edit(User $user, $id) {
+        // $users = $this->model->getAll();
+        // $user = $this->model->getById($id);
+        // return view('admin.users.edit', compact('users', 'user'));
     }
 
     /**
@@ -70,9 +95,18 @@ class UserController extends Controller
      * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function update(User $user, Request $request, $id)
-    {
-        //
+
+    public function update(User $user, Request $request, $id) {
+        $user = $request->all();
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->role = $request->role;
+
+        $user->save();
+
+        return redirect(route('users.index'));
     }
 
     /**
@@ -81,8 +115,11 @@ class UserController extends Controller
      * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
-    {
-        //
+
+    public function destroy($id) {
+        // $this->model->delete($id);
+        $user = User::find($id);
+        $user->delete();
+        return redirect(route('users.index'));
     }
 }

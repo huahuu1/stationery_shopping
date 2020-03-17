@@ -9,7 +9,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 
 
-class ProductController  extends Controller
+class ProductController extends Controller
 {
     public $model;
     public function __construct(ProductInterface $products){
