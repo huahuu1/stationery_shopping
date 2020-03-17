@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('users.postCreate')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="">User Name <span class="text text-danger">*</span></label>

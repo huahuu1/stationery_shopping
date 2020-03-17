@@ -34,35 +34,53 @@ class UserController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
-        //take all parameters into 'user' array
+
+    public function postCreate(Request $request) {
+        //validation
         $request->validate([
             'name' => 'bail|required|min:5|max:20',
             'email' => 'bail|required|email|unique:users|max:40',
-            'password' => 'bail|required|password|min:10|max:40',
+            'password' => 'bail|required|min:5|max:40',
             'role' => 'required'
         ]);
+
+        //take all parameters into 'user' array
         $user = $request->all();
-
-        // Auth::table('users')->insert([
-        //     'name'=>$user['name'],
-        //     'email'=>$user['email'],
-        //     'password'=>$user['password'],
-        //     'role'=>intval($user['role'])
-        // ]);
-
-        // Eloquent
-        $user = new User();
-
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = $request->password;
-        $user->role = $request->role;
-
-        //$user->save();
-        //return redirect()->route('users.index');
+        $u = new User($user);
+        $u->save();
         return redirect()->action('UserController@index');
     }
+
+    // public function store(Request $request) {
+    //     //validation
+    //     $request->validate([
+    //         'name' => 'bail|required|min:5|max:20',
+    //         'email' => 'bail|required|email|unique:users|max:40',
+    //         'password' => 'bail|required|password|min:10|max:40',
+    //         'role' => 'required'
+    //     ]);
+    //     //take all parameters into 'user' array
+    //     $user = $request->all();
+
+    //     // Auth::table('users')->insert([
+    //     //     'name'=>$user['name'],
+    //     //     'email'=>$user['email'],
+    //     //     'password'=>$user['password'],
+    //     //     'role'=>intval($user['role'])
+    //     // ]);
+
+    //     // Eloquent
+    //     $user = new User();
+
+    //     $user->name = $request->name;
+    //     $user->email = $request->email;
+    //     $user->password = $request->password;
+    //     $user->role = $request->role;
+
+    //     //$user->save();
+    //     //return redirect()->route('users.index');
+    //     return redirect()->action('UserController@index');
+    // }
 
     /**
      * Display the specified resource.
@@ -82,10 +100,15 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
 
-    public function edit(User $user, $id) {
-        // $users = $this->model->getAll();
-        // $user = $this->model->getById($id);
-        // return view('admin.users.edit', compact('users', 'user'));
+    // public function edit(User $user, $id) {
+    //     $users = $this->model->getAll();
+    //     $user = $this->model->getById($id);
+    //     return view('admin.users.edit', compact('users', 'user'));
+    // }
+
+    public function edit($id) {
+        $user = User::find($id);
+        return view('admin.users.edit', ['user'=>$user]);
     }
 
     /**
@@ -96,7 +119,19 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
 
-    public function update(User $user, Request $request, $id) {
+    public function postEdit(User $user, Request $request, $id) {
+        $user = User::find($id);
+        $user->email = 'Dupplicated email address! Please try another one!';
+        $user->save();
+        //validation
+        $request->validate([
+            'name' => 'required|min:5|max:20',
+            'email' => 'required|email|unique:users|max:40',
+            'password' => 'required|min:5|max:40',
+            'role' => 'required'
+        ]);
+
+        //take all parameters into 'user' array
         $user = $request->all();
         $user = User::find($id);
         $user->name = $request->name;

@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <form action="{{route('users.update', $user->id)}}" method="POST">
+            <form action="{{route('users.postEdit', $user->id)}}" method="POST" enctype="multipart/form-data">
                 @method('put')
                 @csrf
                 <div class="form-group">
@@ -23,7 +23,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Password</label>
-                    <input type="password" class="form-control" value="{{$user->password}}" name="password">
+                    <input type="text" class="form-control" value="{{$user->password}}" name="password">
                 </div>
                 <div class="form-group">
                     <label for="">Role</label>
