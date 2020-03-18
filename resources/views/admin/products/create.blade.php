@@ -27,10 +27,20 @@
                     <span class="text text-danger">{{$errors->first('slug')}}</span>
                     @endif
                 </div>
+
                 <div class="form-group">
-                    <label for="">Image</label>
-                    <input type="file" name="image" class="form-control" >
+                    <label for="image">Image</label>
+                    <div class="input-group mb-3">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file" id="customFile" name="image">
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                        </div>
+                    </div>
+                    @if($errors->has('image'))
+                    <span class="text text-danger">{{$errors->first('image')}}</span>
+                    @endif
                 </div>
+
                 <div class="form-group">
                     <label for="">Description <span class="text text-danger">*</span></label>
                     <textarea name="description" class="form-control" cols="30" rows="10"></textarea>
@@ -66,4 +76,10 @@
     </div>
 </div>
 
+@endsection
+
+@section('script-section')
+    <script type="text/javascript">
+        $(document).ready(function () { bsCustomFileInput.init(); });
+    </script>
 @endsection

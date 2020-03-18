@@ -1,93 +1,52 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Product')
+@section('title', 'Edit User')
 
 @section('page_title')
-<p>Edit Product</p>
+<p>Edit User</p>
 @endsection
 
 @section('content')
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
-            <form action="{{ route('users.update', $product->id) }}" method="POST">
+        <div class="col-md-8 mx-auto">
+            <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                 @method('put')
                 @csrf
                 <div class="form-group">
-                    <label for="">Name</label>
-                    <input type="text" class="form-control" value="{{$product->name}}" name="name" placeholder="Product Name">
+                    <label for="">User Name <span class="text text-danger">*</span></label>
+                    <input type="text" class="form-control" name="name" placeholder="User Name" value="{{$user->name}}">
+                    @if($errors->has('name'))
+                    <span class="text text-danger">{{$errors->first('name')}}</span>
+                    @endif
                 </div>
                 <div class="form-group">
-                    <label for="">Slug</label>
-                    <input type="text" class="form-control" value="{{$product->slug}}" name="slug" placeholder="Product Slug">
+                    <label for="">Email <span class="text text-danger">*</span></label>
+                    <input type="email" name="email" class="form-control" placeholder="Example: abc@gmail.com" value="{{$user->email}}">
+                    @if($errors->has('email'))
+                    <span class="text text-danger">{{$errors->first('email')}}</span>
+                    @endif
                 </div>
                 <div class="form-group">
-                    <label for="image">Image</label>
-                    <img class="img-fluid"
-                        src="{{ url('images/'.$product->image) }}" />
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="image"
-                                name="image">
-                                <label class="custom-file-label" for="image">Choose
-                                Image</label>
-                            </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="">Description</label>
-                    <textarea name="description" class="form-control" cols="30" rows="10">{{$product->description}}</textarea>
-                </div>
-                <div class="form-group">
-                    <label for="">Sell Price</label>
-                    <input type="text" class="form-control" value="{{$product->sell_price}}" name="sell_price" placeholder="Product Sell Price">
-                </div>
-                <div class="form-group">
-                    <label for="">Category ID</label>
-                    <select name="category_id" id="" class="form-control">
-                        {{-- <option value="0">Category ID</option> --}}
-                        @foreach ($cates as $category)
-                            <option
-                            @php
-                                if($product->category_id == $category->id ){
-                                    echo 'selected';
-                                }
-                            @endphp
-                            value="{{$category->id}}"
-                            >{{$category->name}}</option>
-                        @endforeach
-
-                    </select>
+                    <label for="">New Password <span class="text text-danger">*</span></label>
+                    <input type="password" name="password" class="form-control">
+                    @if($errors->has('password'))
+                    <span class="text text-danger">{{$errors->first('password')}}</span>
+                    @endif
                 </div>
 
                 <div class="form-group">
-                    <label for="">Supplier ID</label>
-                    <select name="supplier_id" id="" class="form-control">
-                        // <option value="0">Supplier ID</option>
-                        @foreach ($sups as $supplier)
-                            <option
-                            @php
-                                if($product->supplier_id == $supplier->id ){
-                                    echo 'selected';
-                                }
-                            @endphp
-                            value="{{$supplier->id}}"
-                            >{{$supplier->name}}</option>
-                        @endforeach
-
-                    </select>
+                    <label for="">Confirm New Password <span class="text text-danger">*</span></label>
+                    <input type="password" name="password_confirmation" class="form-control">
+                    @if($errors->has('password_confirmation'))
+                    <span class="text text-danger">{{$errors->first('password_confirmation')}}</span>
+                    @endif
                 </div>
 
                 <div class="form-group">
-                    <label for="">Status</label>
-                    <input type="text" class="form-control" value="{{$product->status}}" name="status" placeholder="Product Status">
+                    <button id="buttonSub" type="submit" class="btn btn-success">Submit</button>
                 </div>
-
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success">Submit</button>
-                </div>
-
             </form>
         </div>
     </div>

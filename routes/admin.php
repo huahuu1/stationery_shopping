@@ -50,17 +50,29 @@ Route::get('/users', 'UserController@index')->name('users.index');
 Route::get('/users/create', 'UserController@create')->name('users.create');
 Route::post('/users', 'UserController@store')->name('users.store');
 Route::get('/users/{id}', 'UserController@show')->name('users.show');
-Route::get('/users/{id}/edit', 'UserController@edit')->name('users.edit');
+Route::get('/users/edit/{id}', 'UserController@edit')->name('users.edit');
 Route::put('/users/{id}', 'UserController@update')->name('users.update');
 Route::delete('/users/{id}', 'UserController@destroy')->name('users.destroy');
 
 // Orders Routes
 Route::get('/orders', 'OrderController@index')->name('orders.index');
 Route::get('/orders/create', 'OrderController@create')->name('orders.create');
+
 Route::post('/orders', 'OrderController@store')->name('orders.store');
+
 Route::get('/orders/{id}', 'OrderController@show')->name('orders.show');
-Route::get('/orders/{id}/edit', 'OrderController@edit')->name('orders.edit');
+Route::get('/orders/edit/{id}', 'OrderController@edit')->name('orders.edit');
 Route::put('/orders/{id}', 'OrderController@update')->name('orders.update');
 Route::delete('/orders/{id}', 'OrderController@destroy')->name('orders.destroy');
+Route::delete('/orders/{id}/{product_id}', 'OrderController@removeProductFromCart')->name('orders.removeProductFromCart');
+
+// Order_Product Routes
+// Route::get('/order_product', 'OrderProductController@index')->name('order_product.index');
+// Route::get('/order_product/create', 'OrderProductController@create')->name('order_product.create');
+// Route::post('/order_product', 'OrderProductController@store')->name('order_product.store');
+// Route::get('/order_product/{id}', 'OrderProductController@show')->name('order_product.show');
+// Route::get('/order_product/{id}/edit', 'OrderProductController@edit')->name('order_product.edit');
+// Route::put('/order_product/{id}', 'OrderProductController@update')->name('order_product.update');
+// Route::delete('/order_product/{id}', 'OrderProductController@destroy')->name('order_product.destroy');
 
 

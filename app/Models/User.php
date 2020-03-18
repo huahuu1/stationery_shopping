@@ -15,8 +15,17 @@ class User extends Model
         'password',
     ];
 
+    // protected $rules_update = [
+    //     'email' => 'required|email|unique:users,email_address,'.$id,
+    //     'name' => "required",
+    //     'password' => "required|min:6|same:password_confirm",
+    //     'password_confirm' => "required:min:6|same:password",
+    //     'password_current' => "required:min:6"
+    // ];
+
     public function orders()
     {
         return $this->hasMany(Order::class);
     }
+
 }

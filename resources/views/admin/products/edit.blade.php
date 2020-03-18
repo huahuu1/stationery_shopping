@@ -11,7 +11,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <form action="{{ route('products.update', $product->id) }}" method="POST">
+            <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                 @method('put')
                 @csrf
                 <div class="form-group">
@@ -24,15 +24,17 @@
                 </div>
                 <div class="form-group">
                     <label for="image">Image</label>
-                    <img class="img-fluid"
-                        src="{{ url('images/'.$product->image) }}" />
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="image"
-                                name="image">
-                                <label class="custom-file-label" for="image">Choose
-                                Image</label>
-                            </div>
+                            <input type="file" class="custom-file" id="customFile" name="image">
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                          </div>
+
+                    </div>
+                    <div class="col-sm-4 mx-auto">
+                        <div class="border rounded-lg text-center p-3">
+                            <img src="{{asset($product->image)}}" class="img-fluid" id="preview" />
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -46,32 +48,26 @@
                 <div class="form-group">
                     <label for="">Category ID</label>
                     <select name="category_id" id="" class="form-control">
-                        {{-- <option value="0">Category ID</option> --}}
                         @foreach ($cates as $category)
                             <option
-                            @php
-                                if($product->category_id == $category->id ){
-                                    echo 'selected';
-                                }
-                            @endphp
-                            value="{{$category->id}}"
-                            >{{$category->name}}</option>
+                            @if($product->category_id == $category->id) {
+                                echo 'selected';
+                            }
+                            @endif
+                            value="{{$category->id}}"> {{$category->name}} </option>
                         @endforeach
-
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="">Supplier ID</label>
                     <select name="supplier_id" id="" class="form-control">
-                        // <option value="0">Supplier ID</option>
                         @foreach ($sups as $supplier)
                             <option
-                            @php
-                                if($product->supplier_id == $supplier->id ){
-                                    echo 'selected';
-                                }
-                            @endphp
+                            @if($product->supplier_id == $supplier->id ) {
+                                echo 'selected';
+                            }
+                            @endif
                             value="{{$supplier->id}}"
                             >{{$supplier->name}}</option>
                         @endforeach
@@ -93,4 +89,10 @@
     </div>
 </div>
 
+@endsection
+
+@section('script-section')
+    <script type="text/javascript">
+        $(document).ready(function () { bsCustomFileInput.init(); });
+    </script>
 @endsection

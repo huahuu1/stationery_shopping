@@ -14,7 +14,6 @@ class Order extends Model
     //order_tables
     protected $fillable = [
         'user_id',
-        'total',
         'status',
         'address',
     ];
@@ -52,37 +51,18 @@ class Order extends Model
 
     public function getProductQuantity($order_id) {
         $order = Order::find($order_id);
-        $products = $order->products;
-        $order_products = DB::table('order_product')->get();
         $qty = 0;
-        foreach($products as $key=> $product){
-            $product->quantity = $order_products[$key]->product_quantity;
-            $qty += $product->quantity;
-        }
-        return $qty;
-    }
-
-    public function getProductDetailQuantity($order_id) {
-        $order = Order::find($order_id);
-        $products = $order->products;
-        // dd($products);
-
-        $order_products = DB::table('order_product')->get();
-        $qty = 0;
-        foreach($products as $key=> $product){
-            $product->quantity = $order_products[$key]->product_quantity;
-            $qty = $product->quantity;
+        foreach($order->products as $item){
+            $qty += $item->pivot->product_quantity;
         }
         return $qty;
     }
 
     public function getProductTotal($order_id) {
         $order = Order::find($order_id);
-        $products = $order->products;
         $total = 0;
-        // dd($products);
-        foreach ($products as $item) {
-            $total += $this->getProductDetailQuantity($item->id) * $item->sell_price;
+        foreach($order->products as $item){
+            $total += $item->pivot->product_quantity * $item->sell_price;
         }
         return $total;
     }
@@ -95,6 +75,6 @@ class Order extends Model
         return $this->hasMany(Order_product::class);
     }
     public function products() {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class,'order_product', 'order_id', 'product_id')->withPivot('product_quantity')->withTimestamps();;
     }
 }

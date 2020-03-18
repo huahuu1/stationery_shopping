@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+// use App\Http\Controllers\Hash;
 
 class UserController extends Controller
 {
@@ -15,8 +18,24 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::all();
-        return view('admin.users.index', compact('users'));
+        $keyword = $request->keyword;
+        $pageSize = $request->pageSize ?? 5;
+
+        $path = '';
+        if(!$keyword){
+            $path .= "?pageSize=$pageSize";
+            $users = User::orderBy('id', 'ASC')->paginate($pageSize);
+        } else {
+            $path .= "?pageSize=$pageSize&keyword=$keyword";
+            $users = User::where('name', 'like', '%'. $keyword .'%')
+                                ->orWhere('email', 'like', '%'. $keyword .'%')
+                                ->orderBy('id', 'ASC')
+                                ->paginate($pageSize);
+        }
+
+        $users->withPath($path);
+
+        return view('admin.users.index', compact('users', 'keyword'));
     }
 
     /**
@@ -26,7 +45,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
     /**
@@ -37,7 +56,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users',
+            'password' => 'min:8',
+            'password_confirmation' => 'required_with:password|same:password|min:8',
+        ]);
+
+        $user = $request->all();
+        $u = new User($user);
+        $u->name = $request->name;
+        $u->email = $request->email;
+        $u->password = Hash::make($request->password);
+
+        $u->save();
+
+        return redirect()->route('users.index');
     }
 
     /**
@@ -49,6 +83,16 @@ class UserController extends Controller
     public function show(User $user, $id)
     {
         $user = User::find($id);
+        //viet trong cho tra ra cart detail
+        $products = DB::select(DB::raw("
+        select u.*, o.id, o.address as user_address, p.name as product_name  from users as u
+        left join orders as o on u.id = o.user_id
+        left join order_product as op on o.id = op.order_id
+        left join products as p on op.product_id = p.id
+
+        where u.id = $id"));
+        dd($products);
+
         return view('admin.users.show', compact('user'));
     }
 
@@ -60,7 +104,8 @@ class UserController extends Controller
      */
     public function edit(User $user, $id)
     {
-        //
+        $user = User::find($id);
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -72,7 +117,17 @@ class UserController extends Controller
      */
     public function update(User $user, Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8|confirmed',
+        ]);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt(request('password'));
+        $user->save();
+        return redirect()->route('users.index');
     }
 
     /**

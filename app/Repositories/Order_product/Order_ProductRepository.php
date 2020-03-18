@@ -42,5 +42,6 @@ class Order_ProductRepository implements Order_ProductInterface {
     {
         return $this->model->find($id)->delete($id);
     }
+
 }
 ?>
