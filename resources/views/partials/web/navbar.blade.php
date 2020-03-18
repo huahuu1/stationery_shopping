@@ -20,9 +20,9 @@
             </div>
             <div class="account justify-content-end">
                 <ul class="nav">
-                    <li class="account-item"><a class="nav-top-link nav-top-not-logged-in"><span>đăng ký</span></a></li>
+                    <li class="account-item"><a href="{{route('register')}}" class="nav-top-link nav-top-not-logged-in"><span>Register</span></a></li>
                     <li class="header-divider"></li>
-                    <li class="account-item"><a class="nav-top-link nav-top-not-logged-in"><span>đăng nhập</span></a>
+                <li class="account-item"><a href="{{url('login')}}" class="nav-top-link nav-top-not-logged-in"><span>Login</span></a>
                     </li>
                     <li class="header-divider"></li>
                     <li class="cart-item"><a><span class="header-cart-title">giỏ hàng&nbsp</span><span
