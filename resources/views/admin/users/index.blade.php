@@ -42,7 +42,7 @@
                         <form class="d-inline-block" action="{{url('admin/users', ['id' => $user->id])}}" method="POST">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this?')" href="{{route('users.destroy', $user->id)}}">
+                            <button type="submit" class="btn btn-danger btn-sm btnDelete" href="javascript:;" rel="{{route('users.destroy', $user->id)}}">
                                 <i class="fas fa-trash"></i> Delete
                             </button>
                         </form>
@@ -54,3 +54,15 @@
     </div>
 </div>
 @endsection
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).on('click','.btnDelete',function() {
+        var url = $(this).attr('rel');
+        if(confirm("Are you sure you want to delete thisaaaa?")){
+           window.location.href = url
+        }
+        else{
+            return false;
+        }
+    })
+</script>
