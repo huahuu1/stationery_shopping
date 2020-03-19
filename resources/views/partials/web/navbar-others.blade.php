@@ -2,7 +2,7 @@
 $categories = App\Models\Category::where('parent_id', 0)->get();
 @endphp
 
-<section class="menu-nav">
+<section class="menu-nav position-relative">
     <div class="container">
         <div class="top-navbar flex-row">
             <div class="logo"><a class="nav-brand" href="{{route('home-page')}}" alt="logo"><img

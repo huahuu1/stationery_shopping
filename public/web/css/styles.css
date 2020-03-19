@@ -433,7 +433,7 @@ section.product-content .wrapper-product {
             font-weight: 700; }
 
 @media (min-width: 768px) {
-  .product-item {
+  .item-home {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 20% !important;
     flex: 0 0 20% !important;
@@ -1430,7 +1430,7 @@ section.icon-intro {
         vertical-align: middle;
         margin: 0 .75rem; }
       .menu-nav .container .top-navbar .account .nav {
-          line-height: 2.1;
+          /* line-height: 2.1; */
       }
       .menu-nav .container .top-navbar .account .nav .cart-item .icon-basket {
         margin-left: .5rem;

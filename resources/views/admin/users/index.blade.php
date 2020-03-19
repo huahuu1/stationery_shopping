@@ -3,16 +3,16 @@
 @section('title', 'User')
 
 @section('page_title')
-<p>User</p>
+<h5>User</h5>
 @endsection
 
 @section('content')
 <div class="row">
     <div class="col-md-12">
-        {{-- <form action="" class="form-inline form-group">
-            <input type="text" value="{{$keyword}}" class="form-control" name="keyword">
-            <button type="submit" class="btn btn btn-info"><i class="nav-icon fas fa-search"></i></button>
-        </form> --}}
+        <form action="" class="form-inline form-group">
+            <input style="height: 2.5rem; border-radius: 0" type="text" value="{{$keyword}}" class="form-control" name="keyword">
+            <button style="height: 2.5rem; border-radius: 0" type="submit" class="btn btn btn-info"><i class="nav-icon fas fa-search"></i></button>
+        </form>
         <table class="table table-bordered table-valign-middle">
             <thead>
                 <tr class="text-center">
@@ -36,13 +36,15 @@
                     <td>{{$user->email}}</td>
                     <td>{{$user->password}}</td>
                     <td>{{$user->role}}</td>
-                    <td style="width: 25%;" class="text-center">
-                        <a class="btn btn-primary btn-sm" href="{{route('users.show', $user->id)}}"><i class="fas fa-folder"></i> View</a>
-                        <a class="btn btn-info btn-sm" href="{{route('users.edit', $user->id)}}"><i class="fas fa-pencil-alt"></i> Edit</a>
-                        <form class="d-inline-block" action="{{url('admin/users', ['id' => $user->id])}}" method="POST">
+                    <td style="width: 25%">
+                        <a style="margin-top: 1rem" class="btn btn-primary btn-sm" href="{{route('users.show', $user->id)}}"><i class="fas fa-folder"></i> View</a>
+
+                        <a style="margin-top: 1rem" class="btn btn-info btn-sm" href="{{route('users.edit', $user->id)}}"><i class="fas fa-pencil-alt"></i> Edit</a>
+
+                        <form class="d-inline-block" action="{{ url('admin/users', ['id' => $user->id]) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-danger btn-sm btnDelete" href="javascript:;" rel="{{route('users.destroy', $user->id)}}">
+                            <button style="margin-top: 1rem" type="submit" class="btn btn-danger btn-sm btnDelete" href="javascript:;" rel="{{route('users.destroy', $user->id)}}">
                                 <i class="fas fa-trash"></i> Delete
                             </button>
                         </form>
@@ -51,6 +53,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{$users->links()}}
     </div>
 </div>
 @endsection

@@ -12,7 +12,16 @@ class Order_product extends Model
     protected $fillable = [
         'order_id',
         'product_id',
+        'product_quantity',
     ];
+    public function getProductsData($id) {
+        return Product::with('order_product')->get($id);
+    }
+
+    public function getProductImage($product_id) {
+        $product = Product::find($product_id);
+        return $product->image;
+    }
 
     public function orders() {
         return $this->belongsTo(Order::class);

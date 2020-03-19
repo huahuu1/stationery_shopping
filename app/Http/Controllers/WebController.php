@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Cart;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class WebController extends Controller
 {
@@ -33,7 +35,19 @@ class WebController extends Controller
         return redirect()->route('carts.detail');
         // return view('web.cart');
     }
-    public function getProductsByCategoryId($slug)
+
+    public function getCategories(Request $request) {
+        $pageSize = $request->pageSize ?? 12;
+        $products = DB::table('products')->paginate($pageSize);
+        $slug = 'Categories';
+        $breadcrums = "<div class='category-page-title'>
+                            <div class='nav'><a href='/'>Home</a><span class='divider'>/</span><a href='#'>$slug</a></div>
+                        </div>";
+
+        return view('layouts.categories-page', compact('products', 'breadcrums'));
+    }
+
+    public function getProductsByCategoryId(Request $request, $slug)
     {
         // dd($slug);
         $pageSize = $request->pageSize ?? 12;
@@ -41,14 +55,24 @@ class WebController extends Controller
         $products = Product::where('category_id', $category->id)->paginate($pageSize);
         // dd($products);
         $slug = $category->name;
-        $breadcrums = "<nav aria-label='breadcrumb'>
-                <ol class='breadcrumb'>
-                    <li class='breadcrumb-item'><a href='/'>Home</a></li>
-                    <li class='breadcrumb-item active' aria-current='page'>$slug</li>
-                </ol>
-                </nav>";
 
-        return view('web.products.list_by_category', compact('products', 'breadcrums'));
+        $breadcrums = "<div class='category-page-title'>
+                            <div class='nav'><a href='#'>Home</a><span class='divider'>/</span><a href='#'>$slug</a></div>
+                        </div>";
+        // $breadcrums = "<nav aria-label='breadcrumb'>
+        //         <ol class='breadcrumb'>
+        //             <li class='breadcrumb-item'><a href='/'>Home</a></li>
+        //             <li class='breadcrumb-item active' aria-current='page'>$slug</li>
+        //         </ol>
+        //         </nav>";
+
+        return view('web.products.categories', compact('products', 'breadcrums'));
+    }
+
+    public function getProducts()
+    {
+       $products = Product::all();
+       return view('web.products', compact('products'));
     }
 
     public function getProductDetail($item)
@@ -56,5 +80,12 @@ class WebController extends Controller
         $product = Product::where('slug', $item)->first();
         // dd($product);
         return view('web.products.detail', compact('product'));
+    }
+
+    public function getCartDetail()
+    {
+        $user = Auth::user();
+        $carts = $user->carts;
+        return view('web.cart', compact('user', 'carts'));
     }
 }

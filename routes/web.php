@@ -17,21 +17,26 @@ use Illuminate\Support\Facades\DB;
 // });
 
 Route::get('/', 'WebController@index')->name('web.index');
+// Route::get('/', 'WebController@getCategoriesByParentId')->name('web.getCategoriesByParentId');
 Route::post('/add-to-cart', 'WebController@addToCart')->name('carts.add_to_cart');
 
-Route::get('/products', function () {
-    $users = User::all();
-   // Query Builder
-    return $users;
-    return view('products.index', compact('products'));
-});
+// Route::get('/products', function () {
+
+//  $users = User::all();
+//    // Query Builder
+//     return $users;
+//     return view('products.index', compact('products'));
+// });
 
 Auth::routes();
 
 // website page
 Route::get('/home-page', 'HomePageController@index')->name('home-page');
-Route::get('/categories/{name}', 'WebController@getProductsByCategoryId');
+Route::get('/categories', 'WebController@getCategories')->name('categories.all');
+Route::get('/categories/{name}', 'WebController@getProductsByCategoryId')->name('categories.detail');
 Route::get('/products/{item}', 'WebController@getProductDetail')->name('products.detail');
+Route::get('/products', 'WebController@getProducts')->name('products.all');
+Route::get('/cart-detail', 'WebController@getCartDetail')->name('carts.detail');
 
 // admin page
 Route::get('/home', 'HomeController@index')->name('home');

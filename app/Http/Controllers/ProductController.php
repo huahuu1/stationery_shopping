@@ -42,12 +42,14 @@ class ProductController extends Controller
     {
         return view('admin.products.create');
     }
+
     public function store(Request $request)
     {
         //nhan tat ca tham so vao mang product
         $request->validate([
             'name' => 'required',
             'slug' => 'required',
+            'image' => 'image',
             'sell_price' => 'required',
             'category_id' => 'required'
         ]);
@@ -68,26 +70,6 @@ class ProductController extends Controller
         $p->image = $imageName;
         $p->save();
 
-        // return redirect()->route('admin.products.index');
-
-        // // Eloquent
-        // $product = new Product();
-
-        // $product->name = $request->name;
-        // $product->slug = $request->slug;
-        // $product->description = $request->description;
-        // $product->sell_price = $request->sell_price;
-        // $product->category_id = $request->category_id;
-        // $product->supplier_id = $request->supplier_id;
-
-        // if($request->hasFile('image')){
-        //     $file = $request->file('image');
-        //     $fileName = 'uploads/products/'.time().$file->getClientOriginalName();
-        //     request()->image->move(public_path('uploads/products'), $fileName);
-        //     $product->image = $fileName;
-        // }
-
-        // $product->save();
         return redirect()->route('products.index');
 
     }
@@ -120,7 +102,16 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required',
+            'slug' => 'required',
+            'image' => 'image',
+            'sell_price' => 'required',
+            'category_id' => 'required'
+        ]);
+
         $product = $request->all();
+        $product = Product::find($id);
         //xu ly upload hinh anh vao thu muc
         if($request->hasFile('image')) {
             $file = $request->file('image');
@@ -130,11 +121,8 @@ class ProductController extends Controller
             }
             $imageName = 'uploads/products/'.time().$file->getClientOriginalName();
             $file->move('uploads/products/', $imageName);
-        } else { // khong upload hinh moi giu lai hinh cu
-            $product = Product::find($id);
-            $imageName = $product->image;
         }
-        $product = Product::find($id);
+
         $product->name = $request->name;
         $product->slug = $request->slug;
         $product->image = $imageName;
