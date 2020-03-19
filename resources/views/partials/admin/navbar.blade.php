@@ -39,7 +39,7 @@
                     <i class="far fa-id-card"></i>
                 </div>
                 <div class="text">
-                    <p class="text-sm">List of User</p>
+                    <p style="padding: 0.1rem 0 0 0.5rem" class="text-sm">List of User</p>
                 </div>
             </div>
           </a>
@@ -50,7 +50,7 @@
                     <i class="fas fa-plus-square"></i>
                 </div>
                 <div class="text">
-                    <p class="text-sm">Create New User</p>
+                    <p style="padding: 0.1rem 0 0 0.5rem" class="text-sm">Create New User</p>
                 </div>
             </div>
           </a>

@@ -13,7 +13,7 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset('adminlte/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{asset('adminlte/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">Alexander Pierce</a>
@@ -36,14 +36,14 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('products.index')}}" class="nav-link">
-                  <i class="fas fa-list"></i>
-                  <p>List</p>
+                  <i style="padding-left: 1rem" class="fas fa-list"></i>
+                  <p style="padding-left: 0.5rem">List</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('products.create')}}" class="nav-link">
-                  <i class="fas fa-plus"></i>
-                  <p>Add</p>
+                  <i style="padding-left: 1rem" class="fas fa-plus"></i>
+                  <p style="padding-left: 0.5rem">Add</p>
                 </a>
               </li>
             </ul>
@@ -59,8 +59,8 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('categories.index')}}" class="nav-link">
-                  <i class="fas fa-list"></i>
-                  <p>List</p>
+                  <i style="padding-left: 1rem" class="fas fa-list"></i>
+                  <p style="padding-left: 0.5rem">List</p>
                 </a>
               </li>
             </ul>
@@ -76,8 +76,8 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('suppliers.index')}}" class="nav-link">
-                  <i class="fas fa-list"></i>
-                  <p>List</p>
+                  <i style="padding-left: 1rem" class="fas fa-list"></i>
+                  <p style="padding-left: 0.5rem">List</p>
                 </a>
               </li>
             </ul>
@@ -93,8 +93,8 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('orders.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>View Orders</p>
+                  <i style="padding-left: 1rem" class="far fa-circle nav-icon"></i>
+                  <p style="padding-left: 0.5rem">View Orders</p>
                 </a>
               </li>
             </ul>

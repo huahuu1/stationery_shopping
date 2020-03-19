@@ -48,24 +48,58 @@
                                 <i class="fas fa-trash"></i> Delete
                             </button>
                         </form>
+                        {{-- <form class="d-inline-block" action="" method="">
+                            <button style="margin-top: 1rem" type="submit" class="btn btn-danger btn-sm btnDelete" onclick="return confirmDelete()" rel="">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </form> --}}
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+        {{-- <div style="visibility: hidden; position: absolute; left: 50%; top: 25%; border: 0.15rem solid red" id="modalConfirm">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">Delete Confirm</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="submit" value="Yes" class="btn btn-danger btnYes" /></td>
+                        <td><input type="submit" value="No" class="btn btn-info btnNo" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> --}}
+        <dialog id="demo-modal">
+            <h3 class="modal-header">A native modal dialog box</h3>
+            <div class="modal-body">
+              <p>Finally, HTML has a native dialog box element! This is fantastic.</p>
+              <p>And a polyfill makes this usable today.</p>
+            </div>
+            <footer class="modal-footer">
+              <button id="like-it" type="button">I like it</button>
+              <button id="love-it" type="button">I love it</button>
+            </footer>
+            <button id="close" class="close" type="button">&times;</button>
+          </dialog>
         {{$users->links()}}
     </div>
 </div>
 @endsection
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-    $(document).on('click','.btnDelete',function() {
-        var url = $(this).attr('rel');
-        if(confirm("Are you sure you want to delete thisaaaa?")){
-           window.location.href = url
-        }
-        else{
+    function confirmDelete() {
+        // document.getElementById("modalConfirm").style.display = "block";
+        document.getElementById("modalConfirm").style.visibility = "visible";
+        $(".btnYes").click(function() {
+            return true;
+        });
+        $(".btnNo").click(function() {
             return false;
-        }
-    })
+        });
+    }
+
 </script>
