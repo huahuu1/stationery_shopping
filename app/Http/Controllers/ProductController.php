@@ -7,6 +7,8 @@ use App\Models\Product;
 use App\Repositories\Product\ProductInterface;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Auth;
 
 
 class ProductController  extends Controller
@@ -157,14 +159,21 @@ class ProductController  extends Controller
 
     public function addToCart(Request $request, $id)
     {
+        $user = Auth::user();
         $product = Product::find($id);
-        if(!$product) {
+        if (!$product) {
             abort(404);
         }
+        // check trong session truoc
         $cart = session()->get('cart');
-        // if cart is empty then this the first product
-        if(!$cart) {
 
+        //neu session ko co, thi lay trong cookie
+        if (!$cart) {
+            $cart = json_decode(Cookie::get('cart_' . $user->id), true);
+        }
+
+        // if cart is empty then this the first product
+        if (!$cart) {
             $cart = [
                 $id => [
                     "id" => $product->id,
@@ -174,38 +183,30 @@ class ProductController  extends Controller
                     "quantity" => $request->quantity
                 ]
             ];
-
-            session()->put('cart', $cart);
-
-            return redirect()->route('carts.detail', $id);
-        }
-
-        // if cart not empty then check if this product exist then increment quantity
-        if(isset($cart[$id])) {
-
+        } else if (isset($cart[$id])) {
             $cart[$id]['quantity'] += $request->quantity;
-
-            session()->put('cart', $cart);
-
-
-            return redirect()->route('carts.detail', $id);
+        } else {
+            // if item not exist in cart then add to cart with quantity
+            $cart[$id] = [
+                "id" => $product->id,
+                "image" => $product->image,
+                "name" => $product->name,
+                "sell_price" => $product->sell_price,
+                "quantity" => $request->quantity
+            ];
         }
 
-        // if item not exist in cart then add to cart with quantity = 1
-        $cart[$id] = [
-            "id" => $product->id,
-            "image" => $product->image,
-            "name" => $product->name,
-            "sell_price" => $product->sell_price,
-            "quantity" => $request->quantity
-        ];
-
+        // write to session
         session()->put('cart', $cart);
+
+        // write to cookie
+        Cookie::queue(Cookie::make('cart_' . $user->id, json_encode($cart), 60));
+
 
         // $htmlCart = view('_header_cart')->render();
 
         // return response()->json(['msg' => 'Product added to cart successfully!', 'data' => $htmlCart]);
-        return redirect()->route('carts.detail', $id);
+        return redirect()->route('carts.detail');
     }
 
     /**
@@ -216,9 +217,14 @@ class ProductController  extends Controller
      */
     private function getCartTotal()
     {
+        $user = Auth::user();
         $total = 0;
 
         $cart = session()->get('cart');
+
+        if (!$cart) {
+            $cart = json_decode(Cookie::get('cart_' . $user->id), true);
+        }
 
         foreach($cart as $id => $details) {
             $total += $details['sell_price'] * $details['quantity'];
@@ -229,9 +235,14 @@ class ProductController  extends Controller
 
     private function getCartQuantity()
     {
+        $user = Auth::user();
         $total = 0;
 
         $cart = session()->get('cart');
+
+        if (!$cart) {
+            $cart = json_decode(Cookie::get('cart_' . $user->id), true);
+        }
 
         foreach($cart as $id => $details) {
             $total += $details['quantity'];
@@ -242,9 +253,14 @@ class ProductController  extends Controller
 
     public function updateCart(Request $request)
     {
+        $user = Auth::user();
         if($request->id and $request->quantity)
         {
             $cart = session()->get('cart');
+            if (!$cart) {
+                $cart = json_decode(Cookie::get('cart_' . $user->id), true);
+            }
+
             $cart[$request->id]["quantity"] = $request->quantity;
             session()->put('cart', $cart);
 
@@ -262,12 +278,19 @@ class ProductController  extends Controller
 
     public function removeCart(Request $request)
     {
-        if(session()->get('cart') == null) {
-            return redirect()->route('cart.empty');
-        }
-        if($request->id) {
+        $user = Auth::user();
+
+        if ($request->id) {
 
             $cart = session()->get('cart');
+
+            if (!$cart) {
+                $cart = json_decode(Cookie::get('cart_' . $user->id), true);
+            }
+
+            if($cart == null) {
+                return response()->json(['message' => 'Cart empty'], 404);
+            }
 
 
             if(isset($cart[$request->id])) {
@@ -277,9 +300,9 @@ class ProductController  extends Controller
 
                 session()->put('cart', $cart);
 
-                // xoa trong db
-                DB::table('order_product')->where('product_id', $request->id)->delete();
-                DB::table('order_product')->where('order_id', $request->id)->delete();
+               // write to cookie
+               Cookie::queue(Cookie::make('cart_' . $user->id, json_encode($cart), 60));
+
 
             }
 
@@ -292,6 +315,8 @@ class ProductController  extends Controller
             return response()->json(['msg' => 'Product removed successfully', 'data' => $htmlCart, 'total' => $total, 'quantity' => $quantity]);
 
             //session()->flash('success', 'Product removed successfully');
+        } else {
+            return response()->json(['message' => 'Unknown error'], 404);
         }
     }
 

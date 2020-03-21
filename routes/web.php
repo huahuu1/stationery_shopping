@@ -37,9 +37,9 @@ Route::get('/categories/{name}', 'WebController@getProductsByCategoryId')->name(
 Route::get('/products/{item}', 'WebController@getProductDetail')->name('products.detail');
 Route::get('/products', 'WebController@getProducts')->name('products.all');
 
-Route::get('/cart-detail', 'WebController@emptyCart')->name('cart.empty');
+//Route::get('/cart-detail', 'WebController@emptyCart')->name('cart.empty');
 
-Route::get('/cart-detail/{id}', 'WebController@getCartDetail')->middleware('isLogin')->name('carts.detail');
+Route::get('/cart-detail', 'WebController@getCartDetail')->middleware('isLogin')->name('carts.detail');
 
 Route::post('/place-new-order', 'WebController@placeNewOrder')->middleware('isLogin')->name('orders.place_order');
 // Route::post('/carts/add-to-cart', 'WebController@addToCart')->name('carts.add_to_cart');

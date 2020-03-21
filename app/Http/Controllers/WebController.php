@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cookie;
+
 
 class WebController extends Controller
 {
@@ -86,10 +88,24 @@ class WebController extends Controller
         return view ('layouts.empty-cart');
     }
 
-    public function getCartDetail($id)
+    public function getCartDetail()
     {
+        //var_dump(1);die;
         $user = Auth::user();
-        $cart = session('cart');
+        $cart = session()->get('cart');
+
+        if (!$cart) {
+            $cart = json_decode(Cookie::get('cart_' . $user->id), true);
+        }
+
+        if (is_null($cart)) {
+            $cart = [];
+        }
+
+
+
+        //var_dump($cart);die;
+
         // dd($cart);
 //         $userCart = DB::select(DB::raw("
 //         select DISTINCT u.*, '123' as id, 'hghghgfhg' as user_address, p.name as product_name, p.id as product_id, p.image as product_image, p.sell_price as product_sell_price, op.product_quantity as product_quantity
@@ -109,13 +125,16 @@ class WebController extends Controller
     {
         $user = Auth::user();
         $total = 0;
-        $carts = session()->get('cart');
+        $cart = session()->get('cart');
+        if (!$cart) {
+            $cart = json_decode(Cookie::get('cart_' . $user->id), true);
+        }
         $order = new Order();
         $order->user_id = $user->id;
         $order->address = $request->input('address');
         $order->save();
 
-        foreach($carts as $item){
+        foreach($cart as $item){
             $order_id = $order->id;
             $product_order = DB::table('order_product')->insert([
                 'order_id' =>  $order_id,

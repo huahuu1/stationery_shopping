@@ -18,8 +18,8 @@
                         $total = 0;
                         $qty = 0;
                         @endphp
-                        @if (session('cart'))
-                        @foreach (session('cart') as $id => $details)
+                        @if ($cart)
+                        @foreach ($cart as $id => $details)
                         @php
                         $total += $details['sell_price'] * $details['quantity'];
                         $qty += $details['quantity'];
