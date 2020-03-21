@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\View;
 use App\Models\Category;
 use App\Models\User;
 use App\Models\Supplier;
+use App\Models\Order;
+use App\Models\Product;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -49,11 +51,20 @@ class AppServiceProvider extends ServiceProvider
     {
         View::share('cates', Category::all());
         Schema::defaultStringLength(191);
+
+        View::share('pros', Product::all());
+        Schema::defaultStringLength(191);
+
         // View::share('subcates', Category::where('parent_id', 0));
         // Schema::defaultStringLength(191);
+
         View::share('sups', Supplier::all());
         Schema::defaultStringLength(191);
-        // View::share('users', User::all());
-        // Schema::defaultStringLength(191);
+
+        View::share('orders', Order::all());
+        Schema::defaultStringLength(191);
+
+        View::share('users', User::all());
+        Schema::defaultStringLength(191);
     }
 }

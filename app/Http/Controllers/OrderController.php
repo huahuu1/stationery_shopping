@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
 use App\Repositories\Order\OrderInterface;
 use Illuminate\Http\Request;
-use App\Models\Order_product;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Auth\Access\Gate;
+use Symfony\Component\HttpFoundation\Response;
+use App\Http\Requests\MassDestroyOrderRequest;
 
 class OrderController extends Controller
 {
@@ -19,11 +22,25 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $orders = $this->model->getAll();
+        $keyword = $request->keyword;
+        $pageSize = $request->pageSize ?? 5;
+        $path = '';
+        if(!$keyword){
+            $path .= "?pageSize=$pageSize";
+            $orders = Order::orderBy('id', 'ASC')->paginate($pageSize);
+        } else {
+            $path .= "?pageSize=$pageSize&keyword=$keyword";
+            $orders = Order::where('address', 'like', '%'. $keyword .'%')
+                                // ->orWhere('description', 'like', '%'. $keyword .'%')
+                                ->orderBy('id', 'ASC')
+                                ->paginate($pageSize);
+        }
 
-        return view('admin.orders.index', compact('orders'));
+        $orders->withPath($path);
+
+        return view('admin.orders.index', compact('orders', 'keyword'));
     }
 
     /**
@@ -33,7 +50,8 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::all();
+        return view('admin.orders.create', compact('products'));
     }
 
     /**
@@ -44,7 +62,21 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'address' => 'required',
+        ]);
+        $order = Order::create($request->all());
+        $products = $request->input('products', []);
+        $quantities = $request->input('quantities', []);
+        for ($product=0; $product < count($products); $product++) {
+            if ($products[$product] != '') {
+                $order->products()->attach($products[$product], ['product_quantity' => $quantities[$product]]);
+            }
+        }
+        // $order = new Order($order);
+        // $order->save();
+
+        return redirect()->route('orders.index');
     }
 
     /**
@@ -56,14 +88,7 @@ class OrderController extends Controller
     public function show(Order $order, Request $request, $id)
     {
         $order = Order::find($id);
-        $products = $order->products;
-
-        $product_order = DB::table('order_product')->get();
-        foreach($products as $key=> $product){
-            $product->quantity = $product_order[$key]->product_quantity;
-        }
-
-        return view('admin.orders.show', compact('order', 'products'));
+        return view('admin.orders.show', compact('order'));
     }
 
     /**
@@ -72,9 +97,15 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit(Order $order, $id)
     {
-        //
+        $products = Product::all();
+        // dd($order->products);
+        $order->load('products');
+        $od = Order::find($id);
+        // dd($order);
+
+        return view('admin.orders.edit', compact('products', 'order', 'od'));
     }
 
     /**
@@ -84,9 +115,23 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, Order $order, $id)
     {
-        //
+        $order= Order::find($request->id);
+
+        $order->status = $request->status;
+        $order->address = $request->address;
+        $order->update();
+        $order->products()->detach();
+        $products = $request->input('products', []);
+        $quantities = $request->input('quantities', []);
+        for ($product=0; $product < count($products); $product++) {
+            if ($products[$product] != '') {
+                $order->products()->attach($products[$product], ['product_quantity' => $quantities[$product]]);
+            }
+        }
+
+        return redirect()->route('orders.index');
     }
 
     /**
@@ -97,6 +142,14 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete();
+        return back();
     }
+
+    public function removeProductFromCart(Order $order, $id, $product_id)
+    {
+        DB::table('order_product')->where('product_id', $product_id)->delete();
+        return back();
+    }
+
 }

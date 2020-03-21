@@ -22,14 +22,13 @@ class Product extends Model
     ];
     // map Product Model to products table
 
-    public function getStatusName($id)
+    public function getStatusName($status)
     {
-        // $p = Product::find($id);
-        // if($p->status == 1) {
-        //     return 'In stock';
-        // } else {
-        //     return 'Out of stock';
-        // }
+        if($status == 1) {
+            return 'In Stock';
+        } else if($status == 0) {
+            return 'Out of Stock';
+        }
     }
 
     public function getSupplierName($id)
@@ -43,6 +42,11 @@ class Product extends Model
         $cate = Category::find($id);
         return $cate->name;
     }
+
+    // public function getProductByCategoryId($category_id) {
+    //     $products = Product::where('category_id', $category_id)->get();
+    //     return $products;
+    // }
 
     public function category()
     {
@@ -59,6 +63,6 @@ class Product extends Model
     }
 
     public function orders() {
-        return $this->belongsToMany(Order::class);
+        return $this->belongsToMany(Order::class, 'order_product', 'product_id', 'order_id');
     }
 }
