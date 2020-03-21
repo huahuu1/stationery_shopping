@@ -77,7 +77,20 @@
 
                 <div class="form-group">
                     <label for="">Status</label>
-                    <input type="text" class="form-control" value="{{$product->status}}" name="status" placeholder="Product Status">
+                    <select name="status" id="" class="form-control">
+                        <option
+                        @if($product->status == 1) {
+                            echo 'selected';
+                        }
+                        @endif
+                        value="{{$product->status}}">In stock</option>
+                        <option
+                        @if($product->status != 1) {
+                            echo 'selected';
+                        }
+                        @endif
+                        value="{{$product->status}}">Out sf stock</option>
+                    </select>
                 </div>
 
                 <div class="form-group">

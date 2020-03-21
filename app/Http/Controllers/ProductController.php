@@ -262,7 +262,11 @@ class ProductController  extends Controller
             }
 
             $cart[$request->id]["quantity"] = $request->quantity;
+            // write to session
             session()->put('cart', $cart);
+
+            // write to cookie
+            Cookie::queue(Cookie::make('cart_' . $user->id, json_encode($cart), 60));
 
             $total = $this->getCartTotal();
 
