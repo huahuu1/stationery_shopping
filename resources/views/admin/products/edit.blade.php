@@ -77,7 +77,10 @@
 
                 <div class="form-group">
                     <label for="">Status</label>
-                    <input type="text" class="form-control" value="{{$product->status}}" name="status" placeholder="Product Status">
+                    <select name="status" id="" class="form-control">
+                        <option value="1" @if ($product->status == 1) selected @endif>In Stock</option>
+                        <option value="0" @if ($product->status == 0) selected @endif>Out of Stock</option>
+                    </select>
                 </div>
 
                 <div class="form-group">

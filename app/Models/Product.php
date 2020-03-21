@@ -22,13 +22,12 @@ class Product extends Model
     ];
     // map Product Model to products table
 
-    public function getStatusName($id)
+    public function getStatusName($status)
     {
-        $p = Product::find($id);
-        if($p->status == 1) {
-            return 'In stock';
-        } else {
-            return 'Out of stock';
+        if($status == 1) {
+            return 'In Stock';
+        } else if($status == 0) {
+            return 'Out of Stock';
         }
     }
 

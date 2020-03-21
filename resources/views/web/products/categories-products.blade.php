@@ -34,12 +34,12 @@ $productsAnother = App\Models\Product::whereBetween('category_id', [7, 9])->get(
                     <div class="row row-cols-5">
                         @foreach ($productFirst as $item)
                         <div class="product-item item-home col-6">
-                            <div class="product-image"><a href="#"><img src="{{asset($item->image)}}"
+                            <div class="product-image"><a href="{{URL::to('products/'.$item->slug)}}"><img src="{{asset($item->image)}}"
                                         alt="" /></a></div>
                             <div class="product-text">
-                                <div class="title-wrapper"><a href="#">{{$item->name}}</a></div>
+                                <div class="title-wrapper"><a href="{{URL::to('products/'.$item->slug)}}">{{$item->name}}</a></div>
                                 <div class="price-wrapper"><span class="price"><span
-                                    class="woocommerce-price-amount">{{$item->sell_price}}&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span>
+                                    class="woocommerce-price-amount">{{number_format($item->sell_price)}}&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span>
                                 </div>
                             </div>
                         </div>
@@ -54,10 +54,10 @@ $productsAnother = App\Models\Product::whereBetween('category_id', [7, 9])->get(
                         @foreach ($item->getProductByCategoryId($item->id) as $row)
 
                         <div class="product-item item-home col-6">
-                            <div class="product-image"><a href="#"><img src="{{asset($row->image)}}"
+                            <div class="product-image"><a href="{{URL::to('products/'.$row->slug)}}"><img src="{{asset($row->image)}}"
                                 alt="" /></a></div>
                                 <div class="product-text">
-                                    <div class="title-wrapper"><a href="#">{{$row->name}}</a></div>
+                                    <div class="title-wrapper"><a href="{{URL::to('products/'.$row->slug)}}">{{$row->name}}</a></div>
                                     <div class="price-wrapper"><span class="price"><span
                                         class="woocommerce-price-amount">{{$row->sell_price}}&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span>
                                     </div>
@@ -235,10 +235,10 @@ $productsAnother = App\Models\Product::whereBetween('category_id', [7, 9])->get(
                     <div class="row row-cols-5">
                         @foreach ($productFirstAnother as $item)
                         <div class="product-item item-home col-6">
-                            <div class="product-image"><a href="#"><img src="{{asset($item->image)}}"
+                            <div class="product-image"><a href="{{URL::to('products/'.$item->slug)}}"><img src="{{asset($item->image)}}"
                                         alt="" /></a></div>
                             <div class="product-text">
-                                <div class="title-wrapper"><a href="#">{{$item->name}}</a></div>
+                                <div class="title-wrapper"><a href="{{URL::to('products/'.$item->slug)}}">{{$item->name}}</a></div>
                                 <div class="price-wrapper"><span class="price"><span
                                     class="woocommerce-price-amount">{{$item->sell_price}}&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span>
                                 </div>
@@ -255,10 +255,10 @@ $productsAnother = App\Models\Product::whereBetween('category_id', [7, 9])->get(
                         @foreach ($item->getProductByCategoryId($item->id) as $row)
 
                         <div class="product-item item-home col-6">
-                            <div class="product-image"><a href="#"><img src="{{asset($row->image)}}"
+                            <div class="product-image"><a href="{{URL::to('products/'.$row->slug)}}"><img src="{{asset($row->image)}}"
                                 alt="" /></a></div>
                                 <div class="product-text">
-                                    <div class="title-wrapper"><a href="#">{{$row->name}}</a></div>
+                                    <div class="title-wrapper"><a href="{{URL::to('products/'.$row->slug)}}">{{$row->name}}</a></div>
                                     <div class="price-wrapper"><span class="price"><span
                                         class="woocommerce-price-amount">{{$row->sell_price}}&nbsp;</span><span class="woocommerce-price-currencySymbol">đ</span></span>
                                     </div>

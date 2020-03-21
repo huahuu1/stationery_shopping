@@ -31,6 +31,7 @@
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i style="font-size: 20px; font-weight: bold;" class="far fa-user"></i>
+          <span>{{Auth::user()->name}}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <a href="{{route('users.index')}}" class="dropdown-item">

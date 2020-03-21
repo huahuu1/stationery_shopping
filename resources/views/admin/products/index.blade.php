@@ -10,8 +10,8 @@
 <div class="row">
     <div class="col-md-12">
         <form action="" class="form-inline form-group">
-            <input type="text" value="{{$keyword}}" class="form-control" name="keyword">
-            <button type="submit" class="btn btn btn-info"><i class="nav-icon fas fa-search"></i></button>
+            <input style="height: 2.5rem; border-top-right-radius: 0; border-bottom-right-radius: 0" type="text" value="{{$keyword}}" class="form-control" name="keyword">
+            <button style="height: 2.5rem; border-top-left-radius: 0; border-bottom-left-radius: 0" type="submit" class="btn btn btn-info"><i class="nav-icon fas fa-search"></i></button>
         </form>
         <table class="table table-bordered table-valign-middle">
             <thead>

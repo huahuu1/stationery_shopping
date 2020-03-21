@@ -62,12 +62,13 @@ $categories = App\Models\Category::where('parent_id', 0)->get();
                         </div>
                         <div class="icon-box d-flex">
                             <div class="icon-box-img"><i class="fas fa-book"></i></div>
-                            <div class="icon-box-text"><a href="{{route('categories.all')}}">Products</a></div>
+                            <div class="icon-box-text"><a href="{{route('categories.all')}}">Categories</a></div>
                         </div>
                         <div class="icon-box d-flex">
                             <div class="icon-box-img"><i class="fas fa-book"></i></div>
-                            <div class="icon-box-text"><a href="#">Contact</a></div>
+                            <div class="icon-box-text"><a href="{{url('admin')}}">Admin</a></div>
                         </div>
+
                     </div>
                 </div>
                 <div class="list-product col-sm-6 col-lg-3">
@@ -79,7 +80,7 @@ $categories = App\Models\Category::where('parent_id', 0)->get();
                             @foreach ($categories as $item)
                             <div class="icon-box d-flex col-6">
                                 <div class="icon-box-img"><i class="fas fa-book"></i></div>
-                                <div class="icon-box-text"><a href="#">{{$item->name}}</a></div>
+                                <div class="icon-box-text"><a href="{{URL::to('categories/'.$item->slug)}}">{{$item->name}}</a></div>
                             </div>
                             @endforeach
                         </div>
@@ -123,7 +124,7 @@ $categories = App\Models\Category::where('parent_id', 0)->get();
                             </div>
                         </div>
                         <div class="register-button col-sm-12 col-lg-6 d-flex">
-                            <div class="btn btn-danger"><a href="{{route('register')}}">ĐĂNG KÝ</a></div>
+                            <div class="btn btn-danger"><a href="{{route('register')}}">REGISTER</a></div>
                         </div>
                     </div>
                 </div>
