@@ -78,18 +78,8 @@
                 <div class="form-group">
                     <label for="">Status</label>
                     <select name="status" id="" class="form-control">
-                        <option
-                        @if($product->status == 1) {
-                            echo 'selected';
-                        }
-                        @endif
-                        value="{{$product->status}}">In stock</option>
-                        <option
-                        @if($product->status != 1) {
-                            echo 'selected';
-                        }
-                        @endif
-                        value="{{$product->status}}">Out sf stock</option>
+                        <option value="1" @if ($product->status == 1) selected @endif>In Stock</option>
+                        <option value="0" @if ($product->status == 0) selected @endif>Out of Stock</option>
                     </select>
                 </div>
 

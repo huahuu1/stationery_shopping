@@ -123,6 +123,8 @@ class ProductController  extends Controller
             }
             $imageName = 'uploads/products/'.time().$file->getClientOriginalName();
             $file->move('uploads/products/', $imageName);
+        } else {
+            $imageName = $product->image;
         }
 
         $product->name = $request->name;
