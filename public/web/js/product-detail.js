@@ -1,30 +1,50 @@
 "use strict";
 
-//PlusMinus
-$(function () {
-  $("#btnPlus").click(function () {
-    $("#txtQuantity").val(Number($("#txtQuantity").val()) + 1);
-  });
-  $("#btnMinus").click(function () {
-    if ($(":text[name='txtQuantity']").val() == 0) return;
-    $(":text[name='txtQuantity']").val(Number($(":text[name='txtQuantity']").val()) - 1);
-  });
-}); // //Carousel
-// $('#productOthers').on('slide.bs.carousel', function (e) {
-//     var $e = $(e.relatedTarget);
-//     var idx = $e.index();
-//     var itemsPerSlide = 5;
-//     var totalItems = $('.carousel-item').length;
-//     if (idx >= totalItems - (itemsPerSlide - 1)) {
-//         var it = itemsPerSlide - (totalItems - idx);
-//         for (var i = 0; i < it; i++) {
-//             //append slides to end
-//             if (e.direction == "left") {
-//                 $('.carousel-item').eq(i).appendTo('.carousel-inner');
-//             }
-//             else {
-//                 $('.carousel-item').eq(0).appendTo('.carousel-inner');
-//             }
-//         }
-//     }
+// //PlusMinus
+// $(function () {
+//   $(".btnPlus").click(function () {
+//     $(".quantity").val(Number($(".quantity").val()) + 1);
+//   });
+//   $(".btnMinus").click(function () {
+//     if ($(".quantity").val() == 0) return;
+//     $(".quantity").val(Number($(".quantity").val()) - 1);
+//   });
 // });
+
+
+jQuery(document).ready(function(){
+    // This button will increment the value
+    $('.qtyplus').click(function(e){
+        // Stop acting like a button
+        e.preventDefault();
+        // Get the field name
+        var fieldName = $(this).attr('field');
+        // Get its current value
+        var currentVal = parseInt($('input[id='+fieldName+']').val());
+        // If is not undefined
+        if (!isNaN(currentVal)) {
+            // Increment
+            $('input[id='+fieldName+']').val(currentVal + 1);
+        } else {
+            // Otherwise put a 0 there
+            $('input[id='+fieldName+']').val(0);
+        }
+    });
+    // This button will decrement the value till 0
+    $(".qtyminus").click(function(e) {
+        // Stop acting like a button
+        e.preventDefault();
+        // Get the field name
+        var fieldName = $(this).attr('field');
+        // Get its current value
+        var currentVal = parseInt($('input[id='+fieldName+']').val());
+        // If it isn't undefined or its greater than 0
+        if (!isNaN(currentVal) && currentVal > 0) {
+            // Decrement one
+            $('input[id='+fieldName+']').val(currentVal - 1);
+        } else {
+            // Otherwise put a 0 there
+            $('input[id='+fieldName+']').val(0);
+        }
+    });
+});

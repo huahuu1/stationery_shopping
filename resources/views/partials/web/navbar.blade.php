@@ -24,14 +24,33 @@ $categories = App\Models\Category::where('parent_id', 0)->get();
             </div>
             <div class="account justify-content-center">
                 <ul class="nav">
-                    <li class="account-item"><a class="nav-top-link nav-top-not-logged-in" href="{{route('register')}}"><span>sign up</span></a></li>
+                        @if (!Auth::user())
+                            <li class='account-item'><a class='nav-top-link nav-top-not-logged-in' href='{{route('register')}}'><span>sign up</span></a></li>
+                            <li class='header-divider'></li>
+                            <li class='account-item'><a class='nav-top-link nav-top-not-logged-in' href='{{route('login')}}'><span>sign in</span></a></li>
+                        @else
+                            <li class='dropdown account-item'>
+                                <a class='dropbtn nav-top-link nav-top-not-logged-in' href=''>
+                                    <span>{{Auth::user()->email}}</span>
+                                    <i class="fa fa-caret-down"></i>
+                                </a>
+
+                                <div class="dropdown-content">
+                                    <a href="#">Your Profile</a>
+                                    <a href="{{route('logout')}}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}</a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: block;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endif
                     <li class="header-divider"></li>
-                    <li class="account-item"><a class="nav-top-link nav-top-not-logged-in" href="{{route('login')}}"><span>sign in</span></a>
+
+                    <li class="cart-item" id="header-bar">
+                        @include('_header_cart')
                     </li>
-                    <li class="header-divider"></li>
-                    <li class="cart-item"><a><span class="header-cart-title">cart&nbsp</span><span
-                                class="cart-price"><span class="amount">/ 0&nbsp<span class="symbol">đ</span><i
-                                        class="fas fa-shopping-basket icon-basket"></i></span></span></a></li>
                 </ul>
             </div>
         </div>
@@ -41,11 +60,11 @@ $categories = App\Models\Category::where('parent_id', 0)->get();
 
                 @foreach ($categories as $item)
 
-                <li class="hover-nav"><a href="{{URL::to('categories/'.$item->slug) }}"><span>{{$item->name}}</span><i
+                <li class="hover-nav"><a href="{{URL::to('categories/'.$item->slug)}}"><span>{{$item->name}}</span><i
                             class="fas fa-chevron-down arrow-down"></i></a>
                     <ul class="nav-dropdown">
                         @foreach ($item->getCategoriesByParentId($item->id) as $row)
-                        <li class="nav-hover-dropdown"><a href="#">{{$row->name}}</a></li>
+                        <li class="nav-hover-dropdown"><a href="{{URL::to('categories/'.$row->slug)}}">{{$row->name}}</a></li>
                         @endforeach
                     </ul>
                 </li>

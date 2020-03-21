@@ -136,27 +136,6 @@ class ProductController  extends Controller
 
         return redirect(route('products.index'));
 
-        // $product = $request->all();
-        // //xu ly upload hinh anh vao thu muc
-        // if($request->hasFile('image')) {
-        //     $file = $request->file('image');
-        //     $extension = $file->getClientOriginalExtension();
-        //     if($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg') {
-        //         return redirect('product/update')->with('loi', 'Bạn chỉ được chọn file có đuôi jpg,png,jpeg');
-        //     }
-        //     $imageName = $file->getClientOriginalName();
-        //     $file->move('images', $imageName);
-        // } else { // khong upload hinh moi giu lai hinh cu
-        //     $p = Product::find($id);
-        //     $imageName = $p->image;
-        // }
-        // $p = Product::find($id);
-        // $p->name = $request->get('name');
-        // $p->price = $request->get('price');
-        // $p->description = $request->get('description');
-        // $p->image = $imageName;
-        // $p->save();
-        // return redirect()->action('ProductController@index');
     }
 
     /**
@@ -170,4 +149,150 @@ class ProductController  extends Controller
         $this->model->delete($id);
         return redirect(route('products.index'));
     }
+
+    public function cart()
+    {
+        return view('layouts.cart');
+    }
+
+    public function addToCart(Request $request, $id)
+    {
+        $product = Product::find($id);
+        if(!$product) {
+            abort(404);
+        }
+        $cart = session()->get('cart');
+        // if cart is empty then this the first product
+        if(!$cart) {
+
+            $cart = [
+                $id => [
+                    "id" => $product->id,
+                    "image" => $product->image,
+                    "name" => $product->name,
+                    "sell_price" => $product->sell_price,
+                    "quantity" => $request->quantity
+                ]
+            ];
+
+            session()->put('cart', $cart);
+
+            return redirect()->route('carts.detail', $id);
+        }
+
+        // if cart not empty then check if this product exist then increment quantity
+        if(isset($cart[$id])) {
+
+            $cart[$id]['quantity'] += $request->quantity;
+
+            session()->put('cart', $cart);
+
+
+            return redirect()->route('carts.detail', $id);
+        }
+
+        // if item not exist in cart then add to cart with quantity = 1
+        $cart[$id] = [
+            "id" => $product->id,
+            "image" => $product->image,
+            "name" => $product->name,
+            "sell_price" => $product->sell_price,
+            "quantity" => $request->quantity
+        ];
+
+        session()->put('cart', $cart);
+
+        // $htmlCart = view('_header_cart')->render();
+
+        // return response()->json(['msg' => 'Product added to cart successfully!', 'data' => $htmlCart]);
+        return redirect()->route('carts.detail', $id);
+    }
+
+    /**
+     * getCartTotal
+     *
+     *
+     * @return float|int
+     */
+    private function getCartTotal()
+    {
+        $total = 0;
+
+        $cart = session()->get('cart');
+
+        foreach($cart as $id => $details) {
+            $total += $details['sell_price'] * $details['quantity'];
+        }
+
+        return number_format($total);
+    }
+
+    private function getCartQuantity()
+    {
+        $total = 0;
+
+        $cart = session()->get('cart');
+
+        foreach($cart as $id => $details) {
+            $total += $details['quantity'];
+        }
+
+        return $total;
+    }
+
+    public function updateCart(Request $request)
+    {
+        if($request->id and $request->quantity)
+        {
+            $cart = session()->get('cart');
+            $cart[$request->id]["quantity"] = $request->quantity;
+            session()->put('cart', $cart);
+
+            $total = $this->getCartTotal();
+
+            $quantity = $this->getCartQuantity();
+
+            $htmlCart = view('_header_cart')->render();
+
+            return response()->json(['msg' => 'Cart updated successfully', 'data' => $htmlCart, 'total' => $total, 'quantity' => $quantity]);
+
+            //session()->flash('success', 'Cart updated successfully');
+        }
+    }
+
+    public function removeCart(Request $request)
+    {
+        if(session()->get('cart') == null) {
+            return redirect()->route('cart.empty');
+        }
+        if($request->id) {
+
+            $cart = session()->get('cart');
+
+
+            if(isset($cart[$request->id])) {
+
+                // xoa trong session
+                unset($cart[$request->id]);
+
+                session()->put('cart', $cart);
+
+                // xoa trong db
+                DB::table('order_product')->where('product_id', $request->id)->delete();
+                DB::table('order_product')->where('order_id', $request->id)->delete();
+
+            }
+
+            $total = $this->getCartTotal();
+
+            $quantity = $this->getCartQuantity();
+
+            $htmlCart = view('_header_cart')->render();
+
+            return response()->json(['msg' => 'Product removed successfully', 'data' => $htmlCart, 'total' => $total, 'quantity' => $quantity]);
+
+            //session()->flash('success', 'Product removed successfully');
+        }
+    }
+
 }

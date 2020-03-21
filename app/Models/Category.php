@@ -14,7 +14,7 @@ class Category extends Model
     ];
 
     public function getCategoriesByParentId($parent_id) {
-        $categories = Category::where('parent_id',$parent_id)->get('name');
+        $categories = Category::where('parent_id',$parent_id)->get();
         return $categories;
     }
 
@@ -32,6 +32,8 @@ class Category extends Model
         $products = Product::where('category_id', $category_id)->get();
         return $products;
     }
+
+
 
     public function products()
     {

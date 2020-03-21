@@ -73,11 +73,10 @@ class OrderController extends Controller
                 $order->products()->attach($products[$product], ['product_quantity' => $quantities[$product]]);
             }
         }
-        // // $order = new Order($order);
+        // $order = new Order($order);
         // $order->save();
 
-        // return redirect()->route('orders.index');
-        return back();
+        return redirect()->route('orders.index');
     }
 
     /**

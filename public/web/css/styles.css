@@ -708,9 +708,10 @@ section.product-content .wrapper-product {
     .container .productMain .content .cartForm .quantityControl .btnMinus, .container .productMain .content .cartForm .quantityControl .btnPlus {
       width: 2.5rem;
       height: 4rem; }
-    .container .productMain .content .cartForm .quantityControl .txtQuantity {
+    .quantity {
+      width: 5rem;
       text-align: center;
-      height: 4rem; }
+    }
     .container .productMain .content .cartForm .quantityControl .btn-primary {
       margin: 0 5rem;
       width: 15rem;
@@ -1194,9 +1195,11 @@ label.star:before {
     .cartContext .d-flex i {
       padding-right: 1rem; }
   .cartContext .cartPayment {
+    font-size: 1.5rem;
+    display: block;
     cursor: pointer;
     text-align: center;
-    margin: 1.5rem 0;
+    margin: 1.5rem auto;
     padding: 0.75rem 0;
     background-color: #3264c8;
     color: white;
@@ -1533,3 +1536,153 @@ section.icon-intro {
               text-decoration: none;
               text-transform: none;
               display: block; }
+
+            /* Chrome, Safari, Edge, Opera */
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+            }
+
+            /* Firefox */
+            input[type=number] {
+            -moz-appearance: textfield;
+            }
+
+            .cart-title {
+                text-decoration: none !important;
+            }
+
+            .badge {
+                vertical-align: super;
+            }
+
+            .shipping {
+                margin-top: 2rem;
+            }
+
+            .shipping-title {
+                color: #353535;
+                font-weight: 500;
+            }
+
+
+            .dropdown {
+                transition: all .3s ease !important;
+                -webkit-transition: all .3s ease !important;
+                -moz-transition: all .3s ease !important;
+                -ms-transition: all .3s ease !important;
+                -o-transition: all .3s ease !important;
+}
+
+            /* Dropdown button */
+            .dropdown .dropbtn {
+                /* display: block; */
+                border: none;
+                outline: none;
+                /* padding: 14px 16px; */
+                font-family: inherit; /* Important for vertical align on mobile phones */
+                margin: 0; /* Important for vertical align on mobile phones */
+
+            }
+
+            .dropdown .dropbtn span {
+                font-family: 'kanit', sans-serif;
+            }
+
+            /* Dropdown content (hidden by default) */
+            .dropdown-content {
+                opacity: 0;
+                position: absolute;
+                top: 120%;
+                background-color: #f9f9f9;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+                transition: all .3s ease !important;
+                -webkit-transition: all .3s ease !important;
+                -moz-transition: all .3s ease !important;
+                -ms-transition: all .3s ease !important;
+                -o-transition: all .3s ease !important;
+}
+
+            .dropdown-content:before {
+                content: "";
+                z-index: 10;
+                opacity: 0;
+                left: 36%;
+                top: -10px;
+                bottom: -2px;
+                width: 0;
+                height: 0;
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+                border-bottom: 10px solid #fff;
+                position: absolute;
+                cursor: pointer;
+                transition: all .3s ease !important;
+                -webkit-transition: all .3s ease !important;
+                -moz-transition: all .3s ease !important;
+                -ms-transition: all .3s ease !important;
+                -o-transition: all .3s ease !important;
+}
+
+            /* Links inside the dropdown */
+            .dropdown-content a {
+                float: none;
+                color: #555555 !important;
+                padding: 12px 16px 12px 15px;
+                text-decoration: none;
+                display: block;
+                text-align: center;
+                font-size: 14px;
+            }
+
+            /* Add a grey background color to dropdown links on hover */
+            .dropdown-content a:hover {
+                background-color: #ddd;
+            }
+
+            /* Show the dropdown menu on hover */
+            .dropdown:hover .dropdown-content {
+                opacity: 1;
+            }
+
+            .dropdown:hover .dropdown-content:before {
+                opacity: 1;
+            }
+
+            .dropdown-content.filters {
+                -webkit-filter: drop-shadow(0px 8px 16px rgba(0,0,0,0.2));
+                filter        : drop-shadow(0px 8px 16px rgba(0,0,0,0.2));
+                -ms-filter    : "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=2, Color='#444')";
+                filter        : "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=2, Color='#444')";
+            }
+
+            .modal-header .modal-title {
+                text-transform: uppercase;
+                font-size: 2rem;
+                font-weight: 500;
+                margin-left: 31%;
+                color: #555555;
+            }
+
+            .modal-header .close {
+                font-size: 2.5rem;
+            }
+
+            .modal-body {
+                padding: 1rem 5rem;
+            }
+
+            .modal-body .form-group label{
+                text-transform: uppercase;
+                font-size: 1.5rem;
+                font-weight: 500;
+                color: #353535;
+            }
+
+            .modal-footer button{
+                padding: 1rem 2rem;
+                font-size: 1.3rem;
+            }

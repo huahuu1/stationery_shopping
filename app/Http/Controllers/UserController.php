@@ -83,17 +83,16 @@ class UserController extends Controller
     public function show(User $user, $id)
     {
         $user = User::find($id);
-        //viet trong cho tra ra cart detail
-        $products = DB::select(DB::raw("
-        select u.*, o.id, o.address as user_address, p.name as product_name  from users as u
-        left join orders as o on u.id = o.user_id
-        left join order_product as op on o.id = op.order_id
-        left join products as p on op.product_id = p.id
-
-        where u.id = $id"));
-        dd($products);
-
         return view('admin.users.show', compact('user'));
+        // //viet trong cho tra ra cart detail
+        // $products = DB::select(DB::raw("
+        // select u.*, o.id, o.address as user_address, p.name as product_name  from users as u
+        // left join orders as o on u.id = o.user_id
+        // left join order_product as op on o.id = op.order_id
+        // left join products as p on op.product_id = p.id
+
+        // where u.id = $id"));
+        // dd($products);
     }
 
     /**
