@@ -6,6 +6,12 @@
 <h5>User</h5>
 @endsection
 
+@section('scriptA')
+  <script src="https://code.jquery.com/jquery-latest.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col-md-12">
@@ -44,12 +50,12 @@
                         <form class="d-inline-block" action="{{ url('admin/users', ['id' => $user->id]) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <button style="margin-top: 1rem" type="submit" class="btn btn-danger btn-sm btnDelete" href="javascript:;" rel="{{route('users.destroy', $user->id)}}">
+                            <button style="margin-top: 1rem" type="submit" class="btn btn-danger btn-sm btnDelete" onclick="return confirmDelete()" rel="{{route('users.destroy', $user->id)}}">
                                 <i class="fas fa-trash"></i> Delete
                             </button>
                         </form>
-                        {{-- <form class="d-inline-block" action="" method="">
-                            <button style="margin-top: 1rem" type="submit" class="btn btn-danger btn-sm btnDelete" onclick="return confirmDelete()" rel="">
+                        {{-- <form class="d-inline-block blog-form" action="" method="">
+                            <button style="margin-top: 1rem" type="submit" id="btnDelete" class="btn btn-danger btn-sm btnDelete" rel="">
                                 <i class="fas fa-trash"></i> Delete
                             </button>
                         </form> --}}
@@ -73,33 +79,11 @@
                 </tbody>
             </table>
         </div> --}}
-        <dialog id="demo-modal">
-            <h3 class="modal-header">A native modal dialog box</h3>
-            <div class="modal-body">
-              <p>Finally, HTML has a native dialog box element! This is fantastic.</p>
-              <p>And a polyfill makes this usable today.</p>
-            </div>
-            <footer class="modal-footer">
-              <button id="like-it" type="button">I like it</button>
-              <button id="love-it" type="button">I love it</button>
-            </footer>
-            <button id="close" class="close" type="button">&times;</button>
-          </dialog>
         {{$users->links()}}
     </div>
+
 </div>
 @endsection
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-    function confirmDelete() {
-        // document.getElementById("modalConfirm").style.display = "block";
-        document.getElementById("modalConfirm").style.visibility = "visible";
-        $(".btnYes").click(function() {
-            return true;
-        });
-        $(".btnNo").click(function() {
-            return false;
-        });
-    }
 
 </script>
