@@ -309,7 +309,6 @@ class ProductController  extends Controller
                // write to cookie
                Cookie::queue(Cookie::make('cart_' . $user->id, json_encode($cart), 60));
 
-
             }
 
             $total = $this->getCartTotal();

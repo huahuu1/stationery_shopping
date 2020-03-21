@@ -84,9 +84,9 @@ class WebController extends Controller
     //     return view('layouts.cart', compact('user', 'cart'));
     // }
 
-    public function emptyCart() {
-        return view ('layouts.empty-cart');
-    }
+    // public function emptyCart() {
+    //     return view ('layouts.empty-cart');
+    // }
 
     public function getCartDetail()
     {
@@ -96,24 +96,14 @@ class WebController extends Controller
 
         if (!$cart) {
             $cart = json_decode(Cookie::get('cart_' . $user->id), true);
+            if (!$cart) {
+                return view ('layouts.empty-cart');
+            }
         }
 
-        if (is_null($cart)) {
-            $cart = [];
-        }
-
-
-
-        //var_dump($cart);die;
-
-        // dd($cart);
-//         $userCart = DB::select(DB::raw("
-//         select DISTINCT u.*, '123' as id, 'hghghgfhg' as user_address, p.name as product_name, p.id as product_id, p.image as product_image, p.sell_price as product_sell_price, op.product_quantity as product_quantity
-// from users as u
-//             join orders as o on u.id = o.user_id
-//             join order_product as op on o.id = op.order_id
-//             join products as p on op.product_id = p.id
-//             where u.id = {$user->id}"));
+        // if (is_null($cart)) {
+        //     $cart = [];
+        // }
 
         if (!$cart) {
             return view ('layouts.empty-cart');
@@ -143,5 +133,10 @@ class WebController extends Controller
             ]);
         }
         return redirect()->route('web.index');
+    }
+
+    public function editUser($id) {
+        $user = Auth::user();
+        return view('layouts.edit-user-page');
     }
 }

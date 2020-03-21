@@ -28,7 +28,7 @@
                             <td class="productThumbnail"><a href="#"><img src="{{$details['image']}}" width="100px"
                                         height="100px" alt="" /></a></td>
 
-                            <td class="productName">{{$details['name']}}</td>
+                            <td class="productName">{{Str::limit($details['name'], 32)}}</td>
 
                             <td class="productPrice" style="font-weight: 500">{{number_format($details['sell_price'])}}
                                 đ</td>
@@ -88,7 +88,7 @@
             </table>
             <form class="form-group shipping" action="" method="POST">
                 <label for="" class="shipping-title">Shipping Address</label>
-                <input type="text" class="form-control" id="ship-address" class="ship-address">
+                <input type="text" class="form-control" id="ship-address" class="ship-address" required>
             </form>
             <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="cartPayment btn btn-primary px-4 py-3">PROCEED TO
                 CONFIRM</button>

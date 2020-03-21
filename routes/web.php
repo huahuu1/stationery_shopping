@@ -50,3 +50,5 @@ Route::delete('remove-from-cart', 'ProductController@removeCart');
 
 // admin page
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/your-profile/{id}', 'WebController@editUser')->middleware('isLogin')->name('users.edit-user');

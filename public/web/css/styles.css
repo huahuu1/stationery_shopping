@@ -1133,7 +1133,7 @@ label.star:before {
     color: #353535;
     font-size: 1.5rem; }
   .cartDetails table tbody .productRemove, .cartDetails table tbody .productThumbnail, .cartDetails table tbody .productName, .cartDetails table tbody .productPrice, .cartDetails table tbody .productQuantity, .cartDetails table tbody .productTotal {
-    padding: 1rem 1.5rem; }
+    padding: 1rem 0.7rem; }
   .cartDetails table tbody .productRemove a {
     width: 250rem;
     height: 250rem;
@@ -1686,3 +1686,4 @@ section.icon-intro {
                 padding: 1rem 2rem;
                 font-size: 1.3rem;
             }
+
