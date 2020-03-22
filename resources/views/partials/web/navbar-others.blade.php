@@ -36,7 +36,7 @@ $categories = App\Models\Category::where('parent_id', 0)->get();
                             </a>
 
                             <div class="dropdown-content filters">
-                                <a href="#">Your Profile</a>
+                                <a href="{{route('users.edit-user', Auth::user()->id)}}">Your Profile</a>
                                 <a href="{{route('logout')}}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}</a>

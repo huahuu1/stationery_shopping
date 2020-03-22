@@ -23,11 +23,11 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     {{-- @include('partials.web.styles') --}}
     <link href="{{ asset('web/css/styles.css') }}" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
 </head>
-<body>
+<body style="height: 100vh">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: rgb(175, 200, 200)">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{-- {{ config('app.name', 'Laravel') }} --}}
@@ -48,11 +48,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" style="font-weight: 500" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" style="font-weight: 500" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -78,8 +78,9 @@
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
+    </div>
+    <div style="margin-top: 0; background: url(http://mauweb.monamedia.net/officexinh/wp-content/uploads/2018/06/banner-01.jpg) center center/cover; height: 100vh">
+        <main class="py-4" style="">
             @yield('content')
         </main>
     </div>

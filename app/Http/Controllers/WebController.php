@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cookie;
 
+use App\User;
 
 class WebController extends Controller
 {
@@ -138,5 +139,27 @@ class WebController extends Controller
     public function editUser($id) {
         $user = Auth::user();
         return view('layouts.edit-user-page');
+    }
+
+    // public function edit(User $user, $id)
+    // {
+    //     $user = User::find($id);
+    //     return view('admin.users.edit', compact('user'));
+    // }
+
+    public function updateUser(User $user, Request $request, $id)
+    {
+        $user = User::find($id);
+        // $user = Auth::user()::find($id);
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'newPassword' => 'required|min:8|confirmed',
+        ]);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt(request('newPassword'));
+        $user->save();
+        return redirect()->route('users.index');
     }
 }

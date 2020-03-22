@@ -1711,5 +1711,61 @@ section.icon-intro {
     border-color: red;
     color: white
 }
+.userEdit {
+    width: 60%;
+    margin: 4rem auto;
+    padding: 0
+}
+.userEdit .form-group {
+    border-left: 0.1rem solid #e1e1ff;
+    border-right: 0.1rem solid #e1e1ff;
+    margin-bottom: 0
+}
+.userEdit .form-group label {
+    font-weight: 500;
+    padding: 1rem 0 0 0;
+    margin: 1rem 0 0 2rem;
+    width: 90%
+}
+.userEdit .form-group label:first-child {
+    padding-top: 2rem; }
+.userEdit .form-group input {
+    font-size: 1.5rem;
+    width: 90%;
+    height: 3.5rem;
+    margin: 1rem 1.5rem 0 2rem
+}
+.userEdit .nav-item {
+    width: 50%
+}
+.userEdit .nav-link {
+    border: 0.1rem solid #e1e1ff;
+    border-bottom: none;
+    text-align: center;
+    font-weight: bold;
+    padding: 1rem 1rem
+}
+.userEdit .btnEdit {
+    padding: 1rem 0 1rem 0;
+    border: 0.1rem solid #e1e1ff;
+    border-top: none
+}
+.userEdit .btnEdit input {
+    height: 3.5rem;
+    margin: 1.5rem 0 1.5rem 2rem;
+    width: 10rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    background-color: #FF0000;
+    border: none;
+    color: white
+}
+
+@media screen and (max-width: 600px) {
+    .accountManagement {
+        width: 100%
+    }
+}
+
 
 
