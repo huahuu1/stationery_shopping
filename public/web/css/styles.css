@@ -1767,5 +1767,49 @@ section.icon-intro {
     }
 }
 
+ .bot-navbar .navbar-brand {
+    display: none;
+ }
 
+ .bot-navbar .navbar-toggler {
+    color: rgba(255, 255, 255, 0.5)
+ }
 
+ @media screen and (max-width: 767px) {
+    .bot-navbar .navbar-brand {
+        display: block;
+     }
+    .bot-navbar .navbar {
+        width: 100%;
+        background-color: #343A40;
+    }
+    .detail-product .sidebar {
+        display: none;
+    }
+    .footer-content .top-seller {
+        display: none
+    }
+    .footer-content .top-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .top-content .list-product {
+        width: 100%
+    }
+    .top-content .company-info, .top-content .top-seller, .top-content .menu, .top-content .list-product {
+        padding-top: 1rem
+    }
+    .menu-nav {
+        position: relative;
+    }
+    .wrapper-nav .banner {
+        padding: 2rem 3%
+    }
+    .product-content .tabbed-product ul {
+        line-height: 7.5rem;
+    }
+    .search-form {
+        width: 90%
+    }
+ }
