@@ -7,7 +7,6 @@
 @endsection
 
 @section('content')
-
 <div class="container">
     <div class="row">
         <div class="col-md-8">
@@ -75,6 +74,8 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
+=======
 
 @endsection
 
@@ -82,4 +83,5 @@
     <script type="text/javascript">
         $(document).ready(function () { bsCustomFileInput.init(); });
     </script>
+>>>>>>> 6c7cdc7312597559194b513a810494adf9bfbfc3
 @endsection

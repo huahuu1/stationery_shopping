@@ -6,7 +6,12 @@
   <title>@yield('title', 'Admin') </title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   @include('partials.admin.styles')
+
+  <script src="https://code.jquery.com/jquery-latest.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -27,7 +32,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a style="text-decoration: none; color: #6C757D" href="#">Home</a></li>
               <li class="breadcrumb-item active">Blank Page</li>
             </ol>
           </div>
@@ -43,12 +48,12 @@
         <div class="card-header">
           <h3 class="card-title">@yield('page_title')</h3>
 
-          <div class="card-tools">
+          {{-- <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
               <i class="fas fa-minus"></i></button>
             <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
               <i class="fas fa-times"></i></button>
-          </div>
+          </div> --}}
         </div>
         <div class="card-body">
           @yield('content')

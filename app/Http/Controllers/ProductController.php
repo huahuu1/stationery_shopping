@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Auth;
 
 
-
 class ProductController extends Controller
 {
     public $model;

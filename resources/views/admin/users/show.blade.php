@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
-@section('title', 'User List')
+@section('title', 'User Details')
 
 @section('page_title')
-<p>User Detail</p>
+<p>User Details</p>
 @endsection
 
 @section('content')
@@ -12,14 +12,18 @@
         <table class="table table-bordered table-valign-middle">
             <thead>
                 <tr class="text-center">
-                    <th>Name</th>
+                    <th>User Name</th>
                     <th>Email</th>
+                    <th>Password</th>
+                    <th>Role</th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="text-center">
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
+                    <td>{{$user->password}}</td>
+                    <td>{{$user->role}}</td>
                 </tr>
             </tbody>
         </table>

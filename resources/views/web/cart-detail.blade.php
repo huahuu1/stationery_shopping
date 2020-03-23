@@ -1,9 +1,9 @@
 <div class="container" style="padding: 2.5rem 0">
     <div class="row">
         <span id="status" class="col-12"></span>
-        <div class="col-12 col-sm-12 col-md-8 cartDetails">
+        <div class="col-12 col-sm-12 col-md-9 cartDetails">
             <form action="" method="">
-                <table>
+                <table width="100%">
                     <thead>
                         <tr>
                             <th colspan="2">ITEM</th>
@@ -28,7 +28,7 @@
                             <td class="productThumbnail"><a href="#"><img src="{{$details['image']}}" width="100px"
                                         height="100px" alt="" /></a></td>
 
-                            <td class="productName">{{Str::limit($details['name'], 32)}}</td>
+                            <td class="productName">{{Str::limit($details['name'], 30)}}</td>
 
                             <td class="productPrice" style="font-weight: 500">{{number_format($details['sell_price'])}}
                                 đ</td>
@@ -66,7 +66,7 @@
                 </table>
             </form>
         </div>
-        <div class="col-12 col-sm-12 col-md-4 cartContext">
+        <div class="col-12 col-sm-12 col-md-3 cartContext">
             <table>
                 <thead>
                     <tr>
@@ -89,8 +89,13 @@
                 <label for="" class="shipping-title">Shipping Address</label>
                 <input type="text" class="form-control" id="ship-address" class="ship-address" required>
             </form>
-            <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="cartPayment btn btn-primary px-4 py-3">PROCEED TO
-                CONFIRM</button>
+            <div class="vliAddress" style="display: none">
+                <p style="color: red">Address can not be empty</p>
+            </div>
+            {{-- <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="cartPayment btn btn-primary px-4 py-3">PROCEED TO
+                CONFIRM</button> --}}
+            <button type="button" class="cartPayment btn btn-primary px-4 py-3">PROCEED TO
+                    CONFIRM</button>
             <!-- Modal -->
             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -142,10 +147,15 @@
 
 @section('scripts-cart')
 <script type="text/javascript">
-
-
     $(".cartPayment").click(function () {
-    var address = $('#ship-address').val();
+        if ($("#ship-address").val().replace(/\s/g, '').length === 0) {
+            $(".vliAddress").css("display", "block");
+        } else {
+            $(".vliAddress").css("display", "none");
+            $("#exampleModalCenter").modal('toggle');
+        }
+
+        var address = $('#ship-address').val();
         $(".address").html(address);
         $(".od_address").val(address);
     });

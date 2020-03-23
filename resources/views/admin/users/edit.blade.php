@@ -7,9 +7,19 @@
 @endsection
 
 @section('content')
-
 <div class="container">
     <div class="row">
+        {{-- <div class="col-md-8">
+            <form action="{{route('users.postEdit', $user->id)}}" method="POST" enctype="multipart/form-data">
+                @method('put')
+                @csrf
+                <div class="form-group">
+                    <label for="">User Name</label>
+                    <input type="text" class="form-control" value="{{$user->name}}" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="">Email</label>
+                    <input type="email" class="form-control" value="{{$user->email}}" name="email"> --}}
         <div class="col-md-8 mx-auto">
             <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                 @method('put')
@@ -35,15 +45,19 @@
                     <span class="text text-danger">{{$errors->first('password')}}</span>
                     @endif
                 </div>
-
                 <div class="form-group">
+                    {{-- <label for="">Password</label>
+                    <input type="text" class="form-control" value="{{$user->password}}" name="password">
+                </div>
+                <div class="form-group">
+                    <label for="">Role</label>
+                    <input type="number" class="form-control" value="{{$user->role}}" name="role"> --}}
                     <label for="">Confirm New Password <span class="text text-danger">*</span></label>
                     <input type="password" name="password_confirmation" class="form-control">
                     @if($errors->has('password_confirmation'))
                     <span class="text text-danger">{{$errors->first('password_confirmation')}}</span>
                     @endif
                 </div>
-
                 <div class="form-group">
                     <button id="buttonSub" type="submit" class="btn btn-success">Submit</button>
                 </div>
