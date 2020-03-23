@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cookie;
 
-
 class WebController extends Controller
 {
     //public
@@ -90,24 +89,17 @@ class WebController extends Controller
 
     public function getCartDetail()
     {
-        //var_dump(1);die;
         $user = Auth::user();
         $cart = session()->get('cart');
-
         if (!$cart) {
             $cart = json_decode(Cookie::get('cart_' . $user->id), true);
-            if (!$cart) {
-                return view ('layouts.empty-cart');
-            }
         }
-
-        // if (is_null($cart)) {
-        //     $cart = [];
-        // }
-
+        // session()->put('countCart', count($cart));
         if (!$cart) {
             return view ('layouts.empty-cart');
         }
+
+        // var_dump($cart); die;
         return view('layouts.cart', compact('user', 'cart'));
     }
 

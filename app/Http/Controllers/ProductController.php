@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Auth;
 
 
-class ProductController  extends Controller
+
+class ProductController extends Controller
 {
     public $model;
     public function __construct(ProductInterface $products){
@@ -217,7 +218,29 @@ class ProductController  extends Controller
      *
      * @return float|int
      */
-    private function getCartTotal()
+
+    // public function getProductTotal()
+    // {
+    //     $user = Auth::user();
+    //     $product_total = 0;
+
+    //     $cart = session()->get('cart');
+
+    //     if (!$cart) {
+    //         $cart = json_decode(Cookie::get('cart_' . $user->id), true);
+    //         foreach($cart as $id => $details) {
+    //             $product_total = $details[$id]['sell_price'] * $details[$id]['quantity'];
+    //         }
+    //     }
+
+    //     foreach($cart as $id => $details) {
+    //         $product_total = $details[$id]['sell_price'] * $details[$id]['quantity'];
+    //     }
+
+    //     return number_format($product_total);
+    // }
+
+    public function getCartTotal()
     {
         $user = Auth::user();
         $total = 0;
@@ -226,6 +249,9 @@ class ProductController  extends Controller
 
         if (!$cart) {
             $cart = json_decode(Cookie::get('cart_' . $user->id), true);
+            foreach($cart as $id => $details) {
+                $total += $details['sell_price'] * $details['quantity'];
+            }
         }
 
         foreach($cart as $id => $details) {
@@ -235,7 +261,7 @@ class ProductController  extends Controller
         return number_format($total);
     }
 
-    private function getCartQuantity()
+    public function getCartQuantity()
     {
         $user = Auth::user();
         $total = 0;
@@ -252,6 +278,18 @@ class ProductController  extends Controller
 
         return $total;
     }
+
+    // public function getCartCount() {
+    //     $user = Auth::user();
+    //     $count = 0;
+
+    //     $cart = session()->get('cart');
+
+    //     if (!$cart) {
+    //         $cart = json_decode(Cookie::get('cart_' . $user->id), true);
+    //     }
+    //     return $count;
+    // }
 
     public function updateCart(Request $request)
     {
@@ -289,36 +327,44 @@ class ProductController  extends Controller
         if ($request->id) {
 
             $cart = session()->get('cart');
+            $count = 0;
 
             if (!$cart) {
                 $cart = json_decode(Cookie::get('cart_' . $user->id), true);
+                if($cart) {
+                    $count = count($cart);
+                }
             }
 
-            if($cart == null) {
-                return response()->json(['message' => 'Cart empty'], 404);
+            if($cart) {
+                $count = count($cart);
             }
-
 
             if(isset($cart[$request->id])) {
-
                 // xoa trong session
                 unset($cart[$request->id]);
-
+                $request->session()->forget('cart');
                 session()->put('cart', $cart);
 
-               // write to cookie
-               Cookie::queue(Cookie::make('cart_' . $user->id, json_encode($cart), 60));
+                // write to cookie
+                Cookie::queue(Cookie::make('cart_' . $user->id, json_encode($cart), 60));
 
             }
 
             $total = $this->getCartTotal();
 
+            // $count = $this->getCartCount();
+
             $quantity = $this->getCartQuantity();
 
             $htmlCart = view('_header_cart')->render();
 
-            return response()->json(['msg' => 'Product removed successfully', 'data' => $htmlCart, 'total' => $total, 'quantity' => $quantity]);
-
+            // if($cart == null) {
+            //     return response()->json(['message' => 'Cart empty'], 404);
+            // } else {
+            //     return response()->json(['msg' => 'Product removed successfully', 'data' => $htmlCart, 'total' => $total, 'quantity' => $quantity]);
+            // }
+            return response()->json(['msg' => 'Product removed successfully', 'data' => $htmlCart, 'total' => $total, 'quantity' => $quantity, 'count' => $count]);
             //session()->flash('success', 'Product removed successfully');
         } else {
             return response()->json(['message' => 'Unknown error'], 404);

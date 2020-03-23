@@ -25,9 +25,9 @@ class Product extends Model
     public function getStatusName($status)
     {
         if($status == 1) {
-            return 'In Stock';
+            return 'Active';
         } else if($status == 0) {
-            return 'Out of Stock';
+            return 'Deactive';
         }
     }
 

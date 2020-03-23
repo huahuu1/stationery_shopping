@@ -18,7 +18,7 @@
                         $total = 0;
                         $qty = 0;
                         @endphp
-                        @if ($cart)
+
                         @foreach ($cart as $id => $details)
                         @php
                         $total += $details['sell_price'] * $details['quantity'];
@@ -36,12 +36,12 @@
                             <td class="productQuantity" data-th="Quantity">
                                 <div class="quantityControl d-flex">
                                     <input type='button' value='-' class='qtyminus btnMinus' field='updates_{{ $id}}' />
-                                    <input type="number" min="0" name="updates[]" id="updates_{{ $id }}"
+                                    <input type="number" min="1" name="updates[]" id="updates_{{ $id }}"
                                         class="quantity" value="{{ $details['quantity'] }}" />
                                     <input type='button' value='+' class='qtyplus btnPlus' field='updates_{{ $id }}' />
                                 </div>
                             </td>
-                            <td class="productTotal cart-total" style="font-weight: 500">
+                            <td class="productTotal" id="product-total" data-id="{{$details['id']}}" style="font-weight: 500">
                                 {{number_format($details['sell_price'] * $details['quantity'])}} đ
                             </td>
 
@@ -55,7 +55,6 @@
                             </td>
                         </tr>
                         @endforeach
-                        @endif
                         <tr>
                             <td colspan="6">
                                 <div class="row">
@@ -183,6 +182,10 @@
 
                 cart_total.text(response.total);
                 cart_qty.text(response.quantity);
+
+                if(response.total) {
+                        window.location.href = "/cart-detail";
+                }
             }
         });
     });
@@ -214,6 +217,10 @@
 
                     cart_total.text(response.total);
                     cart_qty.text(response.quantity);
+
+                    if(response.count == 1) {
+                        window.location.href = "/cart-detail";
+                    }
                 }
             });
         }
