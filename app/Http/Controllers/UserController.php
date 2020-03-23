@@ -105,16 +105,25 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
 
-    public function update(User $user, Request $request, $id)
+    public function updateInfo(User $user, Request $request, $id)
     {
         $user = User::find($id);
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'min:8|confirmed',
         ]);
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->save();
+        return redirect()->route('users.index');
+    }
+
+    public function updatePassword(User $user, Request $request, $id)
+    {
+        $user = User::find($id);
+        $request->validate([
+            'password' => 'required|min:8|confirmed',
+        ]);
         $password = $user->password;
         if (!$request->password) {
             $user->password = $password;

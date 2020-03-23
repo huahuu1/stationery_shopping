@@ -8,8 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>
-        {{-- {{ config('app.name', 'Laravel') }} --}}
-        <h5>STATIONERY SHOPPING</h5>
+        @yield('page_title')
     </title>
 
     <!-- Scripts -->

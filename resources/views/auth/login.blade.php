@@ -1,4 +1,9 @@
 @extends('layouts.app')
+@section('title', 'Login')
+
+@section('page_title')
+    Login
+@endsection
 
 @section('content')
 <div class="container" style="margin-top: 7.5%">

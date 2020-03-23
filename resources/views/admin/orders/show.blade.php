@@ -30,8 +30,6 @@
                        <td>{{number_format($item->pivot->product_quantity)}}</td>
                        <td>{{number_format($item->sell_price) . ' đ'}}</td>
                        <td style="width: 24%;" class="text-center">
-                            <a class="btn btn-primary btn-sm" href="{{route('orders.show', $order->id)}}"><i class="fas fa-folder"></i> View</a>
-
                             <a class="btn btn-info btn-sm" href="{{route('orders.edit', $order->id)}}"><i class="fas fa-pencil-alt"></i> Edit</a>
 
                             <form class="d-inline-block" action="{{ route('orders.removeProductFromCart', [$order->id, $item->id]) }}" method="POST">
