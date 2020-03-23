@@ -21,6 +21,7 @@
                     <th>Name</th>
                     <th>Price</th>
                     <th>Category</th>
+                    <th>Sub-Category</th>
                     <th>Supplier</th>
                     <th>Status</th>
                     <th>
@@ -38,6 +39,7 @@
                     <td class="text-left">{{$product->name}}</td>
                     <td>{{$product->sell_price}}</td>
                     <td>{{ $product->getCategoryName($product->category_id) }}</td>
+                    <td>{{ $product->getCategoryName($product->sub_category_id) }}</td>
                     <td>{{ $product->getSupplierName($product->supplier_id) }}</td>
                     <td>{{ $product->getStatusName($product->status) }}</td>
                     <td style="width: 24%;" class="text-center">

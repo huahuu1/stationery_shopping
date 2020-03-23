@@ -7,7 +7,10 @@
 @endsection
 
 @section('content')
-
+@php
+    $sub_categories = App\Models\Category::where('id', '>', 9)->get();
+    $categories = App\Models\Category::where('id', '<=', 9)->get();
+@endphp
 <div class="container">
     <div class="row">
         <div class="col-md-8">
@@ -46,13 +49,12 @@
                     <input type="text" class="form-control" value="{{$product->sell_price}}" name="sell_price" placeholder="Product Sell Price">
                 </div>
                 <div class="form-group">
-                    <label for="">Category ID</label>
+                    <label for="">Category</label>
                     <select name="category_id" id="" class="form-control">
-                        @foreach ($cates as $category)
+                        @foreach ($categories as $category)
                             <option
-                            @if($product->category_id == $category->id) {
-                                echo 'selected';
-                            }
+                            @if($product->category_id == $category->id)
+                                selected
                             @endif
                             value="{{$category->id}}"> {{$category->name}} </option>
                         @endforeach
@@ -60,13 +62,25 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="">Supplier ID</label>
+                    <label for="">Sub Category</label>
+                    <select name="sub_category_id" id="" class="form-control">
+                        @foreach ($sub_categories as $category)
+                            <option
+                            @if($product->sub_category_id == $category->id)
+                                selected
+                            @endif
+                            value="{{$category->id}}"> {{$category->name}} </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="">Supplier</label>
                     <select name="supplier_id" id="" class="form-control">
                         @foreach ($sups as $supplier)
                             <option
-                            @if($product->supplier_id == $supplier->id ) {
-                                echo 'selected';
-                            }
+                            @if($product->supplier_id == $supplier->id )
+                               selected
                             @endif
                             value="{{$supplier->id}}"
                             >{{$supplier->name}}</option>

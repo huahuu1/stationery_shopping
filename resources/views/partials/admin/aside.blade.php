@@ -27,7 +27,7 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tree"></i>
+              <i class="nav-icon fas fa-box-open"></i>
               <p>
                 Products
                 <i class="fas fa-angle-left right"></i>
@@ -37,20 +37,20 @@
               <li class="nav-item">
                 <a href="{{route('products.index')}}" class="nav-link">
                   <i style="padding-left: 1rem" class="fas fa-list"></i>
-                  <p style="padding-left: 0.5rem">List</p>
+                  <p style="padding-left: 0.5rem">Product List</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('products.create')}}" class="nav-link">
-                  <i style="padding-left: 1rem" class="fas fa-plus"></i>
-                  <p style="padding-left: 0.5rem">Add</p>
+                  <i style="padding-left: 1rem" class="fas fa-folder-plus"></i>
+                  <p style="padding-left: 0.5rem">Add New Product</p>
                 </a>
               </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-bars"></i>
+              <i class="nav-icon fas fa-layer-group"></i>
               <p>
                 Categories
                 <i class="fas fa-angle-left right"></i>
@@ -60,14 +60,14 @@
               <li class="nav-item">
                 <a href="{{route('categories.index')}}" class="nav-link">
                   <i style="padding-left: 1rem" class="fas fa-list"></i>
-                  <p style="padding-left: 0.5rem">List</p>
+                  <p style="padding-left: 0.5rem">Category List</p>
                 </a>
               </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-bars"></i>
+              <i class="nav-icon fas fa-truck"></i>
               <p>
                 Suppliers
                 <i class="fas fa-angle-left right"></i>
@@ -77,14 +77,14 @@
               <li class="nav-item">
                 <a href="{{route('suppliers.index')}}" class="nav-link">
                   <i style="padding-left: 1rem" class="fas fa-list"></i>
-                  <p style="padding-left: 0.5rem">List</p>
+                  <p style="padding-left: 0.5rem">Supplier List</p>
                 </a>
               </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+                <i class="nav-icon fas fa-file-invoice-dollar"></i>
               <p>
                 Order Management
                 <i class="fas fa-angle-left right"></i>
@@ -93,8 +93,14 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('orders.index')}}" class="nav-link">
-                  <i style="padding-left: 1rem" class="far fa-circle nav-icon"></i>
-                  <p style="padding-left: 0.5rem">View Orders</p>
+                  <i style="padding-left: 1rem" class="fas fa-list nav-icon"></i>
+                  <p style="padding-left: 0.5rem">List Orders</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('orders.create')}}" class="nav-link">
+                  <i style="padding-left: 1rem" class="fas fa-folder-plus"></i>
+                  <p style="padding-left: 0.5rem">Add New Order</p>
                 </a>
               </li>
             </ul>

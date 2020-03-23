@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
-@section('title', 'User')
+@section('title', 'User List')
 
 @section('page_title')
 <h5>User</h5>
 @endsection
 
-@section('scriptA')
+{{-- @section('scriptA')
   <script src="https://code.jquery.com/jquery-latest.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-@endsection
+@endsection --}}
 
 @section('content')
 <div class="row">
@@ -25,7 +25,6 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Password</th>
                     <th>Role</th>
                     <th>
                         <a class="btn btn-sm btn-success" href="{{route('users.create')}}">
@@ -37,11 +36,11 @@
             <tbody>
                 @foreach ($users as $user)
                 <tr class="text-center">
-                    <td>{{$loop->iteration}}</td> {{-- get the current number of iterations --}}
+                    <td>{{$loop->iteration}}</td>
                     <td class="text-left">{{$user->name}}</td>
                     <td>{{$user->email}}</td>
-                    <td>{{$user->password}}</td>
-                    <td>{{$user->role}}</td>
+                    <td>{{$user->getRoleName($user->role)}}</td>
+
                     <td style="width: 25%">
                         <a style="margin-top: 1rem" class="btn btn-primary btn-sm" href="{{route('users.show', $user->id)}}"><i class="fas fa-folder"></i> View</a>
 

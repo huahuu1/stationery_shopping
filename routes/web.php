@@ -52,4 +52,7 @@ Route::delete('remove-from-cart', 'ProductController@removeCart');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/your-profile/{id}', 'WebController@editUser')->middleware('isLogin')->name('users.edit-user');
-Route::put('/your-profile/{id}', 'WebController@updateUser')->name('users.update-user');
+Route::put('/your-profile/{id}', 'WebController@updateUserInfo')->middleware('isLogin')->name('users.edit-info');
+Route::post('/your-profile/{id}', 'WebController@updateUserPassword')->middleware('isLogin')->name('users.edit-password');
+
+Route::get('search-products', 'ProductController@searchProducts')->name('products.search');

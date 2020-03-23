@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'User Details')
+@section('title', 'User Detail')
 
 @section('page_title')
 <p>User Details</p>
@@ -14,7 +14,6 @@
                 <tr class="text-center">
                     <th>User Name</th>
                     <th>Email</th>
-                    <th>Password</th>
                     <th>Role</th>
                 </tr>
             </thead>
@@ -22,7 +21,6 @@
                 <tr class="text-center">
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
-                    <td>{{$user->password}}</td>
                     <td>{{$user->role}}</td>
                 </tr>
             </tbody>

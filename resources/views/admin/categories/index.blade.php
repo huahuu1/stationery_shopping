@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Product List')
+@section('title', 'Category List')
 
 @section('page_title')
 <p>Category List</p>

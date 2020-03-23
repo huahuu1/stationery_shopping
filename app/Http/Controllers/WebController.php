@@ -9,6 +9,7 @@ use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Hash;
 
 use App\User;
 
@@ -129,30 +130,45 @@ class WebController extends Controller
         return redirect()->route('web.index');
     }
 
-    public function editUser($id) {
-        $user = Auth::user();
+    public function editUser() {
         return view('layouts.edit-user-page');
     }
 
-    // public function edit(User $user, $id)
-    // {
-    //     $user = User::find($id);
-    //     return view('admin.users.edit', compact('user'));
-    // }
-
-    public function updateUser(User $user, Request $request, $id)
+    public function updateUserInfo(User $user, Request $request, $id)
     {
         $user = User::find($id);
         // $user = Auth::user()::find($id);
+        // dd($request->all());
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'newPassword' => 'required|min:8|confirmed',
+            'phone' => 'min:10|numeric',
         ]);
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = bcrypt(request('newPassword'));
+        $user->phone = $request->phone;
         $user->save();
         return redirect()->route('users.index');
     }
+
+    public function updateUserPassword(User $user, Request $request, $id)
+    {
+        $user = User::find($id);
+        $request->validate([
+            'oldPassword' => ['required', function ($attribute, $value, $fail) use ($user) {
+                if (!Hash::check($value, $user->password)) {
+                    return $fail(__('The old password is incorrect.'));
+                }
+            }],
+            'newPassword' => 'min:8|different:oldPassword|required',
+            'newPassword_confirmation' => 'min:8|required|same:newPassword',
+        ]);
+
+        $user->password = bcrypt(request('newPassword'));
+        $user->save();
+
+        return redirect()->route('users.index');
+    }
+
+    
 }

@@ -54,21 +54,6 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
 
-    // public function postCreate(Request $request) {
-    //     //validation
-    //     $request->validate([
-    //         'name' => 'bail|required|min:5|max:20',
-    //         'email' => 'bail|required|email|unique:users|max:40',
-    //         'password' => 'bail|required|min:5|max:40',
-    //         'role' => 'required'
-    //     ]);
-
-    //     //take all parameters into 'user' array
-    //     $user = $request->all();
-    //     $u = new User($user);
-    //     $u->save();
-    //     return redirect()->action('UserController@index');
-    // }
     public function store(Request $request)
     {
         $request->validate([
@@ -89,37 +74,6 @@ class UserController extends Controller {
         return redirect()->route('users.index');
     }
 
-    // public function store(Request $request) {
-    //     //validation
-    //     $request->validate([
-    //         'name' => 'bail|required|min:5|max:20',
-    //         'email' => 'bail|required|email|unique:users|max:40',
-    //         'password' => 'bail|required|password|min:10|max:40',
-    //         'role' => 'required'
-    //     ]);
-    //     //take all parameters into 'user' array
-    //     $user = $request->all();
-
-    //     // Auth::table('users')->insert([
-    //     //     'name'=>$user['name'],
-    //     //     'email'=>$user['email'],
-    //     //     'password'=>$user['password'],
-    //     //     'role'=>intval($user['role'])
-    //     // ]);
-
-    //     // Eloquent
-    //     $user = new User();
-
-    //     $user->name = $request->name;
-    //     $user->email = $request->email;
-    //     $user->password = $request->password;
-    //     $user->role = $request->role;
-
-    //     //$user->save();
-    //     //return redirect()->route('users.index');
-    //     return redirect()->action('UserController@index');
-    // }
-
     /**
      * Display the specified resource.
      *
@@ -129,15 +83,6 @@ class UserController extends Controller {
     public function show(User $user, $id) {
         $user = User::find($id);
         return view('admin.users.show', compact('user'));
-        // //viet trong cho tra ra cart detail
-        // $products = DB::select(DB::raw("
-        // select u.*, o.id, o.address as user_address, p.name as product_name  from users as u
-        // left join orders as o on u.id = o.user_id
-        // left join order_product as op on o.id = op.order_id
-        // left join products as p on op.product_id = p.id
-
-        // where u.id = $id"));
-        // dd($products);
     }
 
     /**
@@ -160,41 +105,22 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
 
-    // public function postEdit(User $user, Request $request, $id) {
-    //     $user = User::find($id);
-    //     $user->email = 'Dupplicated email address! Please try another one!';
-    //     $user->save();
-    //     //validation
-    //     $request->validate([
-    //         'name' => 'required|min:5|max:20',
-    //         'email' => 'required|email|unique:users|max:40',
-    //         'password' => 'required|min:5|max:40',
-    //         'role' => 'required'
-    //     ]);
-
-    //     //take all parameters into 'user' array
-    //     $user = $request->all();
-    //     $user = User::find($id);
-    //     $user->name = $request->name;
-    //     $user->email = $request->email;
-    //     $user->password = $request->password;
-    //     $user->role = $request->role;
-
-    //     $user->save();
-
-    //     return redirect(route('users.index'));
-    // }
     public function update(User $user, Request $request, $id)
     {
         $user = User::find($id);
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required|min:8|confirmed',
+            'password' => 'min:8|confirmed',
         ]);
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = bcrypt(request('password'));
+        $password = $user->password;
+        if (!$request->password) {
+            $user->password = $password;
+        } else {
+            $user->password = bcrypt(request('password'));
+        }
         $user->save();
         return redirect()->route('users.index');
     }

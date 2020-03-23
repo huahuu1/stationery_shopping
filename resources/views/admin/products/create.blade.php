@@ -7,6 +7,10 @@
 @endsection
 
 @section('content')
+@php
+    $sub_categories = App\Models\Category::where('id', '>', 9)->get();
+    $categories = App\Models\Category::where('id', '<=', 9)->get();
+@endphp
 <div class="container">
     <div class="row">
         <div class="col-md-8">
@@ -39,9 +43,12 @@
                     <span class="text text-danger">{{$errors->first('image')}}</span>
                     @endif
                 </div>
-
                 <div class="form-group">
-                    <label for="">Description <span class="text text-danger">*</span></label>
+                    <label for="">Short Description</label>
+                    <textarea name="short_description" class="form-control" cols="30" rows="10"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="">Description</label>
                     <textarea name="description" class="form-control" cols="30" rows="10"></textarea>
                 </div>
                 <div class="form-group">
@@ -52,15 +59,23 @@
                     @endif
                 </div>
                 <div class="form-group">
-                    <label for="">Category</label>
+                    <label for="">Category <span class="text text-danger">*</span></label>
                     <select name="category_id" id="" class="form-control">
-                        @foreach ($cates as $category)
+                        @foreach ($categories as $category)
                         <option value="{{$category->id}}">{{$category->name}}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="">Supplier</label>
+                    <label for="">Sub Category <span class="text text-danger">*</span></label>
+                    <select name="sub_category_id" id="" class="form-control">
+                        @foreach ($sub_categories as $category)
+                        <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">Supplier <span class="text text-danger">*</span></label>
                     <select name="supplier_id" id="" class="form-control">
                         @foreach ($sups as $supplier)
                         <option value="{{$supplier->id}}">{{$supplier->name}}</option>
@@ -74,8 +89,6 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-=======
 
 @endsection
 
@@ -83,5 +96,4 @@
     <script type="text/javascript">
         $(document).ready(function () { bsCustomFileInput.init(); });
     </script>
->>>>>>> 6c7cdc7312597559194b513a810494adf9bfbfc3
 @endsection

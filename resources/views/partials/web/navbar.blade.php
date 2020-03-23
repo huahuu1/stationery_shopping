@@ -9,10 +9,10 @@ $categories = App\Models\Category::where('parent_id', 0)->get();
                         src="{{asset('web/images/logo/logo-officemona.png')}}" alt="logo" /></a></div>
             <div class="search-form-wrapper flex-fill">
                 <div class="search-form">
-                    <form action="" method="get">
+                    <form action="{{route('products.search')}}" method="get">
                         <div class="nav-search flex-row">
                             <div class="flex-col flex-grow">
-                                <input class="search-field mb-0" type="search" placeholder="Quick Search Product ..." />
+                                <input class="search-field mb-0" type="search" placeholder="Quick Search Product ..." name="keyword"/>
                             </div>
                             <div class="flex-col">
                                 <button class="search-submit mb-0 btn" type="submit"><i

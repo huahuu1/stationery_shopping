@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Create Order')
+@section('title', 'Edit Order')
 
 @section('page_title')
 <p>Edit Order</p>
@@ -16,11 +16,6 @@
                 <div class="form-group">
                     <label for="">User Name</label>
                     <input class="form-control" type="text" readonly value="{{$od->getUserName($od->user_id)}}">
-                    {{-- <select name="user_id" id="" class="form-control">
-                        @foreach ($users as $user)
-                        <option value="{{$od->user_id}}" @if ($od->user_id == $user->id) selected @endif>{{$user->name}}</option>
-                        @endforeach
-                    </select> --}}
                 </div>
 
                 <div class="form-group">

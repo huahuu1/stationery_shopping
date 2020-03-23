@@ -33,7 +33,7 @@ class OrderController extends Controller
         } else {
             $path .= "?pageSize=$pageSize&keyword=$keyword";
             $orders = Order::where('address', 'like', '%'. $keyword .'%')
-                                // ->orWhere('description', 'like', '%'. $keyword .'%')
+                                ->orWhere('name', 'like', '%'. $keyword .'%')
                                 ->orderBy('id', 'ASC')
                                 ->paginate($pageSize);
         }

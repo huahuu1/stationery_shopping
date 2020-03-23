@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Order List')
+@section('title', 'Order Detail')
 
 @section('page_title')
 <p>Order Detail</p>

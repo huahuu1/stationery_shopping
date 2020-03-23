@@ -130,9 +130,11 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->slug = $request->slug;
         $product->image = $imageName;
+        $product->short_description = $request->short_description;
         $product->description = $request->description;
         $product->sell_price = $request->sell_price;
         $product->category_id = $request->category_id;
+        $product->sub_category_id = $request->sub_category_id;
         $product->supplier_id = $request->supplier_id;
         $product->status = $request->status;
 
@@ -368,6 +370,30 @@ class ProductController extends Controller
         } else {
             return response()->json(['message' => 'Unknown error'], 404);
         }
+    }
+
+    public function searchProducts(Request $request) {
+        $keyword = $request->keyword;
+        $pageSize = $request->pageSize ?? 12;
+        $count = 0;
+        $path = '';
+        if(!$keyword){
+            $path .= "?pageSize=$pageSize";
+            $products = Product::orderBy('id', 'ASC')->paginate($pageSize);
+        } else {
+            $path .= "?pageSize=$pageSize&keyword=$keyword";
+            $products = Product::where('name', 'like', '%'. $keyword .'%')
+                                ->orderBy('id', 'ASC')
+                                ->paginate($pageSize);
+            $count = $products->total();
+        }
+
+        $breadcrums = "<div class='category-page-title'>
+                            <div class='nav'><a href='/'>Home</a><span class='divider'>/</span><a href='#'>Search Result</a></div>
+                        </div>";
+
+        $products->withPath($path);
+        return view('layouts.product-search-result', compact('products', 'keyword', 'breadcrums', 'count'));
     }
 
 }
