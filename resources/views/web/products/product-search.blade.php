@@ -9,7 +9,6 @@
         @php
         echo $breadcrums;
         if(!$keyword) {
-
             $count = $products->total();
             if($count < 2) {
                 echo "$count product found";

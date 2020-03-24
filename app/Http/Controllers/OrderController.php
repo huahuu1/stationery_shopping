@@ -13,10 +13,6 @@ use App\Http\Requests\MassDestroyOrderRequest;
 
 class OrderController extends Controller
 {
-    public $model;
-    public function __construct(OrderInterface $orders) {
-        $this->model = $orders;
-    }
     /**
      * Display a listing of the resource.
      *

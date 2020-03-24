@@ -4,20 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Repositories\Product\ProductInterface;
-use App\Models\Category;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Auth;
 
 
 class ProductController extends Controller
 {
-    public $model;
-    public function __construct(ProductInterface $products){
-        $this->model = $products;
-    }
-
+    //admin
     public function index(Request $request)
     {
         $keyword = $request->keyword;
@@ -59,10 +52,6 @@ class ProductController extends Controller
         //xu ly upload hinh anh vao thu muc
         if($request->hasFile('image')) {
             $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            if($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg') {
-                return redirect('product/create')->with('loi', 'Bạn chỉ được chọn file có đuôi jpg,png,jpeg');
-            }
             $imageName = 'uploads/products/'.time().$file->getClientOriginalName();
             $file->move(public_path('uploads/products'), $imageName);
         } else {
@@ -85,13 +74,13 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $Product
+     * @param  \App\Models\Product
      * @return \Illuminate\Http\Response
      */
     public function edit(Product $product, $id)
     {
-        $products = $this->model->getAll();
-        $product = $this->model->getById($id);
+        $products = Product::all();
+        $product = Product::find($id);
         return view('admin.products.edit', compact('products', 'product'));
     }
 
@@ -112,15 +101,10 @@ class ProductController extends Controller
             'category_id' => 'required'
         ]);
 
-        $product = $request->all();
         $product = Product::find($id);
         //xu ly upload hinh anh vao thu muc
         if($request->hasFile('image')) {
             $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            if($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg') {
-                return redirect(route('products.edit'))->with('loi', 'Bạn chỉ được chọn file có đuôi jpg,png,jpeg');
-            }
             $imageName = 'uploads/products/'.time().$file->getClientOriginalName();
             $file->move('uploads/products/', $imageName);
         } else {
@@ -152,10 +136,38 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $this->model->delete($id);
+        $product = Product::find($id);
+        $product->delete();
         return redirect(route('products.index'));
     }
 
+    //website
+    public function searchProducts(Request $request) {
+        $keyword = $request->keyword;
+        $pageSize = $request->pageSize ?? 12;
+        $count = 0;
+        $path = '';
+        if(!$keyword){
+            $path .= "?pageSize=$pageSize";
+            $products = Product::orderBy('id', 'ASC')->paginate($pageSize);
+        } else {
+            $path .= "?pageSize=$pageSize&keyword=$keyword";
+            $products = Product::where('name', 'like', '%'. $keyword .'%')
+                                ->orderBy('id', 'ASC')
+                                ->paginate($pageSize);
+            $count = $products->total();
+        }
+
+        $breadcrums = "<div class='category-page-title'>
+                            <div class='nav'><a href='/'>Home</a><span class='divider'>/</span><a href='#'>Search Result</a></div>
+                        </div>";
+
+        $products->withPath($path);
+        return view('layouts.product-search-result', compact('products', 'keyword', 'breadcrums', 'count'));
+    }
+
+
+    // cart
     public function cart()
     {
         return view('layouts.cart');
@@ -206,10 +218,6 @@ class ProductController extends Controller
         // write to cookie
         Cookie::queue(Cookie::make('cart_' . $user->id, json_encode($cart), 60));
 
-
-        // $htmlCart = view('_header_cart')->render();
-
-        // return response()->json(['msg' => 'Product added to cart successfully!', 'data' => $htmlCart]);
         return redirect()->route('carts.detail');
     }
 
@@ -219,27 +227,6 @@ class ProductController extends Controller
      *
      * @return float|int
      */
-
-    // public function getProductTotal()
-    // {
-    //     $user = Auth::user();
-    //     $product_total = 0;
-
-    //     $cart = session()->get('cart');
-
-    //     if (!$cart) {
-    //         $cart = json_decode(Cookie::get('cart_' . $user->id), true);
-    //         foreach($cart as $id => $details) {
-    //             $product_total = $details[$id]['sell_price'] * $details[$id]['quantity'];
-    //         }
-    //     }
-
-    //     foreach($cart as $id => $details) {
-    //         $product_total = $details[$id]['sell_price'] * $details[$id]['quantity'];
-    //     }
-
-    //     return number_format($product_total);
-    // }
 
     public function getCartTotal()
     {
@@ -280,18 +267,6 @@ class ProductController extends Controller
         return $total;
     }
 
-    // public function getCartCount() {
-    //     $user = Auth::user();
-    //     $count = 0;
-
-    //     $cart = session()->get('cart');
-
-    //     if (!$cart) {
-    //         $cart = json_decode(Cookie::get('cart_' . $user->id), true);
-    //     }
-    //     return $count;
-    // }
-
     public function updateCart(Request $request)
     {
         $user = Auth::user();
@@ -316,8 +291,6 @@ class ProductController extends Controller
             $htmlCart = view('_header_cart')->render();
 
             return response()->json(['msg' => 'Cart updated successfully', 'data' => $htmlCart, 'total' => $total, 'quantity' => $quantity]);
-
-            //session()->flash('success', 'Cart updated successfully');
         }
     }
 
@@ -354,46 +327,14 @@ class ProductController extends Controller
 
             $total = $this->getCartTotal();
 
-            // $count = $this->getCartCount();
-
             $quantity = $this->getCartQuantity();
 
             $htmlCart = view('_header_cart')->render();
 
-            // if($cart == null) {
-            //     return response()->json(['message' => 'Cart empty'], 404);
-            // } else {
-            //     return response()->json(['msg' => 'Product removed successfully', 'data' => $htmlCart, 'total' => $total, 'quantity' => $quantity]);
-            // }
             return response()->json(['msg' => 'Product removed successfully', 'data' => $htmlCart, 'total' => $total, 'quantity' => $quantity, 'count' => $count]);
-            //session()->flash('success', 'Product removed successfully');
         } else {
             return response()->json(['message' => 'Unknown error'], 404);
         }
-    }
-
-    public function searchProducts(Request $request) {
-        $keyword = $request->keyword;
-        $pageSize = $request->pageSize ?? 12;
-        $count = 0;
-        $path = '';
-        if(!$keyword){
-            $path .= "?pageSize=$pageSize";
-            $products = Product::orderBy('id', 'ASC')->paginate($pageSize);
-        } else {
-            $path .= "?pageSize=$pageSize&keyword=$keyword";
-            $products = Product::where('name', 'like', '%'. $keyword .'%')
-                                ->orderBy('id', 'ASC')
-                                ->paginate($pageSize);
-            $count = $products->total();
-        }
-
-        $breadcrums = "<div class='category-page-title'>
-                            <div class='nav'><a href='/'>Home</a><span class='divider'>/</span><a href='#'>Search Result</a></div>
-                        </div>";
-
-        $products->withPath($path);
-        return view('layouts.product-search-result', compact('products', 'keyword', 'breadcrums', 'count'));
     }
 
 }

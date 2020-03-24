@@ -4,8 +4,8 @@
 
 @section('content')
 @php
-    $sub_categories = App\Models\Category::where('id', '>', 9)->get();
-    $categories = App\Models\Category::where('id', '<=', 9)->get();
+    $categories = App\Models\Category::where('parent_id', '=', 0)->get();
+    $sub_categories = App\Models\Category::where('parent_id', '<>', 0)->get();
 @endphp
 <div class="container">
     <div class="row">
@@ -34,9 +34,12 @@
                                 <div class="custom-file">
                                     <input type="file" class="custom-file" id="customFile" name="image">
                                     <label class="custom-file-label" for="customFile">Choose file</label>
-                                  </div>
+                                </div>
 
                             </div>
+                            @if($errors->has('image'))
+                                <span class="text text-danger">{{$errors->first('image')}}</span>
+                            @endif
                             <div class="col-sm-4 mx-auto">
                                 <div class="border rounded-lg text-center p-3">
                                     <img src="{{asset($product->image)}}" class="img-fluid" id="preview" />

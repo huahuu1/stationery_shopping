@@ -66,7 +66,7 @@ $categories = App\Models\Category::where('parent_id', 0)->get();
 
                         @foreach ($categories as $item)
 
-                        <li class="hover-nav nav-item"><a class="nav-link href="{{URL::to('categories/'.$item->slug) }}"><span>{{$item->name}}</span><i
+                        <li class="hover-nav nav-item"><a class="nav-link" href="{{URL::to('categories/'.$item->slug) }}"><span>{{$item->name}}</span><i
                                     class="fas fa-chevron-down arrow-down"></i></a>
                             <ul class="nav-dropdown">
                                 @foreach ($item->getCategoriesByParentId($item->id) as $row)
