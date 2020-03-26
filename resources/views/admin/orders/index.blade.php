@@ -48,7 +48,7 @@
                                 <form class="d-inline-block" action="{{ url('admin/orders', ['id' => $order->id]) }}" method="POST">
                                     @csrf
                                     @method('delete')
-                                    <button type="submit" class="btn btn-danger btn-sm" href="{{route('orders.destroy', $order->id)}}">
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this?')" href="{{route('orders.destroy', $order->id)}}">
                                         <i class="fas fa-trash"></i> Delete
                                     </button>
                                 </form>

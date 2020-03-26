@@ -57,9 +57,7 @@
                         @endforeach
                         <tr>
                             <td colspan="6">
-                                <div class="row">
-                                    <div class="btnCartOut col-sm-6 col-md-6 col-lg-6 mx-auto"><a href="{{route('categories.all')}}">← CONTINUE TO VIEW PRODUCTS</a></div>
-                                </div>
+                                <div class="btnCartOut"><a href="{{route('categories.all')}}">← CONTINUE TO VIEW PRODUCTS</a></div>
                             </td>
                         </tr>
                     </tbody>

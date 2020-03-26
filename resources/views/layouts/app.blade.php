@@ -33,7 +33,7 @@
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{-- {{ config('app.name', 'Laravel') }} --}}
-                    <h5 style="margin-bottom: 0">STATIONERY SHOPPING</h5>
+                    <h3 style="margin-bottom: 0">STATIONERY SHOPPING</h3>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -50,11 +50,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item ml-auto">
-                                <a class="nav-link" style="font-weight: 500" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" style="font-size: 1.5rem; font-weight: 500" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item ml-auto">
-                                    <a class="nav-link" style="font-weight: 500" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" style="font-size: 1.5rem; font-weight: 500" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
