@@ -6,11 +6,11 @@
 @endsection
 
 @section('content')
-<div class="container" style="margin-top: 7.5%">
+<div class="container" style="margin-top: 7.5%; font-size: 1.5rem">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="opacity: 0.95; box-shadow: 0px 1px 15px 5px rgba(75, 175, 175, 0.25)">
-                <div class="card-header" style="font-weight: 500">{{ __('Login') }}</div>
+                <h4 class="card-header" style="font-weight: 500">{{ __('Login') }}</h4>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -20,7 +20,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input style="font-size: 1.5rem" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -34,7 +34,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input style="font-size: 1.5rem" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -58,10 +58,10 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button style="font-size: 1.5rem" type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
-                                <button type="reset" class="btn btn-info">Reset</button>
+                                <button style="font-size: 1.5rem" type="reset" class="btn btn-info">Reset</button>
 
                                 {{-- @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">

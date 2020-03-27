@@ -8,21 +8,27 @@
     <div>
         @php
         echo $breadcrums;
-        if(!$keyword) {
-            $count = $products->total();
-            if($count < 2) {
-                echo "$count product found";
-            } else {
-                echo "$count products found";
-            }
-        } else {
-            if($count < 2) {
-                echo "$count product found";
-            } else {
-                echo "$count products found";
-            }
-        }
         @endphp
+    </div>
+    <div class="d-flex">
+        <div style="padding-bottom: 1.5rem" class="ml-auto">
+            @php
+            if(!$keyword) {
+                $count = $products->total();
+                if($count < 2) {
+                    echo "$count product found";
+                } else {
+                    echo "$count products found";
+                }
+            } else {
+                if($count < 2) {
+                    echo "$count product found";
+                } else {
+                    echo "$count products found";
+                }
+            }
+            @endphp
+        </div>
     </div>
     <div class="detail-product">
         <div class="row">

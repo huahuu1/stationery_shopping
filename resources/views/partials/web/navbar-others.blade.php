@@ -29,22 +29,20 @@ $categories = App\Models\Category::where('parent_id', 0)->get();
                         <li class='header-divider'></li>
                         <li class='account-item'><a class='nav-top-link nav-top-not-logged-in' href='{{route('login')}}'><span>sign in</span></a></li>
                     @else
-                        <li class='dropdown account-item'>
-                            <a class='dropbtn nav-top-link nav-top-not-logged-in' href=''>
-                                <span>{{Auth::user()->email}}</span>
-                                <i class="fa fa-caret-down"></i>
-                            </a>
-
-                            <div class="dropdown-content filters">
-                                <a href="{{route('users.edit-user', Auth::user()->id)}}">Your Profile</a>
-                                <a href="{{route('logout')}}" onclick="event.preventDefault();
+                        <div class="btn-group">
+                            <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a href=''>{{Auth::user()->email}}</a>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="{{route('users.edit-user', Auth::user()->id)}}">YOUR PROFILE</a>
+                                <a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}</a>
+                                {{ __('LOG OUT') }}</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: block;">
                                     @csrf
                                 </form>
                             </div>
-                        </li>
+                        </div>
                     @endif
                     <li class="header-divider"></li>
 
