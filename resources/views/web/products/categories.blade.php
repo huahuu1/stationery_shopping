@@ -1,5 +1,5 @@
 @php
-    $productsAnother = App\Models\Product::whereBetween('id', [1, 5])->get();
+    $productsAnother = App\Models\Product::whereBetween('id', [1, 5])->where('status', 1)->get();
 
     $categories = App\Models\Category::where('parent_id', 0)->get();
 @endphp

@@ -153,6 +153,7 @@ class ProductController extends Controller
         } else {
             $path .= "?pageSize=$pageSize&keyword=$keyword";
             $products = Product::where('name', 'like', '%'. $keyword .'%')
+                                ->where('status', 1)
                                 ->orderBy('id', 'ASC')
                                 ->paginate($pageSize);
             $count = $products->total();

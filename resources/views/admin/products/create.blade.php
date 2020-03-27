@@ -2,6 +2,8 @@
 
 @section('title', 'Create New Product')
 
+@section('breadcrumb', 'Create New Product')
+
 @section('content')
 @php
     $sub_categories = App\Models\Category::where('id', '>', 9)->get();

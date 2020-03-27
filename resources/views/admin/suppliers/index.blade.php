@@ -6,6 +6,7 @@
 <p>Supplier List</p>
 @endsection
 
+@section('breadcrumb', 'Supplier List')
 
 @section('content')
 <div class="row">

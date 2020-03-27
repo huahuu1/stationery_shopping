@@ -6,6 +6,8 @@
 <p>Order Detail</p>
 @endsection
 
+@section('breadcrumb', 'Order Detail')
+
 @section('content')
 <div class="row">
     <div class="col-md-12">
@@ -25,7 +27,7 @@
                @foreach ($order->products as $item)
                    <tr class="text-center">
                        <td>{{$loop->iteration}}</td>
-                       <td><a href=""><img width="80" src="{{asset($item->image)}}" alt=""></a></td>
+                       <td><a href="{{route('products.show', $item->id)}}"><img width="80" src="{{asset($item->image)}}" alt=""></a></td>
                        <td>{{Str::limit($item->name, 40)}}</td>
                        <td>{{number_format($item->pivot->product_quantity)}}</td>
                        <td>{{number_format($item->sell_price) . ' đ'}}</td>

@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 
-@section('title', 'Create User')
+@section('title', 'Create New User')
+
+@section('breadcrumb', 'Create New User')
 
 @section('content')
 <div class="container">

@@ -6,6 +6,8 @@
 <h5>User</h5>
 @endsection
 
+@section('breadcrumb', 'User List')
+
 {{-- @section('scriptA')
   <script src="https://code.jquery.com/jquery-latest.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
@@ -37,7 +39,7 @@
                 @foreach ($users as $user)
                 <tr class="text-center">
                     <td>{{$loop->iteration}}</td>
-                    <td class="text-left">{{$user->name}}</td>
+                    <td class="text-center">{{$user->name}}</td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->getRoleName($user->role)}}</td>
 

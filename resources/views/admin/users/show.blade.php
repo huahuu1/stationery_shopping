@@ -6,6 +6,8 @@
 <p>User Details</p>
 @endsection
 
+@section('breadcrumb', 'User Detail')
+
 @section('content')
 <div class="row">
     <div class="col-md-12">

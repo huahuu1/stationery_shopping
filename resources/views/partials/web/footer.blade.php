@@ -64,10 +64,14 @@ $categories = App\Models\Category::where('parent_id', 0)->get();
                             <div class="icon-box-img"><i class="fas fa-book"></i></div>
                             <div class="icon-box-text"><a href="{{route('categories.all')}}">Categories</a></div>
                         </div>
-                        <div class="icon-box d-flex">
-                            <div class="icon-box-img"><i class="fas fa-book"></i></div>
-                            <div class="icon-box-text"><a href="{{url('admin')}}">Admin</a></div>
-                        </div>
+                        @if (Auth::user())
+                            @if(Auth::user()->role == 0)
+                            <div class="icon-box d-flex">
+                                <div class="icon-box-img"><i class="fas fa-book"></i></div>
+                                <div class="icon-box-text"><a href="{{url('admin')}}">Admin</a></div>
+                            </div>
+                            @endif
+                        @endif
 
                     </div>
                 </div>

@@ -33,7 +33,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a style="text-decoration: none; color: #6C757D" href="#">Home</a></li>
-              <li class="breadcrumb-item active">Blank Page</li>
+              <li class="breadcrumb-item active">@yield('breadcrumb')</li>
             </ol>
           </div>
         </div>

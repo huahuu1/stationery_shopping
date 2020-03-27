@@ -6,6 +6,8 @@
 <p>Product List</p>
 @endsection
 
+@section('breadcrumb', 'Product List')
+
 @section('content')
 <div class="row">
     <div class="col-md-12 table-responsive-md">

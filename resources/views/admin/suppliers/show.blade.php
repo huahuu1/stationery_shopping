@@ -6,6 +6,8 @@
 <p>Supplier Detail</p>
 @endsection
 
+@section('breadcrumb', 'Supplier Detail')
+
 @section('content')
 <div class="row">
     <div class="col-md-12">
@@ -36,18 +38,18 @@
                     <th>Product Name</th>
                     @foreach ($supplier->products as $product)
                     <tr>
-                        <td class="text-left mx-auto">
+                        <td class="text-center">
                             <ul style="list-style: none">
                                 <li>{{$loop->iteration}}</li>
                             </ul>
                         </td>
                         <td>
-                            <ul class="d-flex" style="list-style: none">
-                                <li><img width="60" src="{{asset($product->image)}}" alt=""></li>
+                            <ul class="p-0 text-center" style="list-style: none">
+                                <li><a href="{{route('products.show', $product->id)}}"><img width="80" src="{{asset($product->image)}}" alt=""></a></li>
                             </ul>
                         </td>
                         <td>
-                            <ul class="d-flex" style="list-style: none">
+                            <ul class="text-center" style="list-style: none">
                                 <li>{{$product->name}}</li>
                             </ul>
                         </td>

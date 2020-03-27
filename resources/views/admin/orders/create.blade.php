@@ -2,6 +2,8 @@
 
 @section('title', 'Create New Order')
 
+@section('breadcrumb', 'Create New Order')
+
 @section('content')
 
 <div class="container">

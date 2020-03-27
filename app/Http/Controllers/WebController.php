@@ -38,8 +38,9 @@ class WebController extends Controller
         $pageSize = $request->pageSize ?? 12;
         $category = Category::where('slug', $slug)->first();
         $products = Product::where('category_id', $category->id)
-                                    ->orWhere('sub_category_id', $category->id)
-                                    ->paginate($pageSize);
+                                ->orWhere('sub_category_id', $category->id)
+                                ->where('status', 1)
+                                ->paginate($pageSize);
         $slug = $category->name;
 
         $breadcrums = "<div class='category-page-title'>
@@ -69,6 +70,7 @@ class WebController extends Controller
         $pageSize = $request->pageSize ?? 12;
         $category = Category::where('slug', $slug)->first();
         $products = Product::where('category_id', $category->id)
+                                    ->where('status', 1)
                                     ->orWhere('sub_category_id', $category->id)
                                     ->paginate($pageSize);
         $slug = $category->name;
@@ -170,5 +172,5 @@ class WebController extends Controller
         return redirect()->route('users.index');
     }
 
-    
+
 }

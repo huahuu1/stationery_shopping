@@ -2,6 +2,8 @@
 
 @section('title', 'Edit User')
 
+@section('breadcrumb', 'Edit User')
+
 @section('content')
 <div class="container">
     <div class="row">

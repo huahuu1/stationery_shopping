@@ -6,6 +6,8 @@
 <p>Product Detail</p>
 @endsection
 
+@section('breadcrumb', 'Product Detail')
+
 @section('content')
 <div class="row">
     <div class="col-md-12">
@@ -21,7 +23,7 @@
             </thead>
             <tbody>
                 <tr class="text-center">
-                    <td><a href=""><img width="80" src="{{asset($product->image)}}" alt=""></a></td>
+                    <td><img width="80" src="{{asset($product->image)}}" alt=""></td>
                     <td>{{$product->name}}</td>
                     <td class="text-left">{!! nl2br($product->short_description)!!}</td>
                     <td class="text-left">{!! nl2br($product->description)!!}</td>

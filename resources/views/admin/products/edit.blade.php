@@ -2,6 +2,8 @@
 
 @section('title', 'Edit Product')
 
+@section('breadcrumb', 'Edit Product')
+
 @section('content')
 @php
     $categories = App\Models\Category::where('parent_id', '=', 0)->get();
