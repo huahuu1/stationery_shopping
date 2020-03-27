@@ -1683,6 +1683,9 @@ section.icon-intro {
     .cartDetails table tbody .btnCartOut {
         margin-left: 12.5%
     }
+    .searchBox {
+        width: 50%
+    }
 }
 .bot-navbar .navbar-brand {
     color: #FFF;
