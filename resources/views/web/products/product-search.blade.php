@@ -32,7 +32,7 @@
     </div>
     <div class="detail-product">
         <div class="row">
-            <div class="sidebar col-3 col-md-4">
+            <div class="sidebar col-lg-3 col-md-4">
                 <div class="sidebar-title">CATEGORY OF PRODUCTS</div>
                 <div class="sidebar-content">
                     <div class="widget-list-product d-flex">
@@ -76,7 +76,7 @@
                     </div>
                 </div>
             </div>
-            <div class="products col-9 col-md-8 row">
+            <div class="products col-lg-9 col-md-8 row">
                 @foreach ($products as $item)
                 <div class="col-lg-3 col-md-6 product-item">
                     <a href="{{URL::to('products/'.$item->slug)}}">
