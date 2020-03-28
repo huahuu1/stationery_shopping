@@ -23,7 +23,7 @@
                 <tr class="text-center">
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
-                    <td>{{$user->role}}</td>
+                    <td>{{$user->getRoleName($user->role)}}</td>
                 </tr>
             </tbody>
         </table>

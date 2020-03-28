@@ -26,7 +26,7 @@
               <span style="margin-left: 2rem" class="text text-danger">{{$errors->first('phone')}}</span>
               @endif
             </div>
-            <div class="btnEdit">
+            <div class="btnEdit text-center">
                 <input class="btn btn-danger" type="submit" id="" name="" value="Edit"/>
             </div>
         </div>
@@ -54,7 +54,7 @@
               <span style="margin-left: 2rem" class="text text-danger">{{$errors->first('newPassword_confirmation')}}</span>
               @endif
             </div>
-            <div class="btnEdit">
+            <div class="btnEdit text-center">
                 <input class="btn btn-danger" type="submit" id="" name="" value="Edit"/>
             </div>
           </div>
