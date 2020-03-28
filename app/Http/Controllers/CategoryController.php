@@ -82,10 +82,10 @@ class CategoryController extends Controller
     {
         //
         $category = $this->model->getById($id);
+        $sub_cate = Product::where('sub_category_id', $id)->get();
+        $count_sub = $sub_cate->count();
 
-        // $category->products;
-
-        return view('admin.categories.show', compact('category'));
+        return view('admin.categories.show', compact('category', 'sub_cate', 'count_sub'));
     }
 
     /**

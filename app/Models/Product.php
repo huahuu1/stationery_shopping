@@ -14,9 +14,11 @@ class Product extends Model
         'name',
         'slug',
         'image',
+        'short_description',
         'description',
         'sell_price',
         'category_id',
+        'sub_category_id',
         'supplier_id',
         'status',
     ];
@@ -25,9 +27,9 @@ class Product extends Model
     public function getStatusName($status)
     {
         if($status == 1) {
-            return 'In Stock';
+            return 'Active';
         } else if($status == 0) {
-            return 'Out of Stock';
+            return 'Deactive';
         }
     }
 
@@ -38,6 +40,12 @@ class Product extends Model
     }
 
     public function getCategoryName($id)
+    {
+        $cate = Category::find($id);
+        return $cate->name;
+    }
+
+    public function getSubCategoryName($id)
     {
         $cate = Category::find($id);
         return $cate->name;

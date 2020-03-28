@@ -7,7 +7,7 @@ $categories = App\Models\Category::where('parent_id', 0)->get();
         <div class="line"></div>
         <div class="footer-content">
             <div class="top-content row">
-                <div class="company-info col-sm-6 col-lg-3">
+                <div class="company-info col-sm-12 col-lg-3">
                     <div class="title">
                         <div class="title-img"><img src="{{asset('web/images/logo/logo-officemona.png')}}" /></div>
                     </div>
@@ -64,10 +64,14 @@ $categories = App\Models\Category::where('parent_id', 0)->get();
                             <div class="icon-box-img"><i class="fas fa-book"></i></div>
                             <div class="icon-box-text"><a href="{{route('categories.all')}}">Categories</a></div>
                         </div>
-                        <div class="icon-box d-flex">
-                            <div class="icon-box-img"><i class="fas fa-book"></i></div>
-                            <div class="icon-box-text"><a href="{{url('admin')}}">Admin</a></div>
-                        </div>
+                        @if (Auth::user())
+                            @if(Auth::user()->role == 0)
+                            <div class="icon-box d-flex">
+                                <div class="icon-box-img"><i class="fas fa-book"></i></div>
+                                <div class="icon-box-text"><a href="{{url('admin')}}">Admin</a></div>
+                            </div>
+                            @endif
+                        @endif
 
                     </div>
                 </div>
@@ -78,7 +82,7 @@ $categories = App\Models\Category::where('parent_id', 0)->get();
                     <div class="content">
                         <div class="content-part row">
                             @foreach ($categories as $item)
-                            <div class="icon-box d-flex col-6">
+                            <div class="icon-box d-flex col-lg-6 col-md-6 col-sm-12">
                                 <div class="icon-box-img"><i class="fas fa-book"></i></div>
                                 <div class="icon-box-text"><a href="{{URL::to('categories/'.$item->slug)}}">{{$item->name}}</a></div>
                             </div>

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Create Product')
+@section('title', 'Create Category')
 
 @section('page_title')
 <p>New Category</p>

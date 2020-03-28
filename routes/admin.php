@@ -48,10 +48,13 @@ Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 // Users Routes
 Route::get('/users', 'UserController@index')->name('users.index');
 Route::get('/users/create', 'UserController@create')->name('users.create');
+// Route::post('/users', 'UserController@postCreate')->name('users.postCreate');
 Route::post('/users', 'UserController@store')->name('users.store');
 Route::get('/users/{id}', 'UserController@show')->name('users.show');
 Route::get('/users/edit/{id}', 'UserController@edit')->name('users.edit');
-Route::put('/users/{id}', 'UserController@update')->name('users.update');
+// Route::put('/users/{id}', 'UserController@postEdit')->name('users.postEdit');
+Route::put('/users/{id}', 'UserController@updateInfo')->name('users.update-info');
+Route::post('/users/{id}', 'UserController@updatePassword')->name('users.update-pass');
 Route::delete('/users/{id}', 'UserController@destroy')->name('users.destroy');
 
 // Orders Routes

@@ -5,12 +5,8 @@ $categoriesFirst = App\Models\Category::whereBetween('id', [2, 5])->get();
 $categoryFirstAnother = App\Models\Category::where('id', 6)->get();
 $categoriesAnother = App\Models\Category::whereBetween('id', [7, 9])->get();
 
-$productFirst = App\Models\Product::where('category_id', 1)->get();
-$productFirstAnother = App\Models\Product::where('category_id', 6)->get();
-
-
-$productsFirst = App\Models\Product::where('category_id', 2)->get();
-$productsAnother = App\Models\Product::whereBetween('category_id', [7, 9])->get();
+$productFirst = App\Models\Product::where('category_id', 1)->where('status', 1)->get();
+$productFirstAnother = App\Models\Product::where('category_id', 6)->where('status', 1)->get();
 
 @endphp
 

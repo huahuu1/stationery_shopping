@@ -8,7 +8,7 @@
         <a href="{{ route('dashboard') }}" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="{{ route('home-page') }}" class="nav-link">Website</a>
       </li>
     </ul>
 
@@ -26,48 +26,14 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-
-      <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i style="font-size: 20px; font-weight: bold;" class="far fa-user"></i>
-          <span>{{Auth::user()->name}}</span>
+        <a class="btn btn-danger" href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+            {{ __('Logout') }}
         </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="{{route('users.index')}}" class="dropdown-item">
-            <div class="media">
-                <div class="icon">
-                    <i class="far fa-id-card"></i>
-                </div>
-                <div class="text">
-                    <p class="text-sm">List of User</p>
-                </div>
-            </div>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="{{route('users.create')}}" class="dropdown-item">
-            <div class="media">
-                <div class="icon">
-                    <i class="fas fa-plus-square"></i>
-                </div>
-                <div class="text">
-                    <p class="text-sm">Create New User</p>
-                </div>
-            </div>
-          </a>
-          <div class="dropdown-divider"></div>
 
-          <div class="dropdown-divider"></div>
-            <a class="dropdown-item dropdown-footer" href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
-            </a>
-
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: block;">
-                @csrf
-            </form>
-        </div>
-      </li>
+        <form class="d-none" id="logout-form" action="{{ route('logout') }}" method="POST" style="display: block;">
+            @csrf
+        </form>
     </ul>
   </nav>

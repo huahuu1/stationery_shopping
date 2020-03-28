@@ -6,12 +6,14 @@
 <p>Order List</p>
 @endsection
 
+@section('breadcrumb', 'Order List')
+
 @section('content')
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 table-responsive">
         <form action="" class="form-inline form-group">
-            <input type="text" value="{{$keyword}}" class="form-control" name="keyword">
-            <button type="submit" class="btn btn btn-info"><i class="nav-icon fas fa-search"></i></button>
+            <input style="height: 2.5rem; border-top-right-radius: 0; border-bottom-right-radius: 0; width: 30%" type="text" value="{{$keyword}}" class="form-control" name="keyword">
+            <button style="height: 2.5rem; border-top-left-radius: 0; border-bottom-left-radius: 0" type="submit" class="btn btn btn-info"><i class="nav-icon fas fa-search"></i></button>
         </form>
         <table class="table table-bordered table-valign-middle">
             <thead>
@@ -48,7 +50,7 @@
                                 <form class="d-inline-block" action="{{ url('admin/orders', ['id' => $order->id]) }}" method="POST">
                                     @csrf
                                     @method('delete')
-                                    <button type="submit" class="btn btn-danger btn-sm" href="{{route('orders.destroy', $order->id)}}">
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this?')" href="{{route('orders.destroy', $order->id)}}">
                                         <i class="fas fa-trash"></i> Delete
                                     </button>
                                 </form>

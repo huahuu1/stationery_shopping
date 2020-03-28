@@ -38,6 +38,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getRoleName($role)
+    {
+        if($role == 0) {
+            echo 'Admin';
+        } else if($role == 1) {
+            echo 'Member';
+        }
+    }
+
     public function profile()
     {
         return $this->hasOne(Profile::class);

@@ -13,10 +13,6 @@ use App\Http\Requests\MassDestroyOrderRequest;
 
 class OrderController extends Controller
 {
-    public $model;
-    public function __construct(OrderInterface $orders) {
-        $this->model = $orders;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -33,7 +29,7 @@ class OrderController extends Controller
         } else {
             $path .= "?pageSize=$pageSize&keyword=$keyword";
             $orders = Order::where('address', 'like', '%'. $keyword .'%')
-                                // ->orWhere('description', 'like', '%'. $keyword .'%')
+                                ->orWhere('name', 'like', '%'. $keyword .'%')
                                 ->orderBy('id', 'ASC')
                                 ->paginate($pageSize);
         }

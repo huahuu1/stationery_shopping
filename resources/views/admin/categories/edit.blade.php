@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Create Product')
+@section('title', 'Edit Category')
 
 @section('page_title')
 <p>New Category</p>
@@ -32,8 +32,8 @@
                     <select name="parent_id" id="" class="form-control">
                         <option value="0">Choose Category</option>
                         @foreach ($categories as $item)
-                            <option 
-                            @php 
+                            <option
+                            @php
                                 if($category->parent_id == $item->id ){
                                     echo 'selected';
                                 }
@@ -41,7 +41,7 @@
                             value="{{$item->id}}"
                             >{{$item->name}}</option>
                         @endforeach
-                    
+
                     </select>
                 </div>
 

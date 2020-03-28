@@ -59,10 +59,9 @@ $categoriesAnother = App\Models\Category::where('id', $product->category_id)->ge
                     @foreach ($item->getProductByCategoryId($item->id) as $row)
                     <div class="item">
                         <div class="product-item">
-                            <div class="product-image"><img src="{{asset($row->image)}}"
-                                    alt="" /></div>
+                            <div class="product-image"><a href="{{URL::to('products/'.$row->slug)}}"><img width="80" src="{{asset($row->image)}}" alt=""></a></div>
                             <div class="product-text">
-                                <div class="title-wrapper"><a href="#">{{$row->name}}</a></div>
+                                <div class="title-wrapper"><a href="{{URL::to('products/'.$row->slug)}}">{{$row->name}}</a></div>
                                 <div class="price-wrapper"><span class="price"><span
                                             class="woocommerce-price-amount">{{number_format($row->sell_price)}}&nbsp;</span><span
                                             class="woocommerce-price-currencySymbol">đ</span></span>
@@ -77,9 +76,9 @@ $categoriesAnother = App\Models\Category::where('id', $product->category_id)->ge
     </div>
 </section>
 
-@section('scripts')
+{{-- @section('scripts')
 
-    {{-- <script type="text/javascript">
+    <script type="text/javascript">
 
         $(".add-to-cart").click(function (e) {
             e.preventDefault();
@@ -102,6 +101,6 @@ $categoriesAnother = App\Models\Category::where('id', $product->category_id)->ge
                 }
             });
         });
-    </script> --}}
+    </script>
 
-@stop
+@stop --}}

@@ -18,21 +18,10 @@ class Category extends Model
         return $categories;
     }
 
-    public function getCategoriesFirst() {
-        $categories = Category::where('id', '<=', 5)->get('name');
-        return $categories;
-    }
-
-    public function getCategoriesLast() {
-        $categories = Category::where('id', '>', 5)->get('name');
-        return $categories;
-    }
-
     public function getProductByCategoryId($category_id) {
-        $products = Product::where('category_id', $category_id)->get();
+        $products = Product::where('category_id', $category_id)->where('status', 1)->get();
         return $products;
     }
-
 
 
     public function products()

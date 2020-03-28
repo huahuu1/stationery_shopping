@@ -63,4 +63,16 @@
     </div>
     @include('partials.web.scripts')
   </body>
+  <script>
+    $(window).resize(function(){
+      var w = $(window).width();
+      if(w < 768) {
+        $('.banner').removeClass('container-fluid');
+        $('.banner').addClass('container');
+      } else {
+        $('.banner').addClass('container-fluid');
+        $('.banner').removeClass('container');
+      }
+    });
+  </script>
 </html>

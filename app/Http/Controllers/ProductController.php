@@ -4,20 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Repositories\Product\ProductInterface;
-use App\Models\Category;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Auth;
 
 
-class ProductController  extends Controller
+class ProductController extends Controller
 {
-    public $model;
-    public function __construct(ProductInterface $products){
-        $this->model = $products;
-    }
-
+    //admin
     public function index(Request $request)
     {
         $keyword = $request->keyword;
@@ -59,10 +52,6 @@ class ProductController  extends Controller
         //xu ly upload hinh anh vao thu muc
         if($request->hasFile('image')) {
             $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            if($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg') {
-                return redirect('product/create')->with('loi', 'Bạn chỉ được chọn file có đuôi jpg,png,jpeg');
-            }
             $imageName = 'uploads/products/'.time().$file->getClientOriginalName();
             $file->move(public_path('uploads/products'), $imageName);
         } else {
@@ -85,13 +74,13 @@ class ProductController  extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $Product
+     * @param  \App\Models\Product
      * @return \Illuminate\Http\Response
      */
     public function edit(Product $product, $id)
     {
-        $products = $this->model->getAll();
-        $product = $this->model->getById($id);
+        $products = Product::all();
+        $product = Product::find($id);
         return view('admin.products.edit', compact('products', 'product'));
     }
 
@@ -112,15 +101,10 @@ class ProductController  extends Controller
             'category_id' => 'required'
         ]);
 
-        $product = $request->all();
         $product = Product::find($id);
         //xu ly upload hinh anh vao thu muc
         if($request->hasFile('image')) {
             $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            if($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg') {
-                return redirect(route('products.edit'))->with('loi', 'Bạn chỉ được chọn file có đuôi jpg,png,jpeg');
-            }
             $imageName = 'uploads/products/'.time().$file->getClientOriginalName();
             $file->move('uploads/products/', $imageName);
         } else {
@@ -130,9 +114,11 @@ class ProductController  extends Controller
         $product->name = $request->name;
         $product->slug = $request->slug;
         $product->image = $imageName;
+        $product->short_description = $request->short_description;
         $product->description = $request->description;
         $product->sell_price = $request->sell_price;
         $product->category_id = $request->category_id;
+        $product->sub_category_id = $request->sub_category_id;
         $product->supplier_id = $request->supplier_id;
         $product->status = $request->status;
 
@@ -150,10 +136,39 @@ class ProductController  extends Controller
      */
     public function destroy($id)
     {
-        $this->model->delete($id);
+        $product = Product::find($id);
+        $product->delete();
         return redirect(route('products.index'));
     }
 
+    //website
+    public function searchProducts(Request $request) {
+        $keyword = $request->keyword;
+        $pageSize = $request->pageSize ?? 12;
+        $count = 0;
+        $path = '';
+        if(!$keyword){
+            $path .= "?pageSize=$pageSize";
+            $products = Product::orderBy('id', 'ASC')->paginate($pageSize);
+        } else {
+            $path .= "?pageSize=$pageSize&keyword=$keyword";
+            $products = Product::where('name', 'like', '%'. $keyword .'%')
+                                ->where('status', 1)
+                                ->orderBy('id', 'ASC')
+                                ->paginate($pageSize);
+            $count = $products->total();
+        }
+
+        $breadcrums = "<div class='category-page-title'>
+                            <div class='nav'><a href='/'>Home</a><span class='divider'>/</span><a href='#'>Search Result</a></div>
+                        </div>";
+
+        $products->withPath($path);
+        return view('layouts.product-search-result', compact('products', 'keyword', 'breadcrums', 'count'));
+    }
+
+
+    // cart
     public function cart()
     {
         return view('layouts.cart');
@@ -204,10 +219,6 @@ class ProductController  extends Controller
         // write to cookie
         Cookie::queue(Cookie::make('cart_' . $user->id, json_encode($cart), 60));
 
-
-        // $htmlCart = view('_header_cart')->render();
-
-        // return response()->json(['msg' => 'Product added to cart successfully!', 'data' => $htmlCart]);
         return redirect()->route('carts.detail');
     }
 
@@ -217,7 +228,8 @@ class ProductController  extends Controller
      *
      * @return float|int
      */
-    private function getCartTotal()
+
+    public function getCartTotal()
     {
         $user = Auth::user();
         $total = 0;
@@ -226,6 +238,9 @@ class ProductController  extends Controller
 
         if (!$cart) {
             $cart = json_decode(Cookie::get('cart_' . $user->id), true);
+            foreach($cart as $id => $details) {
+                $total += $details['sell_price'] * $details['quantity'];
+            }
         }
 
         foreach($cart as $id => $details) {
@@ -235,7 +250,7 @@ class ProductController  extends Controller
         return number_format($total);
     }
 
-    private function getCartQuantity()
+    public function getCartQuantity()
     {
         $user = Auth::user();
         $total = 0;
@@ -277,8 +292,6 @@ class ProductController  extends Controller
             $htmlCart = view('_header_cart')->render();
 
             return response()->json(['msg' => 'Cart updated successfully', 'data' => $htmlCart, 'total' => $total, 'quantity' => $quantity]);
-
-            //session()->flash('success', 'Cart updated successfully');
         }
     }
 
@@ -289,26 +302,27 @@ class ProductController  extends Controller
         if ($request->id) {
 
             $cart = session()->get('cart');
+            $count = 0;
 
             if (!$cart) {
                 $cart = json_decode(Cookie::get('cart_' . $user->id), true);
+                if($cart) {
+                    $count = count($cart);
+                }
             }
 
-            if($cart == null) {
-                return response()->json(['message' => 'Cart empty'], 404);
+            if($cart) {
+                $count = count($cart);
             }
-
 
             if(isset($cart[$request->id])) {
-
                 // xoa trong session
                 unset($cart[$request->id]);
-
+                $request->session()->forget('cart');
                 session()->put('cart', $cart);
 
-               // write to cookie
-               Cookie::queue(Cookie::make('cart_' . $user->id, json_encode($cart), 60));
-
+                // write to cookie
+                Cookie::queue(Cookie::make('cart_' . $user->id, json_encode($cart), 60));
 
             }
 
@@ -318,9 +332,7 @@ class ProductController  extends Controller
 
             $htmlCart = view('_header_cart')->render();
 
-            return response()->json(['msg' => 'Product removed successfully', 'data' => $htmlCart, 'total' => $total, 'quantity' => $quantity]);
-
-            //session()->flash('success', 'Product removed successfully');
+            return response()->json(['msg' => 'Product removed successfully', 'data' => $htmlCart, 'total' => $total, 'quantity' => $quantity, 'count' => $count]);
         } else {
             return response()->json(['message' => 'Unknown error'], 404);
         }

@@ -1,14 +1,16 @@
 @extends('layouts.admin')
 
-@section('title', 'Order List')
+@section('title', 'Order Detail')
 
 @section('page_title')
 <p>Order Detail</p>
 @endsection
 
+@section('breadcrumb', 'Order Detail')
+
 @section('content')
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 table-responsive">
         <table class="table table-bordered table-valign-middle">
             <thead>
                 <tr class="text-center">
@@ -25,13 +27,11 @@
                @foreach ($order->products as $item)
                    <tr class="text-center">
                        <td>{{$loop->iteration}}</td>
-                       <td><a href=""><img width="80" src="{{asset($item->image)}}" alt=""></a></td>
+                       <td><a href="{{route('products.show', $item->id)}}"><img width="80" src="{{asset($item->image)}}" alt=""></a></td>
                        <td>{{Str::limit($item->name, 40)}}</td>
                        <td>{{number_format($item->pivot->product_quantity)}}</td>
                        <td>{{number_format($item->sell_price) . ' đ'}}</td>
                        <td style="width: 24%;" class="text-center">
-                            <a class="btn btn-primary btn-sm" href="{{route('orders.show', $order->id)}}"><i class="fas fa-folder"></i> View</a>
-
                             <a class="btn btn-info btn-sm" href="{{route('orders.edit', $order->id)}}"><i class="fas fa-pencil-alt"></i> Edit</a>
 
                             <form class="d-inline-block" action="{{ route('orders.removeProductFromCart', [$order->id, $item->id]) }}" method="POST">

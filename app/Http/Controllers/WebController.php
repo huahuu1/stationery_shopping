@@ -9,7 +9,9 @@ use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Hash;
 
+use App\User;
 
 class WebController extends Controller
 {
@@ -36,8 +38,9 @@ class WebController extends Controller
         $pageSize = $request->pageSize ?? 12;
         $category = Category::where('slug', $slug)->first();
         $products = Product::where('category_id', $category->id)
-                                    ->orWhere('sub_category_id', $category->id)
-                                    ->paginate($pageSize);
+                                ->orWhere('sub_category_id', $category->id)
+                                ->where('status', 1)
+                                ->paginate($pageSize);
         $slug = $category->name;
 
         $breadcrums = "<div class='category-page-title'>
@@ -67,6 +70,7 @@ class WebController extends Controller
         $pageSize = $request->pageSize ?? 12;
         $category = Category::where('slug', $slug)->first();
         $products = Product::where('category_id', $category->id)
+                                    ->where('status', 1)
                                     ->orWhere('sub_category_id', $category->id)
                                     ->paginate($pageSize);
         $slug = $category->name;
@@ -84,40 +88,23 @@ class WebController extends Controller
     //     return view('layouts.cart', compact('user', 'cart'));
     // }
 
-    public function emptyCart() {
-        return view ('layouts.empty-cart');
-    }
+    // public function emptyCart() {
+    //     return view ('layouts.empty-cart');
+    // }
 
     public function getCartDetail()
     {
-        //var_dump(1);die;
         $user = Auth::user();
         $cart = session()->get('cart');
-
         if (!$cart) {
             $cart = json_decode(Cookie::get('cart_' . $user->id), true);
         }
-
-        if (is_null($cart)) {
-            $cart = [];
-        }
-
-
-
-        //var_dump($cart);die;
-
-        // dd($cart);
-//         $userCart = DB::select(DB::raw("
-//         select DISTINCT u.*, '123' as id, 'hghghgfhg' as user_address, p.name as product_name, p.id as product_id, p.image as product_image, p.sell_price as product_sell_price, op.product_quantity as product_quantity
-// from users as u
-//             join orders as o on u.id = o.user_id
-//             join order_product as op on o.id = op.order_id
-//             join products as p on op.product_id = p.id
-//             where u.id = {$user->id}"));
-
+        // session()->put('countCart', count($cart));
         if (!$cart) {
             return view ('layouts.empty-cart');
         }
+
+        // var_dump($cart); die;
         return view('layouts.cart', compact('user', 'cart'));
     }
 
@@ -144,4 +131,46 @@ class WebController extends Controller
         }
         return redirect()->route('web.index');
     }
+
+    public function editUser() {
+        return view('layouts.edit-user-page');
+    }
+
+    public function updateUserInfo(User $user, Request $request, $id)
+    {
+        $user = User::find($id);
+        // $user = Auth::user()::find($id);
+        // dd($request->all());
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'min:10|numeric',
+        ]);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->save();
+        return redirect()->route('users.index');
+    }
+
+    public function updateUserPassword(User $user, Request $request, $id)
+    {
+        $user = User::find($id);
+        $request->validate([
+            'oldPassword' => ['required', function ($attribute, $value, $fail) use ($user) {
+                if (!Hash::check($value, $user->password)) {
+                    return $fail(__('The old password is incorrect.'));
+                }
+            }],
+            'newPassword' => 'min:8|different:oldPassword|required',
+            'newPassword_confirmation' => 'min:8|required|same:newPassword',
+        ]);
+
+        $user->password = bcrypt(request('newPassword'));
+        $user->save();
+
+        return redirect()->route('users.index');
+    }
+
+
 }

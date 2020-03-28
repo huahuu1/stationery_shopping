@@ -1,9 +1,9 @@
 <div class="container" style="padding: 2.5rem 0">
     <div class="row">
         <span id="status" class="col-12"></span>
-        <div class="col-12 col-sm-12 col-md-8 cartDetails">
+        <div class="col-12 col-sm-12 col-md-9 cartDetails">
             <form action="" method="">
-                <table>
+                <table width="100%">
                     <thead>
                         <tr>
                             <th colspan="2">ITEM</th>
@@ -18,7 +18,7 @@
                         $total = 0;
                         $qty = 0;
                         @endphp
-                        @if ($cart)
+
                         @foreach ($cart as $id => $details)
                         @php
                         $total += $details['sell_price'] * $details['quantity'];
@@ -28,7 +28,7 @@
                             <td class="productThumbnail"><a href="#"><img src="{{$details['image']}}" width="100px"
                                         height="100px" alt="" /></a></td>
 
-                            <td class="productName">{{$details['name']}}</td>
+                            <td class="productName">{{Str::limit($details['name'], 30)}}</td>
 
                             <td class="productPrice" style="font-weight: 500">{{number_format($details['sell_price'])}}
                                 đ</td>
@@ -36,12 +36,12 @@
                             <td class="productQuantity" data-th="Quantity">
                                 <div class="quantityControl d-flex">
                                     <input type='button' value='-' class='qtyminus btnMinus' field='updates_{{ $id}}' />
-                                    <input type="number" min="0" name="updates[]" id="updates_{{ $id }}"
+                                    <input type="number" min="1" name="updates[]" id="updates_{{ $id }}"
                                         class="quantity" value="{{ $details['quantity'] }}" />
                                     <input type='button' value='+' class='qtyplus btnPlus' field='updates_{{ $id }}' />
                                 </div>
                             </td>
-                            <td class="productTotal cart-total" style="font-weight: 500">
+                            <td class="productTotal" id="product-total" data-id="{{$details['id']}}" style="font-weight: 500">
                                 {{number_format($details['sell_price'] * $details['quantity'])}} đ
                             </td>
 
@@ -55,19 +55,16 @@
                             </td>
                         </tr>
                         @endforeach
-                        @endif
                         <tr>
                             <td colspan="6">
-                                <div class="row">
-                                    <div class="btnCartOut col-sm-6 col-md-6 col-lg-6 mx-auto"><a href="{{route('categories.all')}}">← CONTINUE TO VIEW PRODUCTS</a></div>
-                                </div>
+                                <div class="btnCartOut"><a href="{{route('categories.all')}}">← CONTINUE TO VIEW PRODUCTS</a></div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </form>
         </div>
-        <div class="col-12 col-sm-12 col-md-4 cartContext">
+        <div class="col-12 col-sm-12 col-md-3 cartContext">
             <table>
                 <thead>
                     <tr>
@@ -88,10 +85,15 @@
             </table>
             <form class="form-group shipping" action="" method="POST">
                 <label for="" class="shipping-title">Shipping Address</label>
-                <input type="text" class="form-control" id="ship-address" class="ship-address">
+                <input type="text" class="form-control" id="ship-address" class="ship-address" required>
             </form>
-            <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="cartPayment btn btn-primary px-4 py-3">PROCEED TO
-                CONFIRM</button>
+            <div class="vliAddress" style="display: none">
+                <p style="color: red">Address can not be empty</p>
+            </div>
+            {{-- <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="cartPayment btn btn-primary px-4 py-3">PROCEED TO
+                CONFIRM</button> --}}
+            <button type="button" class="cartPayment btn btn-primary px-4 py-3">PROCEED TO
+                    CONFIRM</button>
             <!-- Modal -->
             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -143,10 +145,15 @@
 
 @section('scripts-cart')
 <script type="text/javascript">
-
-
     $(".cartPayment").click(function () {
-    var address = $('#ship-address').val();
+        if ($("#ship-address").val().replace(/\s/g, '').length === 0) {
+            $(".vliAddress").css("display", "block");
+        } else {
+            $(".vliAddress").css("display", "none");
+            $("#exampleModalCenter").modal('toggle');
+        }
+
+        var address = $('#ship-address').val();
         $(".address").html(address);
         $(".od_address").val(address);
     });
@@ -183,6 +190,10 @@
 
                 cart_total.text(response.total);
                 cart_qty.text(response.quantity);
+
+                if(response.total) {
+                        window.location.href = "/cart-detail";
+                }
             }
         });
     });
@@ -214,6 +225,10 @@
 
                     cart_total.text(response.total);
                     cart_qty.text(response.quantity);
+
+                    if(response.count == 1) {
+                        window.location.href = "/cart-detail";
+                    }
                 }
             });
         }

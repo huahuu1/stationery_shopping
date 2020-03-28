@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 // use App\Http\Controllers\Hash;
 
-class UserController extends Controller
-{
+class UserController extends Controller {
     /**
      * Display a listing of the resource.
      *
@@ -54,6 +53,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $request->validate([
@@ -80,19 +80,9 @@ class UserController extends Controller
      * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user, $id)
-    {
+    public function show(User $user, $id) {
         $user = User::find($id);
         return view('admin.users.show', compact('user'));
-        // //viet trong cho tra ra cart detail
-        // $products = DB::select(DB::raw("
-        // select u.*, o.id, o.address as user_address, p.name as product_name  from users as u
-        // left join orders as o on u.id = o.user_id
-        // left join order_product as op on o.id = op.order_id
-        // left join products as p on op.product_id = p.id
-
-        // where u.id = $id"));
-        // dd($products);
     }
 
     /**
@@ -114,17 +104,32 @@ class UserController extends Controller
      * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function update(User $user, Request $request, $id)
+
+    public function updateInfo(User $user, Request $request, $id)
     {
         $user = User::find($id);
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required|min:8|confirmed',
         ]);
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = bcrypt(request('password'));
+        $user->save();
+        return redirect()->route('users.index');
+    }
+
+    public function updatePassword(User $user, Request $request, $id)
+    {
+        $user = User::find($id);
+        $request->validate([
+            'password' => 'required|min:8|confirmed',
+        ]);
+        $password = $user->password;
+        if (!$request->password) {
+            $user->password = $password;
+        } else {
+            $user->password = bcrypt(request('password'));
+        }
         $user->save();
         return redirect()->route('users.index');
     }
@@ -135,8 +140,11 @@ class UserController extends Controller
      * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
-    {
-        //
+
+    public function destroy($id) {
+        // $this->model->delete($id);
+        $user = User::find($id);
+        $user->delete();
+        return redirect(route('users.index'));
     }
 }

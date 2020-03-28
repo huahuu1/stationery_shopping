@@ -8,7 +8,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 table-responsive">
         <form action="" class="form-inline form-group">
             <input type="text" value="{{$keyword}}" class="form-control" name="keyword">
             <button type="submit" class="btn btn btn-info"><i class="nav-icon fas fa-search"></i></button>

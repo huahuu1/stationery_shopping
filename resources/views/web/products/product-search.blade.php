@@ -1,5 +1,5 @@
 @php
-    $productsAnother = App\Models\Product::whereBetween('id', [1, 5])->where('status', 1)->get();
+    $productsAnother = App\Models\Product::whereBetween('id', [1, 5])->get();
 
     $categories = App\Models\Category::where('parent_id', 0)->get();
 @endphp
@@ -9,6 +9,26 @@
         @php
         echo $breadcrums;
         @endphp
+    </div>
+    <div class="d-flex">
+        <div style="padding-bottom: 1.5rem" class="ml-auto">
+            @php
+            if(!$keyword) {
+                $count = $products->total();
+                if($count < 2) {
+                    echo "$count product found";
+                } else {
+                    echo "$count products found";
+                }
+            } else {
+                if($count < 2) {
+                    echo "$count product found";
+                } else {
+                    echo "$count products found";
+                }
+            }
+            @endphp
+        </div>
     </div>
     <div class="detail-product">
         <div class="row">
