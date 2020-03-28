@@ -1752,26 +1752,38 @@ section.icon-intro {
     }
 }
 
-/* .top-navbar .dropdown-toggle {
+.top-navbar .btn-group {
+    display: none
+}
+.top-navbar .dropdown-toggle {
     border: none;
-    background-color: transparent;
+    background-color: transparent
 }
 .top-navbar .dropdown-toggle:focus {
-    outline: 0;
+    outline: 0
 }
-.top-navbar .dropdown-toggle a {
-    font-size: 1.5rem;
+.top-navbar .dropdown-toggle {
+    font-size: 1.4rem;
+    font-family: kanit;
     color: #026DCF;
     font-weight: 500;
+    text-transform: uppercase;
+    padding-top: 0.25rem
 }
 .top-navbar .dropdown-toggle::after {
     color: #026DCF;
-    margin-left: 0;
+    margin-left: 0
 }
 .top-navbar .dropdown-menu {
-	background: #ffffff;
+    background: #ffffff;
     border: 1px solid #b8b5b5;
     padding: 0;
+    width: 100%;
+    border-radius: 0.25rem;
+    -webkit-border-radius: 0.25rem;
+    -moz-border-radius: 0.25rem;
+    -ms-border-radius: 0.25rem;
+    -o-border-radius: 0.25rem;
 }
 .top-navbar .dropdown-menu:after, .top-navbar .dropdown-menu:before {
 	bottom: 100%;
@@ -1781,34 +1793,82 @@ section.icon-intro {
 	height: 0;
 	width: 0;
 	position: absolute;
-	pointer-events: none;
+	pointer-events: none
 }
 .top-navbar .dropdown-menu:after {
 	border-color: rgba(255, 255, 255, 0);
 	border-bottom-color: #ffffff;
 	border-width: 5px;
-	margin-left: -5px;
+	margin-left: -5px
 }
 .top-navbar .dropdown-menu:before {
 	border-color: rgba(184, 181, 181, 0);
 	border-bottom-color: #b8b5b5;
 	border-width: 5.5px;
-	margin-left: -5.5px;
+	margin-left: -5.5px
 }
 .top-navbar .dropdown-item {
     font-size: 1.25rem;
+    height: 4rem;
+    padding-top: 1rem;
+    text-align: center;
+    text-transform: uppercase
 }
 .top-navbar .dropdown-item:hover {
-    background-color: rgb(175, 175, 175);
-    color: #FFF;
-    font-weight: 500;
-    transition: all 1s;
-    -webkit-transition: all 1s;
-    -moz-transition: all 1s;
-    -ms-transition: all 1s;
-    -o-transition: all 1s;
-} */
+    background-color: rgb(225, 225, 225);
+    font-weight: 500
+}
 
+.bot-navbar .dropdown-toggle {
+    background-color: transparent;
+    border: none;
+    outline: 0
+}
+
+.bot-navbar .dropdown {
+    padding: 0.5rem 0;
+    display: none
+}
+
+.bot-navbar .dropdown-toggle a {
+    font-family: Kanit, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #FFF;
+    text-transform: uppercase;
+    padding-left: 1.25rem
+}
+
+.bot-navbar .dropdown-toggle::after {
+    color: #FFF
+}
+
+.bot-navbar .dropdown-menu {
+    margin-left: 1.5rem;
+    background-color: transparent;
+    border: none
+}
+
+.bot-navbar .dropdown-item {
+    font-family: Kanit, sans-serif;
+    font-size: 1.5rem;
+    color: #FFF
+}
+
+.bot-navbar .dropdown-item:hover {
+    background-color: transparent
+}
+
+.bot-navbar .dropdown-item:hover a {
+    text-decoration: none;
+    color: #FFF;
+    font-size: 1.75rem;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}
 
 .dropdown {
     transition: all .3s ease !important;
@@ -1826,11 +1886,10 @@ section.icon-intro {
     /* padding: 14px 16px; */
     font-family: inherit; /* Important for vertical align on mobile phones */
     margin: 0; /* Important for vertical align on mobile phones */
-
 }
 
 .dropdown .dropbtn span {
-    font-family: 'kanit', sans-serif;
+    font-family: 'kanit', sans-serif
 }
 
 /* Dropdown content (hidden by default) */
@@ -1878,25 +1937,25 @@ section.icon-intro {
     text-decoration: none;
     display: block;
     text-align: center;
-    font-size: 14px;
+    font-size: 14px
 }
 
 /* Add a grey background color to dropdown links on hover */
 .dropdown-content a:hover {
-    background-color: #ddd;
+    background-color: #ddd
 }
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
-    opacity: 1;
+    opacity: 1
 }
 
 .dropdown:hover .dropdown-content:before {
-    opacity: 1;
+    opacity: 1
 }
 
 .dropdown-content.filters {
-    -webkit-filter: drop-shadow(0px 8px 16px rgba(0,0,0,0.2));
+    -webkit-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=2, Color='#444')";
     filter        : drop-shadow(0px 8px 16px rgba(0,0,0,0.2));
     -ms-filter    : "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=2, Color='#444')";
     filter        : "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=2, Color='#444')";

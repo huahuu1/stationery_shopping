@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 table-responsive">
         <table class="table table-bordered table-valign-middle">
             <thead>
                 <tr class="text-center">

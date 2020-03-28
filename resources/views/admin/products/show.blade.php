@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 table-responsive">
         <table class="table table-bordered table-valign-middle">
             <thead>
                 <tr class="text-center">
@@ -25,8 +25,8 @@
                 <tr class="text-center">
                     <td><img width="80" src="{{asset($product->image)}}" alt=""></td>
                     <td>{{$product->name}}</td>
-                    <td class="text-left">{!! nl2br($product->short_description)!!}</td>
-                    <td class="text-left">{!! nl2br($product->description)!!}</td>
+                    <td class="text-left text-nowrap">{!! nl2br($product->short_description)!!}</td>
+                    <td class="text-left text-nowrap">{!! nl2br($product->description)!!}</td>
                     <td>{{$product->sell_price}}</td>
                 </tr>
             </tbody>
