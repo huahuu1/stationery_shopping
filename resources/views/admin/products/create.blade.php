@@ -58,7 +58,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Sell Price <span class="text text-danger">*</span></label>
-                            <input type="number" name="sell_price" class="form-control" placeholder="Sell Price" min='0'>
+                            <input type="number" min="0" name="sell_price" class="form-control" placeholder="Sell Price">
                             @if($errors->has('sell_price'))
                             <span class="text text-danger">{{$errors->first('sell_price')}}</span>
                             @endif

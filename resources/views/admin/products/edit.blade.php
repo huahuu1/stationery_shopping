@@ -23,21 +23,26 @@
                         @method('put')
                         @csrf
                         <div class="form-group">
-                            <label for="">Name</label>
+                            <label for="">Name <span class="text text-danger">*</span></label>
                             <input type="text" class="form-control" value="{{$product->name}}" name="name" placeholder="Product Name">
+                            @if($errors->has('name'))
+                            <span class="text text-danger">{{$errors->first('name')}}</span>
+                            @endif
                         </div>
                         <div class="form-group">
-                            <label for="">Slug</label>
+                            <label for="">Slug <span class="text text-danger">*</span></label>
                             <input type="text" class="form-control" value="{{$product->slug}}" name="slug" placeholder="Product Slug">
+                            @if($errors->has('slug'))
+                            <span class="text text-danger">{{$errors->first('slug')}}</span>
+                            @endif
                         </div>
                         <div class="form-group">
-                            <label for="image">Image</label>
+                            <label for="image">Image <span class="text text-danger">*</span></label>
                             <div class="input-group mb-3">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file" id="customFile" name="image">
                                     <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
-
                             </div>
                             @if($errors->has('image'))
                                 <span class="text text-danger">{{$errors->first('image')}}</span>
@@ -57,8 +62,11 @@
                             <textarea id="description" name="description" class="form-control" cols="30" rows="10">{{$product->description}}</textarea>
                         </div>
                         <div class="form-group">
-                            <label for="">Sell Price</label>
-                            <input type="text" class="form-control" value="{{$product->sell_price}}" name="sell_price" placeholder="Product Sell Price">
+                            <label for="">Sell Price <span class="text text-danger">*</span></label>
+                            <input type="number" min="0" class="form-control" value="{{$product->sell_price}}" name="sell_price" placeholder="Product Sell Price">
+                            @if($errors->has('sell_price'))
+                            <span class="text text-danger">{{$errors->first('sell_price')}}</span>
+                            @endif
                         </div>
                         <div class="form-group">
                             <label for="">Category</label>

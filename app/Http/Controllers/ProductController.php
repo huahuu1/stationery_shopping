@@ -45,7 +45,7 @@ class ProductController extends Controller
             'name' => 'required',
             'slug' => 'required',
             'image' => 'image',
-            'sell_price' => 'required',
+            'sell_price' => 'required|numeric',
             'category_id' => 'required'
         ]);
         $product = $request->all();
@@ -97,7 +97,7 @@ class ProductController extends Controller
             'name' => 'required',
             'slug' => 'required',
             'image' => 'image',
-            'sell_price' => 'required',
+            'sell_price' => 'required|numeric',
             'category_id' => 'required'
         ]);
 

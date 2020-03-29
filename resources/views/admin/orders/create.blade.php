@@ -54,7 +54,7 @@
                                 <table class="table" id="products_table">
                                     <thead>
                                         <tr>
-                                            <th>Product</th>
+                                            <th>Product <span class="text text-danger">*</span></th>
                                             <th>Quantity</th>
                                         </tr>
                                     </thead>
@@ -70,9 +70,12 @@
                                                     </option>
                                                     @endforeach
                                                 </select>
+                                                @if($errors->has('products[]'))
+                                                <span class="text text-danger">{{$errors->first('products[]')}}</span>
+                                                @endif
                                             </td>
                                             <td>
-                                                <input type="number" name="quantities[]" class="form-control" value="1" />
+                                                <input type="number" name="quantities[]" class="form-control" value="1" min="1"/>
                                             </td>
                                         </tr>
                                         <tr id="product1"></tr>

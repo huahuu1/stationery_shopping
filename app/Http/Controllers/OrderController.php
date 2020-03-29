@@ -58,9 +58,18 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'address' => 'required',
-        ]);
+        $this->validate(
+            $request,
+            [
+                'address' => 'required',
+                'products[]' => 'required',
+            ],
+            [
+                'address.required' => 'The shipping address field is required.',
+                'products[].required' => 'The products field is required.'
+            ]
+        );
+
         $order = Order::create($request->all());
         $products = $request->input('products', []);
         $quantities = $request->input('quantities', []);
@@ -113,8 +122,20 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order, $id)
     {
-        $order= Order::find($request->id);
 
+        $this->validate(
+            $request,
+            [
+                'address' => 'required',
+                'products[]' => 'required',
+            ],
+            [
+                'address.required' => 'The shipping address field is required.',
+                'products[].required' => 'The products field is required.'
+            ]
+        );
+
+        $order= Order::find($request->id);
         $order->status = $request->status;
         $order->address = $request->address;
         $order->update();
