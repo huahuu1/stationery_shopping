@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Document</title>
+    <title>@yield('title')</title>
     @include('partials.web.styles')
   </head>
   <body>
@@ -41,7 +41,7 @@
         </section>
       </div>
 
-      @include('web.products.categories-products')
+      @yield('feature_item')
 
       <section class="container supplier-gallery">
         <div class="productOthers">

@@ -1894,6 +1894,7 @@ section.icon-intro {
 
 /* Dropdown content (hidden by default) */
 .dropdown-content {
+    visibility: hidden;
     opacity: 0;
     position: absolute;
     top: 120%;
@@ -1911,6 +1912,7 @@ section.icon-intro {
 .dropdown-content:before {
     content: "";
     z-index: 10;
+    visibility: hidden;
     opacity: 0;
     left: 36%;
     top: -10px;
@@ -1947,11 +1949,13 @@ section.icon-intro {
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
-    opacity: 1
+    opacity: 1;
+    visibility: visible;
 }
 
 .dropdown:hover .dropdown-content:before {
-    opacity: 1
+    opacity: 1;
+    visibility: visible;
 }
 
 .dropdown-content.filters {

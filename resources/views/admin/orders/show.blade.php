@@ -37,7 +37,7 @@
                             <form class="d-inline-block" action="{{ route('orders.removeProductFromCart', [$order->id, $item->id]) }}" method="POST">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" class="btn btn-danger btn-sm">
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this?')">
                                     <i class="fas fa-trash"></i> Delete
                                 </button>
                             </form>

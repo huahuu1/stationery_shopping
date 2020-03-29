@@ -1,3 +1,9 @@
+@extends('layouts.web-home')
+
+@section('title', 'Home Page')
+
+@section('feature_item')
+
 @php
 $categoryFirst = App\Models\Category::where('id', 1)->get();
 $categoriesFirst = App\Models\Category::whereBetween('id', [2, 5])->get();
@@ -268,3 +274,4 @@ $productFirstAnother = App\Models\Product::where('category_id', 6)->where('statu
         </div>
     </div>
 </section>
+@endsection

@@ -30,7 +30,7 @@ class WebController extends Controller
                             <div class='nav'><a href='/'>Home</a><span class='divider'>/</span><a href='#'>$slug</a></div>
                         </div>";
 
-        return view('layouts.categories-page', compact('products', 'breadcrums'));
+        return view('web.products.categories', compact('products', 'breadcrums'));
     }
 
     public function getProductsByCategoryId(Request $request, $slug)
@@ -46,7 +46,7 @@ class WebController extends Controller
         $breadcrums = "<div class='category-page-title'>
                             <div class='nav'><a href='/'>Home</a><span class='divider'>/</span><a href='#'>$slug</a></div>
                         </div>";
-        return view('layouts.categories-page', compact('products', 'breadcrums'));
+        return view('web.products.categories', compact('products', 'breadcrums'));
     }
 
     public function getProducts()
@@ -62,7 +62,7 @@ class WebController extends Controller
         $breadcrums = "<div class='category-page-title'>
                             <div class='nav'><a href='/'>Home</a><span class='divider'>/</span><a href='#'>$slug</a></div>
                         </div>";
-        return view('layouts.product-page', compact('product', 'breadcrums'));
+        return view('web.products.product-detail', compact('product', 'breadcrums'));
     }
 
     public function getSimiliarProducts(Request $request, $slug)
@@ -77,21 +77,6 @@ class WebController extends Controller
         return view('web.products.product-detail', compact('products'));
     }
 
-    // public function getCartDetail()
-    // {
-    //     $user = Auth::user();
-    //     $cart = session('cart');
-
-    //     if(!$cart || $cart == null) {
-    //         return view ('layouts.empty-cart');
-    //     }
-    //     return view('layouts.cart', compact('user', 'cart'));
-    // }
-
-    // public function emptyCart() {
-    //     return view ('layouts.empty-cart');
-    // }
-
     public function getCartDetail()
     {
         $user = Auth::user();
@@ -101,11 +86,11 @@ class WebController extends Controller
         }
         // session()->put('countCart', count($cart));
         if (!$cart) {
-            return view ('layouts.empty-cart');
+            return view ('web.empty-cart');
         }
 
         // var_dump($cart); die;
-        return view('layouts.cart', compact('user', 'cart'));
+        return view('web.cart', compact('user', 'cart'));
     }
 
     public function placeNewOrder(Request $request)
@@ -133,7 +118,7 @@ class WebController extends Controller
     }
 
     public function editUser() {
-        return view('layouts.edit-user-page');
+        return view('web.edit-user');
     }
 
     public function updateUserInfo(User $user, Request $request, $id)
@@ -150,7 +135,7 @@ class WebController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->save();
-        return redirect()->route('users.index');
+        return redirect()->route('web.index');
     }
 
     public function updateUserPassword(User $user, Request $request, $id)
@@ -169,7 +154,7 @@ class WebController extends Controller
         $user->password = bcrypt(request('newPassword'));
         $user->save();
 
-        return redirect()->route('users.index');
+        return redirect()->route('web.index');
     }
 
 

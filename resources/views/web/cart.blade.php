@@ -1,4 +1,9 @@
-<div class="container" style="padding: 2.5rem 0">
+@extends('layouts.web-other-pages')
+
+@section('title', 'Cart')
+
+@section('feature_item')
+    <div class="container" style="padding: 2.5rem 0">
     <div class="row">
         <span id="status" class="col-12"></span>
         <div class="col-12 col-sm-12 col-md-9 cartDetails">
@@ -142,6 +147,7 @@
         </div>
     </div>
 </div>
+@endsection
 
 @section('scripts-cart')
 <script type="text/javascript">

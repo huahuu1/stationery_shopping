@@ -62,12 +62,13 @@ class OrderController extends Controller
             $request,
             [
                 'address' => 'required',
-                'products[]' => 'required',
+                'products.*' => 'required',
             ],
             [
                 'address.required' => 'The shipping address field is required.',
-                'products[].required' => 'The products field is required.'
+                'products.*.required' => 'The products field is required.'
             ]
+
         );
 
         $order = Order::create($request->all());
@@ -78,8 +79,6 @@ class OrderController extends Controller
                 $order->products()->attach($products[$product], ['product_quantity' => $quantities[$product]]);
             }
         }
-        // $order = new Order($order);
-        // $order->save();
 
         return redirect()->route('orders.index');
     }
@@ -105,10 +104,8 @@ class OrderController extends Controller
     public function edit(Order $order, $id)
     {
         $products = Product::all();
-        // dd($order->products);
         $order->load('products');
         $od = Order::find($id);
-        // dd($order);
 
         return view('admin.orders.edit', compact('products', 'order', 'od'));
     }
@@ -127,11 +124,11 @@ class OrderController extends Controller
             $request,
             [
                 'address' => 'required',
-                'products[]' => 'required',
+                'products.*' => 'required',
             ],
             [
                 'address.required' => 'The shipping address field is required.',
-                'products[].required' => 'The products field is required.'
+                'products.*.required' => 'The products field is required.'
             ]
         );
 
@@ -157,8 +154,9 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy($id)
     {
+        $order = Order::find($id);
         $order->delete();
         return back();
     }

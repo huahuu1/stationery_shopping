@@ -68,8 +68,8 @@
                                                     </option>
                                                     @endforeach
                                                 </select>
-                                                @if($errors->has('products[]'))
-                                                <span class="text text-danger">{{$errors->first('products[]')}}</span>
+                                                @if($errors->has('products.*'))
+                                                <span class="text text-danger">{{$errors->first('products.*')}}</span>
                                                 @endif
                                             </td>
                                             <td>
@@ -89,6 +89,9 @@
                                                         >{{ $product->name }} ({{ number_format($product->sell_price) . ' đ'}})</option>
                                                     @endforeach
                                                 </select>
+                                                @if($errors->has('products.*'))
+                                                <span class="text text-danger">{{$errors->first('products.*')}}</span>
+                                                @endif
                                             </td>
                                             <td>
                                                 <input type="number" name="quantities[]" class="form-control" min="1" value="{{ $order_product->pivot->product_quantity }}" />

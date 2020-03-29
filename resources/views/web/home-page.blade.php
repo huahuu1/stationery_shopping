@@ -1,2 +1,2 @@
-@extends('layouts.web')
+@extends('web.products.categories-products')
 

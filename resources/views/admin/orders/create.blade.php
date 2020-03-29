@@ -70,8 +70,8 @@
                                                     </option>
                                                     @endforeach
                                                 </select>
-                                                @if($errors->has('products[]'))
-                                                <span class="text text-danger">{{$errors->first('products[]')}}</span>
+                                                @if($errors->has('products.*'))
+                                                <span class="text text-danger">{{$errors->first('products.*')}}</span>
                                                 @endif
                                             </td>
                                             <td>
