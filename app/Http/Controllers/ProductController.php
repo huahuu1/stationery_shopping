@@ -45,7 +45,7 @@ class ProductController extends Controller
             'name' => 'required',
             'slug' => 'required',
             'image' => 'image',
-            'sell_price' => 'required',
+            'sell_price' => 'required|numeric',
             'category_id' => 'required'
         ]);
         $product = $request->all();
@@ -97,7 +97,7 @@ class ProductController extends Controller
             'name' => 'required',
             'slug' => 'required',
             'image' => 'image',
-            'sell_price' => 'required',
+            'sell_price' => 'required|numeric',
             'category_id' => 'required'
         ]);
 
@@ -164,15 +164,15 @@ class ProductController extends Controller
                         </div>";
 
         $products->withPath($path);
-        return view('layouts.product-search-result', compact('products', 'keyword', 'breadcrums', 'count'));
+        return view('web.products.product-search', compact('products', 'keyword', 'breadcrums', 'count'));
     }
 
 
     // cart
-    public function cart()
-    {
-        return view('layouts.cart');
-    }
+    // public function cart()
+    // {
+    //     return view('web.cart');
+    // }
 
     public function addToCart(Request $request, $id)
     {

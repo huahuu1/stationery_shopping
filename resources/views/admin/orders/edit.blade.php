@@ -50,7 +50,7 @@
                                 <table class="table" id="products_table">
                                     <thead>
                                     <tr>
-                                        <th>Product</th>
+                                        <th>Product <span class="text text-danger">*</span></th>
                                         <th>Quantity</th>
                                     </tr>
                                     </thead>
@@ -68,9 +68,12 @@
                                                     </option>
                                                     @endforeach
                                                 </select>
+                                                @if($errors->has('products.*'))
+                                                <span class="text text-danger">{{$errors->first('products.*')}}</span>
+                                                @endif
                                             </td>
                                             <td>
-                                                <input type="number" name="quantities[]" class="form-control" value="1" />
+                                                <input type="number" name="quantities[]" class="form-control" value="1" min="1"/>
                                             </td>
                                         </tr>
                                     @endif
@@ -86,10 +89,12 @@
                                                         >{{ $product->name }} ({{ number_format($product->sell_price) . ' đ'}})</option>
                                                     @endforeach
                                                 </select>
+                                                @if($errors->has('products.*'))
+                                                <span class="text text-danger">{{$errors->first('products.*')}}</span>
+                                                @endif
                                             </td>
                                             <td>
-                                                <input type="number" name="quantities[]" class="form-control"
-                                                       value="{{ $order_product->pivot->product_quantity }}" />
+                                                <input type="number" name="quantities[]" class="form-control" min="1" value="{{ $order_product->pivot->product_quantity }}" />
                                             </td>
                                         </tr>
                                     @endforeach

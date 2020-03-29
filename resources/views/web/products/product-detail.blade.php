@@ -1,3 +1,8 @@
+@extends('layouts.web-other-pages')
+
+@section('title', 'Product Detail')
+
+@section('feature_item')
 @php
 $categoriesAnother = App\Models\Category::where('id', $product->category_id)->get();
 @endphp
@@ -104,3 +109,4 @@ $categoriesAnother = App\Models\Category::where('id', $product->category_id)->ge
     </script>
 
 @stop --}}
+@endsection
