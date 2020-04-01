@@ -32,6 +32,13 @@
                             <span class="text text-danger">{{$errors->first('email')}}</span>
                             @endif
                         </div>
+                        <div class="form-group">
+                            <label for="">Phone</label>
+                            <input type="phone" name="phone" class="form-control" value="{{$user->phone}}">
+                            @if($errors->has('phone'))
+                            <span class="text text-danger">{{$errors->first('phone')}}</span>
+                            @endif
+                        </div>
                         <div class="form-group text-center">
                             <button id="buttonSub" type="submit" class="btn btn-primary">Submit</button>
                         </div>

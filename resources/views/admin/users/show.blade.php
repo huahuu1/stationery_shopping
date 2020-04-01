@@ -16,6 +16,7 @@
                 <tr class="text-center">
                     <th>User Name</th>
                     <th>Email</th>
+                    <th>Phone</th>
                     <th>Role</th>
                 </tr>
             </thead>
@@ -23,6 +24,7 @@
                 <tr class="text-center">
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
+                    <td>{{$user->phone}}</td>
                     <td>{{$user->getRoleName($user->role)}}</td>
                 </tr>
             </tbody>

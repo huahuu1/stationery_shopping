@@ -4,10 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
-// use App\Http\Controllers\Hash;
 
 class UserController extends Controller {
     /**
@@ -56,18 +52,25 @@ class UserController extends Controller {
 
     public function store(Request $request)
     {
-        $request->validate([
+        $request->validate(
+            [
             'name' => 'required',
             'email' => 'required|unique:users',
+            'phone' => 'regex:/[0-9]{10}/',
             'password' => 'min:8',
             'password_confirmation' => 'required_with:password|same:password|min:8',
-        ]);
+            ],
+            [
+                'phone.regex' => 'The phone field requires minimum 10 numbers',
+            ],
+    );
 
         $user = $request->all();
         $u = new User($user);
         $u->name = $request->name;
         $u->email = $request->email;
-        $u->password = Hash::make($request->password);
+        $u->phone = $request->phone;
+        $u->password = bcrypt(request('password'));
 
         $u->save();
 
@@ -108,12 +111,19 @@ class UserController extends Controller {
     public function updateInfo(User $user, Request $request, $id)
     {
         $user = User::find($id);
-        $request->validate([
+        $request->validate(
+            [
             'name' => 'required',
             'email' => 'required|email',
-        ]);
+            'phone' => 'regex:/[0-9]{10}/',
+            ],
+            [
+                'phone.regex' => 'The phone field requires minimum 10 numbers',
+            ],
+    );
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->phone = $request->phone;
         $user->save();
         return redirect()->route('users.index');
     }

@@ -21,7 +21,6 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
     use AuthenticatesUsers;
 
     /**
@@ -42,12 +41,20 @@ class LoginController extends Controller
     }
 
     // public function login(Request $request) {
+    //     $this->validate($request,
+    //     [
+    //         'email' => 'required|max:255|email',
+    //         'password' => 'required',
+    //     ],
+    //     [
+    //     ],
+    // );
     //     $email = $request['email'];
     //     $password = $request['password'];
     //     if (Auth::attempt(['email' => $email, 'password' => $password])) {
     //         return view('home-page');
     //     } else {
-    //         return view('login');
+    //         return view('layouts.app');
     //     }
     // }
 }

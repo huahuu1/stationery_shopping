@@ -126,11 +126,16 @@ class WebController extends Controller
         $user = User::find($id);
         // $user = Auth::user()::find($id);
         // dd($request->all());
-        $request->validate([
+        $request->validate(
+            [
             'name' => 'required',
             'email' => 'required|email',
-            'phone' => 'min:10|numeric',
-        ]);
+            'phone' => 'regex:/[0-9]{10}/',
+            ],
+            [
+                'phone.regex' => 'The phone field requires minimum 10 numbers',
+            ],
+    );
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
