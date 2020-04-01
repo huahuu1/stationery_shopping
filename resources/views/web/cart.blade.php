@@ -215,7 +215,7 @@
 
         var cart_qty = $(".cart-qty");
 
-        if(confirm("Are you sure")) {
+        if(confirm("Are you sure to delete this?")) {
             $.ajax({
                 url: '{{ url('remove-from-cart') }}',
                 method: "DELETE",

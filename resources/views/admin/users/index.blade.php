@@ -51,7 +51,7 @@
                         <form class="d-inline-block" action="{{ url('admin/users', ['id' => $user->id]) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <button style="margin-top: 1rem" type="submit" class="btn btn-danger btn-sm btnDelete" onclick="return confirm('Are you sure you want to delete this?')" rel="{{route('users.destroy', $user->id)}}">
+                            <button style="margin-top: 1rem" type="submit" class="btn btn-danger btn-sm btnDelete" onclick="return confirm('Are you sure to delete this?')" rel="{{route('users.destroy', $user->id)}}">
                                 <i class="fas fa-trash"></i> Delete
                             </button>
                         </form>
