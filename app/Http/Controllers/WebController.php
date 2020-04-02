@@ -124,12 +124,10 @@ class WebController extends Controller
     public function updateUserInfo(User $user, Request $request, $id)
     {
         $user = User::find($id);
-        // $user = Auth::user()::find($id);
-        // dd($request->all());
         $request->validate(
             [
-            'name' => 'required',
-            'email' => 'required|email',
+            'name' => 'required|unique:users,name,'.$user->id,
+            'email' => 'required|email|unique:users,email,'.$user->id,
             'phone' => 'regex:/[0-9]{10}/',
             ],
             [

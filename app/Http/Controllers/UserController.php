@@ -52,10 +52,12 @@ class UserController extends Controller {
 
     public function store(Request $request)
     {
+        $user = $request->all();
+        $u = new User($user);
         $request->validate(
             [
-            'name' => 'required',
-            'email' => 'required|unique:users',
+            'name' => 'required|unique:users,name,'.$u->id,
+            'email' => 'required|unique:users,email,'.$u->id,
             'phone' => 'regex:/[0-9]{10}/',
             'password' => 'min:8',
             'password_confirmation' => 'required_with:password|same:password|min:8',
@@ -65,8 +67,7 @@ class UserController extends Controller {
             ],
     );
 
-        $user = $request->all();
-        $u = new User($user);
+
         $u->name = $request->name;
         $u->email = $request->email;
         $u->phone = $request->phone;
@@ -113,8 +114,8 @@ class UserController extends Controller {
         $user = User::find($id);
         $request->validate(
             [
-            'name' => 'required',
-            'email' => 'required|email',
+            'name' => 'required|unique:users,name,'.$user->id,
+            'email' => 'required|email|unique:users,email,'.$user->id,
             'phone' => 'regex:/[0-9]{10}/',
             ],
             [

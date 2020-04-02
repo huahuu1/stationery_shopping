@@ -198,7 +198,7 @@
                 cart_qty.text(response.quantity);
 
                 if(response.total) {
-                        window.location.href = "/cart-detail";
+                        window.location.href = "";
                 }
             }
         });
@@ -233,7 +233,7 @@
                     cart_qty.text(response.quantity);
 
                     if(response.count == 1) {
-                        window.location.href = "/cart-detail";
+                        window.location.href = "";
                     }
                 }
             });
