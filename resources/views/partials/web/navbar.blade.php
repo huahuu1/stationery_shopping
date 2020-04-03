@@ -6,7 +6,7 @@ $categories = App\Models\Category::where('parent_id', 0)->get();
     <div class="container">
         <div class="top-navbar flex-row flex-wrap">
             <div class="logo flex-fill"><a class="nav-brand" href="{{route('home-page')}}" alt="logo"><img
-                        src="{{asset('web/images/logo/logo-officemona.png')}}" alt="logo" /></a></div>
+                        src="{{asset('web/images/logo/logo.png')}}" alt="logo" /></a></div>
             <div class="search-form-wrapper flex-fill">
                 <div class="search-form">
                     <form action="{{route('products.search')}}" method="get">

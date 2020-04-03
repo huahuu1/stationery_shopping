@@ -54,7 +54,7 @@ $categories = App\Models\Category::where('parent_id', 0)->get();
                         @foreach ($productsAnother as $item)
                         <li class="list-item d-flex align-items-center"><a href="{{URL::to('products/'.$item->slug)}}"><img width="60" height="60"
                                     src="{{asset($item->image)}}"
-                                    alt="" /></a><a href="{{URL::to('products/'.$row->slug)}}"><span class="name d-block">{{$item->name}}</span><span class="cost">{{number_format($item->sell_price)}} ₫</span></a>
+                                    alt="" /></a><a href="{{URL::to('products/'.$item->slug)}}"><span class="name d-block">{{$item->name}}</span><span class="cost">{{number_format($item->sell_price)}} ₫</span></a>
                         </li>
                         @endforeach
                     </ul>
