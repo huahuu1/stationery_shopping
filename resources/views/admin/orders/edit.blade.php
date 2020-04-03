@@ -110,8 +110,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="text-center">
+                        {{-- <div class="text-center">
                             <input class="btn btn-primary" type="submit" value="Submit">
+                        </div> --}}
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure to edit this?')">Submit</button>
                         </div>
                     </form>
                 </div>

@@ -59,7 +59,7 @@ class UserController extends Controller {
             'name' => 'required|unique:users,name,'.$u->id,
             'email' => 'required|unique:users,email,'.$u->id,
             'phone' => 'regex:/[0-9]{10}/',
-            'password' => 'min:8',
+            'password' => 'min:8|required',
             'password_confirmation' => 'required_with:password|same:password|min:8',
             ],
             [
