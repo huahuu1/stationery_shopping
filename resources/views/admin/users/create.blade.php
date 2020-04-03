@@ -32,6 +32,13 @@
                             @endif
                         </div>
                         <div class="form-group">
+                            <label for="">Phone</label>
+                            <input type="phone" name="phone" class="form-control">
+                            @if($errors->has('phone'))
+                            <span class="text text-danger">{{$errors->first('phone')}}</span>
+                            @endif
+                        </div>
+                        <div class="form-group">
                             <label for="">Password <span class="text text-danger">*</span></label>
                             <input type="password" name="password" class="form-control">
                             @if($errors->has('password'))

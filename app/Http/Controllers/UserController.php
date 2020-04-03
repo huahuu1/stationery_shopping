@@ -4,10 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
-// use App\Http\Controllers\Hash;
 
 class UserController extends Controller {
     /**
@@ -56,18 +52,26 @@ class UserController extends Controller {
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|unique:users',
-            'password' => 'min:8',
-            'password_confirmation' => 'required_with:password|same:password|min:8',
-        ]);
-
         $user = $request->all();
         $u = new User($user);
+        $request->validate(
+            [
+            'name' => 'required|unique:users,name,'.$u->id,
+            'email' => 'required|unique:users,email,'.$u->id,
+            'phone' => 'regex:/[0-9]{10}/',
+            'password' => 'min:8',
+            'password_confirmation' => 'required_with:password|same:password|min:8',
+            ],
+            [
+                'phone.regex' => 'The phone field requires minimum 10 numbers',
+            ],
+    );
+
+
         $u->name = $request->name;
         $u->email = $request->email;
-        $u->password = Hash::make($request->password);
+        $u->phone = $request->phone;
+        $u->password = bcrypt(request('password'));
 
         $u->save();
 
@@ -108,12 +112,19 @@ class UserController extends Controller {
     public function updateInfo(User $user, Request $request, $id)
     {
         $user = User::find($id);
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-        ]);
+        $request->validate(
+            [
+            'name' => 'required|unique:users,name,'.$user->id,
+            'email' => 'required|email|unique:users,email,'.$user->id,
+            'phone' => 'regex:/[0-9]{10}/',
+            ],
+            [
+                'phone.regex' => 'The phone field requires minimum 10 numbers',
+            ],
+    );
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->phone = $request->phone;
         $user->save();
         return redirect()->route('users.index');
     }

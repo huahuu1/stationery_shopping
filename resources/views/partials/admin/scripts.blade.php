@@ -10,7 +10,9 @@
 <script src="{{ asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script>
 <script src="{{ asset('adminlte/dist/js/create-order.js') }}"></script>
 <script src="{{ asset('adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
-<script src="http://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+{{-- <script src="http://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.12.1/ckeditor.js"></script>
+
 <script>
     $(function () {
       /* ChartJS

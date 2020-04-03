@@ -198,7 +198,7 @@
                 cart_qty.text(response.quantity);
 
                 if(response.total) {
-                        window.location.href = "/cart-detail";
+                        window.location.href = "";
                 }
             }
         });
@@ -215,7 +215,7 @@
 
         var cart_qty = $(".cart-qty");
 
-        if(confirm("Are you sure")) {
+        if(confirm("Are you sure to delete this?")) {
             $.ajax({
                 url: '{{ url('remove-from-cart') }}',
                 method: "DELETE",
@@ -233,7 +233,7 @@
                     cart_qty.text(response.quantity);
 
                     if(response.count == 1) {
-                        window.location.href = "/cart-detail";
+                        window.location.href = "";
                     }
                 }
             });
