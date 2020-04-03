@@ -52,9 +52,9 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://localhost:8080'),
 
-    'asset_url' => env('ASSET_URL', 'http://localhost/eProject%20SEM02_T1-1904.E2_Stationery_Shopping_Group05_Source_Code/stationery_shopping/public'),
+    'asset_url' => env('ASSET_URL', 'http://localhost:8080/eProject%20SEM02_T1-1904.E2_Stationery_Shopping_Group05_Source_Code/stationery_shopping/public'),
 
     /*
     |--------------------------------------------------------------------------
