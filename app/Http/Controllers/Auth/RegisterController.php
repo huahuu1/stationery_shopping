@@ -50,18 +50,26 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:10', 'unique:users'],
-            'email' => ['required', 'string', 'email', 'max:50', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => array(
+                'required',
+                'unique:users',
+                'regex:/^(?=.{5,10}$)[a-zA-Z]+(\d*[a-zA-Z]*)*$/',
+            ),
+            'email' => array(
+                'required',
+                'unique:users',
+                'regex:/^(?=.{15,40}$)[a-zA-Z]+\d*((_|-|\.)?[a-zA-Z0-9])*@(\d{0,4}[a-zA-Z]{1,5}\d{0,4}){2}(\.[a-zA-Z]{2,4}){1,2}$/',
+            ),
+            'password' => ['required', 'string', 'min:8', 'max:20', 'confirmed'],
         ],
         [
-            'name.required' => 'Name is required!',
-            'name.max' => 'Max character is 10!',
-            'email.required' => 'Email is required!',
-            'email.email' => 'Invalid email form!',
-            'email.max' => 'Max character is 50!',
-            'password.required' => 'Password is required!',
-            'password.min' => 'Min character is 8'
+            'name.required' => 'User Name is required.',
+            'name.unique' => 'User Name has already existed.',
+            'name.regex' => 'User Name must consist of 5 to 10 alphanumeric characters and begin with an alphabet character.',
+            'email.required' => 'Email is required.',
+            'email.unique' => 'Email has already existed.',
+            'email.regex' => 'Email is a string of 15 to 40 alphanumeric characters that is formatted like this: a-1.b_c@247xyz.com.vn.',
+            'password.required' => 'Password is required.',
         ]
         );
     }

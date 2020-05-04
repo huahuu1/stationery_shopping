@@ -41,7 +41,7 @@
                             @endif
                         </div>
 
-                        <div class="card">
+                        {{-- <div class="card">
                             <div class="card-header">
                                 Products
                             </div>
@@ -109,7 +109,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         {{-- <div class="text-center">
                             <input class="btn btn-primary" type="submit" value="Submit">
                         </div> --}}

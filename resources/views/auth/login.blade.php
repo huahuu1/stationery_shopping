@@ -69,6 +69,9 @@
                                     </a>
                                 @endif --}}
                             </div>
+                            <div class="col-md-8 offset-md-4">
+                                <a href="{{ route('register') }}">Do you have an account? Register here</a>
+                            </div>
                         </div>
                     </form>
                 </div>

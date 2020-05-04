@@ -26,11 +26,11 @@ class SupplierController extends Controller
         $path = '';
         if(!$keyword){
             $path .= "?pageSize=$pageSize";
-            $suppliers = Supplier::orderBy('id', 'ASC')->paginate($pageSize);
+            $suppliers = Supplier::orderBy('id', 'DESC')->paginate($pageSize);
         } else {
             $path .= "?pageSize=$pageSize&keyword=$keyword";
             $suppliers = Supplier::where('name', 'like', '%'. $keyword .'%')
-                                ->orderBy('id', 'ASC')
+                                ->orderBy('id', 'DESC')
                                 ->paginate($pageSize);
         }
 

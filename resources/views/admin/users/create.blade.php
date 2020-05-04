@@ -32,7 +32,7 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <label for="">Phone</label>
+                            <label for="">Phone <span class="text text-danger">*</span></label>
                             <input type="phone" name="phone" class="form-control">
                             @if($errors->has('phone'))
                             <span class="text text-danger">{{$errors->first('phone')}}</span>

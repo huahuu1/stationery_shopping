@@ -25,12 +25,12 @@ class OrderController extends Controller
         $path = '';
         if(!$keyword){
             $path .= "?pageSize=$pageSize";
-            $orders = Order::orderBy('id', 'ASC')->paginate($pageSize);
+            $orders = Order::orderBy('id', 'DESC')->paginate($pageSize);
         } else {
             $path .= "?pageSize=$pageSize&keyword=$keyword";
             $orders = Order::where('address', 'like', '%'. $keyword .'%')
                                 ->orWhere('name', 'like', '%'. $keyword .'%')
-                                ->orderBy('id', 'ASC')
+                                ->orderBy('id', 'DESC')
                                 ->paginate($pageSize);
         }
 
@@ -136,14 +136,14 @@ class OrderController extends Controller
         $order->status = $request->status;
         $order->address = $request->address;
         $order->update();
-        $order->products()->detach();
-        $products = $request->input('products', []);
-        $quantities = $request->input('quantities', []);
-        for ($product=0; $product < count($products); $product++) {
-            if ($products[$product] != '') {
-                $order->products()->attach($products[$product], ['product_quantity' => $quantities[$product]]);
-            }
-        }
+        // $order->products()->detach();
+        // $products = $request->input('products', []);
+        // $quantities = $request->input('quantities', []);
+        // for ($product=0; $product < count($products); $product++) {
+        //     if ($products[$product] != '') {
+        //         $order->products()->attach($products[$product], ['product_quantity' => $quantities[$product]]);
+        //     }
+        // }
 
         return redirect()->route('orders.index');
     }

@@ -20,7 +20,7 @@
                   <div class="text-inner text-left">
                     <h3>Deals up to</h3>
                     <h2><span style="font-size: 160%;" data-text-color="primary"></span><strong>10% off</strong></h2>
-                    <p>Free Ship Even 1 Product, Free Return Shipping, Product Variety, Any Purchase</p><a class="button white is-outline lowercase" href="http://mauweb.monamedia.net/officexinh/cua-hang/" target="_self"><span>Buy Now</span></a>
+                    <p>Free Ship Even 1 Product, Free Return Shipping, Product Variety, Any Purchase</p><a class="button white is-outline lowercase" href={{route('categories.all')}} target="_self"><span>Buy Now</span></a>
                   </div>
                 </div>
               </div>
@@ -32,7 +32,7 @@
                   <div class="text-inner text-center">
                     <h3>Everything you need</h3>
                     <h2><span style="font-size: 120%;" data-text-color="primary"></span><strong>FOR OFFICE</strong></h2>
-                    <p>STRONG DISCOUNT FOR EACH PRODUCT</p><a class="button white is-outline lowercase" href="http://mauweb.monamedia.net/officexinh/cua-hang/" target="_self"><span>Buy Now</span></a>
+                    <p>STRONG DISCOUNT FOR EACH PRODUCT</p><a class="button white is-outline lowercase" href={{route('categories.all')}} target="_self"><span>Buy Now</span></a>
                   </div>
                 </div>
               </div>

@@ -10,9 +10,12 @@ $categoriesAnother = App\Models\Category::where('id', $product->category_id)->ge
 <section class="container">
     <span id="status"></span>
     <div>
-        @php
+        {{-- @php
         echo $breadcrums;
-        @endphp
+        @endphp --}}
+        <div class='category-page-title'>
+            <div class='nav'><a href='{{route('home-page')}}'>Home</a><span class='divider'>/</span><a href='#'>@php echo $slug @endphp</a></div>
+        </div>
     </div>
 
     <div class="productMain row">
@@ -33,7 +36,7 @@ $categoriesAnother = App\Models\Category::where('id', $product->category_id)->ge
                 <input type="hidden" name="id" value="{{$product->id}}">
                 <div class="quantityControl d-flex">
                     <input type='button' value='-' class='qtyminus btnMinus' field='updates_' />
-                    <input type="number" min="0" name="quantity" id="updates_" class="quantity" value="1" />
+                    <input type="number" min="1" name="quantity" id="updates_" class="quantity" value="1" />
                     <input type='button' value='+' class='qtyplus btnPlus' field='updates_' />
                     <input class="btn btn-primary" type="submit" id="" name="" value="Add To Cart" />
                     {{-- <p class="btn-holder"><a href="javascript:void(0);" data-id="{{ $product->id }}" class="btn btn-warning btn-block text-center add-to-cart" role="button">Add to cart</a>

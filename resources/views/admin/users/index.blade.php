@@ -44,14 +44,14 @@
                     <td>{{$user->getRoleName($user->role)}}</td>
 
                     <td style="width: 25%">
-                        <a style="margin-top: 1rem" class="btn btn-primary btn-sm" href="{{route('users.show', $user->id)}}"><i class="fas fa-folder"></i> View</a>
+                        <a class="btn btn-primary btn-sm" href="{{route('users.show', $user->id)}}"><i class="fas fa-folder"></i> View</a>
 
-                        <a style="margin-top: 1rem" class="btn btn-info btn-sm" href="{{route('users.edit', $user->id)}}"><i class="fas fa-pencil-alt"></i> Edit</a>
+                        {{-- <a class="btn btn-info btn-sm" href="{{route('users.edit', $user->id)}}"><i class="fas fa-pencil-alt"></i> Edit</a> --}}
 
                         <form class="d-inline-block" action="{{ url('admin/users', ['id' => $user->id]) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <button style="margin-top: 1rem" type="submit" class="btn btn-danger btn-sm btnDelete" onclick="return confirm('Are you sure to delete this?')" rel="{{route('users.destroy', $user->id)}}">
+                            <button type="submit" class="btn btn-danger btn-sm btnDelete" onclick="return confirm('Are you sure to delete this?')" rel="{{route('users.destroy', $user->id)}}">
                                 <i class="fas fa-trash"></i> Delete
                             </button>
                         </form>

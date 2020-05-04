@@ -27,11 +27,11 @@ class CategoryController extends Controller
         $path = '';
         if(!$keyword){
             $path .= "?pageSize=$pageSize";
-            $categories = Category::orderBy('id', 'ASC')->paginate($pageSize);
+            $categories = Category::orderBy('id', 'DESC')->paginate($pageSize);
         } else {
             $path .= "?pageSize=$pageSize&keyword=$keyword";
             $categories = Category::where('name', 'like', '%'. $keyword .'%')
-                                ->orderBy('id', 'ASC')
+                                ->orderBy('id', 'DESC')
                                 ->paginate($pageSize);
         }
 

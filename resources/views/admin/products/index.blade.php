@@ -39,7 +39,7 @@
                     <td>{{$loop->iteration}}</td>
                     <td><a href="{{route('products.show', $product->id)}}"><img width="100" src="{{asset($product->image)}}" alt=""></a>  </td>
                     <td class="text-left">{{$product->name}}</td>
-                    <td>{{$product->sell_price}}</td>
+                    <td>{{number_format($product->sell_price).'đ'}}</td>
                     <td>{{ $product->getCategoryName($product->category_id) }}</td>
                     <td>{{ $product->getCategoryName($product->sub_category_id) }}</td>
                     <td>{{ $product->getSupplierName($product->supplier_id) }}</td>
