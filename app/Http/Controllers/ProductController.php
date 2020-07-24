@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -19,12 +20,12 @@ class ProductController extends Controller
         $path = '';
         if(!$keyword){
             $path .= "?pageSize=$pageSize";
-            $products = Product::orderBy('id', 'ASC')->paginate($pageSize);
+            $products = Product::orderBy('id', 'DESC')->paginate($pageSize);
         } else {
             $path .= "?pageSize=$pageSize&keyword=$keyword";
             $products = Product::where('name', 'like', '%'. $keyword .'%')
                                 // ->orWhere('description', 'like', '%'. $keyword .'%')
-                                ->orderBy('id', 'ASC')
+                                ->orderBy('id', 'DESC')
                                 ->paginate($pageSize);
         }
 
@@ -106,7 +107,7 @@ class ProductController extends Controller
         if($request->hasFile('image')) {
             $file = $request->file('image');
             $imageName = 'uploads/products/'.time().$file->getClientOriginalName();
-            $file->move('uploads/products/', $imageName);
+            $file->move(public_path('uploads/products'), $imageName);
         } else {
             $imageName = $product->image;
         }
@@ -136,8 +137,42 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
+        //kiem tra
         $product = Product::find($id);
-        $product->delete();
+        // $producsIdIncomplete = Order::select('SELECT product_id FROM order_product JOIN orders on order_product.product_id = product.id WHERE order.status != -1 ');
+        $producsIdIncomplete = DB::table('orders')
+                            ->join('order_product', 'order_product.order_id', '=', 'orders.id')
+                            ->join('products', 'products.id', '=', 'order_product.product_id')
+                            ->select('order_product.product_id')->get();
+
+        $producsIdIncomplete = $producsIdIncomplete->toArray();
+        // foreach ($producsIdIncomplete as $key => $value) {
+        //     // dd($producsIdIncomplete[$key]->product_id);
+        //     // dd($id);
+        //     dd($producsIdIncomplete);
+        //     dd($id == $producsIdIncomplete[$key]->product_id);
+        //     if ($id == $producsIdIncomplete[$key]->product_id) {
+        //         return redirect(route('products.index'));
+        //     } else {
+        //         $product->delete();
+        //     }
+        // }
+        foreach ($producsIdIncomplete as $key => $value) {
+            # code...
+        }
+            dd(in_array($id, $producsIdIncomplete));
+        if (in_array($id, $producsIdIncomplete)) {
+            return redirect(route('products.index'));
+        } else {
+            $product->delete();
+        }
+        // dd($id);
+        // dd(in_array($id, $producsIdIncomplete));
+        // if (array_key_exists($id, $producsIdIncomplete)) {
+        //     return redirect(route('products.index'));
+        // } else {
+        //     $product->delete();
+        // }
         return redirect(route('products.index'));
     }
 
@@ -149,12 +184,12 @@ class ProductController extends Controller
         $path = '';
         if(!$keyword){
             $path .= "?pageSize=$pageSize";
-            $products = Product::orderBy('id', 'ASC')->paginate($pageSize);
+            $products = Product::orderBy('id', 'DESC')->paginate($pageSize);
         } else {
             $path .= "?pageSize=$pageSize&keyword=$keyword";
             $products = Product::where('name', 'like', '%'. $keyword .'%')
                                 ->where('status', 1)
-                                ->orderBy('id', 'ASC')
+                                ->orderBy('id', 'DESC')
                                 ->paginate($pageSize);
             $count = $products->total();
         }

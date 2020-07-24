@@ -19,12 +19,12 @@ class UserController extends Controller {
         $path = '';
         if(!$keyword){
             $path .= "?pageSize=$pageSize";
-            $users = User::orderBy('id', 'ASC')->paginate($pageSize);
+            $users = User::orderBy('id', 'DESC')->paginate($pageSize);
         } else {
             $path .= "?pageSize=$pageSize&keyword=$keyword";
             $users = User::where('name', 'like', '%'. $keyword .'%')
                                 ->orWhere('email', 'like', '%'. $keyword .'%')
-                                ->orderBy('id', 'ASC')
+                                ->orderBy('id', 'DESC')
                                 ->paginate($pageSize);
         }
 
@@ -59,7 +59,7 @@ class UserController extends Controller {
             'name' => 'required|unique:users,name,'.$u->id,
             'email' => 'required|unique:users,email,'.$u->id,
             'phone' => 'regex:/[0-9]{10}/',
-            'password' => 'min:8',
+            'password' => 'min:8|required',
             'password_confirmation' => 'required_with:password|same:password|min:8',
             ],
             [
@@ -109,25 +109,25 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
 
-    public function updateInfo(User $user, Request $request, $id)
-    {
-        $user = User::find($id);
-        $request->validate(
-            [
-            'name' => 'required|unique:users,name,'.$user->id,
-            'email' => 'required|email|unique:users,email,'.$user->id,
-            'phone' => 'regex:/[0-9]{10}/',
-            ],
-            [
-                'phone.regex' => 'The phone field requires minimum 10 numbers',
-            ],
-    );
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
-        $user->save();
-        return redirect()->route('users.index');
-    }
+    // public function updateInfo(User $user, Request $request, $id)
+    // {
+    //     $user = User::find($id);
+    //     $request->validate(
+    //         [
+    //         'name' => 'required|unique:users,name,'.$user->id,
+    //         'email' => 'required|email|unique:users,email,'.$user->id,
+    //         'phone' => 'regex:/[0-9]{10}/',
+    //         ],
+    //         [
+    //             'phone.regex' => 'The phone field requires minimum 10 numbers',
+    //         ],
+    // );
+    //     $user->name = $request->name;
+    //     $user->email = $request->email;
+    //     $user->phone = $request->phone;
+    //     $user->save();
+    //     return redirect()->route('users.index');
+    // }
 
     public function updatePassword(User $user, Request $request, $id)
     {

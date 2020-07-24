@@ -40,7 +40,7 @@
                             @endif
                         </div>
                         <div class="form-group text-center">
-                            <button id="buttonSub" type="submit" class="btn btn-primary">Submit</button>
+                            <button id="buttonSub" type="submit" class="btn btn-primary" onclick="return confirm('Are you sure to edit this?')">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -69,7 +69,7 @@
                             @endif
                         </div>
                         <div class="form-group text-center">
-                            <button id="buttonSub" type="submit" class="btn btn-primary">Submit</button>
+                            <button id="buttonSub" type="submit" class="btn btn-primary" onclick="return confirm('Are you sure to edit this?')">Submit</button>
                         </div>
                     </form>
                 </div>

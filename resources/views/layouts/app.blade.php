@@ -29,11 +29,13 @@
 </head>
 <body style="height: 100vh">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: rgb(175, 200, 200)">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: #D2D3D3">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{-- {{ config('app.name', 'Laravel') }} --}}
-                    <h3 style="margin-bottom: 0">STATIONERY SHOPPING</h3>
+                    {{-- <h3 style="margin-bottom: 0">STATIONERY SHOPPING</h3> --}}
+                    <div class="logo"><a class="nav-brand" href="{{route('home-page')}}" alt="logo"><img style="width:22%;"
+                        src="{{asset('web/images/logo/logo.png')}}" alt="logo" /></a></div>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

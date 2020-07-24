@@ -17,22 +17,19 @@
                 <div class="tab-pane active" id="frmEditA">
                     <div class="form-group">
                         <label for="">User Name <span class="text text-danger">*</span></label>
-                        <input class="txtUserName form-control" type="text" id="" name="name"
-                            value="{{Auth::user()->name}}" minlength="5" />
+                        <input class="txtUserName form-control" type="text" id="" name="name" value="{{Auth::user()->name}}" minlength="5" />
                         @if($errors->has('name'))
-                        <span style="margin-left: 2rem" class="text text-danger">{{$errors->first('name')}}</span>
+                        <div style="margin-left: 2rem" class="text text-danger">{{$errors->first('name')}}</div>
                         @endif
                         <label for="">Email <span class="text text-danger">*</span></label>
-                        <input class="txtEmail form-control" type="email" id="" name="email"
-                            value="{{Auth::user()->email}}" />
+                        <input class="txtEmail form-control" type="email" id="" name="email" value="{{Auth::user()->email}}" />
                         @if($errors->has('email'))
-                        <span style="margin-left: 2rem" class="text text-danger">{{$errors->first('email')}}</span>
+                        <div style="margin-left: 2rem" class="text text-danger">{{$errors->first('email')}}</div>
                         @endif
                         <label for="">Tel <span class="text text-danger">*</span></label>
-                        <input class="txtTel form-control" type="text" id="" name="phone"
-                            value="{{Auth::user()->phone}}" />
+                        <input class="txtTel form-control" type="text" id="" name="phone" " value="{{Auth::user()->phone}}" />
                         @if($errors->has('phone'))
-                        <span style="margin-left: 2rem" class="text text-danger">{{$errors->first('phone')}}</span>
+                        <div style="margin-left: 2rem" class="text text-danger">{{$errors->first('phone')}}</div>
                         @endif
                     </div>
                     <div class="btnEdit text-center">

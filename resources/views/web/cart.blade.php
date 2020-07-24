@@ -41,8 +41,9 @@
                             <td class="productQuantity" data-th="Quantity">
                                 <div class="quantityControl d-flex">
                                     <input type='button' value='-' class='qtyminus btnMinus' field='updates_{{ $id}}' />
-                                    <input type="number" min="1" name="updates[]" id="updates_{{ $id }}"
-                                        class="quantity" value="{{ $details['quantity'] }}" />
+                                    <input type="number" min="1" name="updates[]" id="updates_{{ $id }}" class="quantity" value="{{ $details['quantity'] }}" />
+                                    {{-- <input type="number" min="1" name="updates[]" id="updates_{{ $id }}"
+                                        class="quantity" value="{{ $details['quantity'] }}" /> --}}
                                     <input type='button' value='+' class='qtyplus btnPlus' field='updates_{{ $id }}' />
                                 </div>
                             </td>
@@ -184,7 +185,7 @@
         $.ajax({
             url: '{{ url('update-cart') }}',
             method: "patch",
-            data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id"), quantity: quantity},
+            data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id"), quantity: quantity < 0 ? 1 : quantity},
             dataType: "json",
             success: function (response) {
 

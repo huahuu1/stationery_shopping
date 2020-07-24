@@ -11,7 +11,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-12 table-responsive">
-        <table class="table table-bordered table-valign-middle">
+        {{-- <table class="table table-bordered table-valign-middle">
             <thead>
                 <tr class="text-center">
                     <th>Product Image</th>
@@ -28,6 +28,30 @@
                     <td class="text-left text-nowrap">{!! nl2br($product->short_description)!!}</td>
                     <td class="text-left text-nowrap">{!! nl2br($product->description)!!}</td>
                     <td>{{$product->sell_price}}</td>
+                </tr>
+            </tbody>
+        </table> --}}
+        <table class="table table-bordered table-valign-middle">
+            <tbody>
+                <tr>
+                    <th>Product Image</th>
+                    <td><img width="200" height="200" src="{{asset($product->image)}}" alt=""></td>
+                </tr>
+                <tr>
+                    <th>Product Name</th>
+                    <td>{{$product->name}}</td>
+                </tr>
+                <tr>
+                    <th>Product Short Description</th>
+                    <td class="text-left">{!! nl2br($product->short_description)!!}</td>
+                </tr>
+                <tr>
+                    <th>Product Description</th>
+                    <td class="text-left">{!! nl2br($product->description)!!}</td>
+                </tr>
+                <tr>
+                    <th>Price</th>
+                    <td>{{number_format($product->sell_price). ' đ'}}</td>
                 </tr>
             </tbody>
         </table>

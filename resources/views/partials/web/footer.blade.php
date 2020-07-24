@@ -9,7 +9,7 @@ $categories = App\Models\Category::where('parent_id', 0)->get();
             <div class="top-content row">
                 <div class="company-info col-sm-12 col-lg-3">
                     <div class="title">
-                        <div class="title-img"><img src="{{asset('web/images/logo/logo-officemona.png')}}" /></div>
+                        <div class="title-img mx-0"><img src="{{asset('web/images/logo/logo.png')}}" /></div>
                     </div>
                     <div class="content">
                         <div class="icon-box d-flex">

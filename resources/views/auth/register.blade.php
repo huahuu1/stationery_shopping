@@ -9,7 +9,7 @@
 <div class="container" style="margin-top: 7.5%; font-size: 1.5rem">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card" style="opacity: 0.95; box-shadow: 0px 1px 15px 5px rgba(75, 175, 175, 0.25)">
+            <div class="card" style="box-shadow: 0px 1px 9px 9px #D2D3D2;">
                 <h4 class="card-header" style="font-weight: 500">{{ __('Register') }}</h4>
 
                 <div class="card-body">
@@ -21,7 +21,6 @@
 
                             <div class="col-md-6">
                                 <input style="font-size: 1.5rem" id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -35,7 +34,6 @@
 
                             <div class="col-md-6">
                                 <input style="font-size: 1.5rem" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

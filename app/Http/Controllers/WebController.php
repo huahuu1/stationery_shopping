@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 use App\User;
 
@@ -30,7 +31,7 @@ class WebController extends Controller
                             <div class='nav'><a href='/'>Home</a><span class='divider'>/</span><a href='#'>$slug</a></div>
                         </div>";
 
-        return view('web.products.categories', compact('products', 'breadcrums'));
+        return view('web.products.categories', compact('products', 'breadcrums', 'slug'));
     }
 
     public function getProductsByCategoryId(Request $request, $slug)
@@ -46,7 +47,7 @@ class WebController extends Controller
         $breadcrums = "<div class='category-page-title'>
                             <div class='nav'><a href='/'>Home</a><span class='divider'>/</span><a href='#'>$slug</a></div>
                         </div>";
-        return view('web.products.categories', compact('products', 'breadcrums'));
+        return view('web.products.categories', compact('products', 'breadcrums', 'slug'));
     }
 
     public function getProducts()
@@ -62,7 +63,7 @@ class WebController extends Controller
         $breadcrums = "<div class='category-page-title'>
                             <div class='nav'><a href='/'>Home</a><span class='divider'>/</span><a href='#'>$slug</a></div>
                         </div>";
-        return view('web.products.product-detail', compact('product', 'breadcrums'));
+        return view('web.products.product-detail', compact('product', 'breadcrums', 'slug'));
     }
 
     public function getSimiliarProducts(Request $request, $slug)
@@ -114,7 +115,9 @@ class WebController extends Controller
                 'product_quantity' => $item['quantity']
             ]);
         }
-        return redirect()->route('web.index');
+        Session::forget('cart');
+
+        return redirect()->route('web.index')->withCookie(Cookie::forget('cart_' . $user->id));
     }
 
     public function editUser() {
@@ -126,12 +129,31 @@ class WebController extends Controller
         $user = User::find($id);
         $request->validate(
             [
-            'name' => 'required|unique:users,name,'.$user->id,
-            'email' => 'required|email|unique:users,email,'.$user->id,
-            'phone' => 'regex:/[0-9]{10}/',
+            'name' => array(
+                'required',
+                'unique:users,name,'.$user->id,
+                'regex:/^(?=.{5,10}$)[a-zA-Z]+(\d*[a-zA-Z]*)*$/',
+            ),
+            'email' => array(
+                'required',
+                'unique:users,email,'.$user->id,
+                'regex:/^(?=.{15,40}$)[a-zA-Z]+\d*((_|-|\.)?[a-zA-Z0-9])*@(\d{0,4}[a-zA-Z]{1,5}\d{0,4}){2}(\.[a-zA-Z]{2,4}){1,2}$/',
+            ),
+            'phone' => array(
+                'required',
+                'regex:/^[0-9]{10}$/',
+            ),
             ],
             [
-                'phone.regex' => 'The phone field requires minimum 10 numbers',
+                // 'unique' => ':attribute has already existed'
+                'name.required' => 'User Name is required.',
+                'name.unique' => 'User Name has already existed.',
+                'name.regex' => 'User Name must consist of 5 to 10 alphanumeric characters and begin with an alphabet character.',
+                'email.required' => 'Email is required.',
+                'email.unique' => 'Email has already existed.',
+                'email.regex' => 'Email is a string of 15 to 40 alphanumeric characters that is formatted like this: a-1.b_c@247xyz.com.vn.',
+                'phone.required' => 'Tel is required.',
+                'phone.regex' => 'Tel is a string of 10 numeric characters.',
             ],
     );
         $user->name = $request->name;
@@ -150,8 +172,8 @@ class WebController extends Controller
                     return $fail(__('The old password is incorrect.'));
                 }
             }],
-            'newPassword' => 'min:8|different:oldPassword|required',
-            'newPassword_confirmation' => 'min:8|required|same:newPassword',
+            'newPassword' => 'min:8|max:20|different:oldPassword|required',
+            'newPassword_confirmation' => 'min:8|max:20|required|same:newPassword',
         ]);
 
         $user->password = bcrypt(request('newPassword'));

@@ -11,9 +11,12 @@ $categories = App\Models\Category::where('parent_id', 0)->get();
 
 <section class="container">
 <div>
-    @php
+    {{-- @php
     echo $breadcrums;
-    @endphp
+    @endphp --}}
+    <div class='category-page-title'>
+        <div class='nav'><a href='{{route('home-page')}}'>Home</a><span class='divider'>/</span><a href='#'>Search Result</a></div>
+    </div>
 </div>
 <div class="d-flex">
     <div style="padding-bottom: 1.5rem" class="ml-auto">

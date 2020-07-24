@@ -37,7 +37,7 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <label for="image">Image <span class="text text-danger">*</span></label>
+                            <label for="image">Image</label>
                             <div class="input-group mb-3">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file" id="customFile" name="image">
@@ -118,7 +118,7 @@
                         </div>
 
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure to edit this?')">Submit</button>
                         </div>
 
                     </form>
