@@ -97,7 +97,6 @@ class WebController extends Controller
     public function placeNewOrder(Request $request)
     {
         $user = Auth::user();
-        $total = 0;
         $cart = session()->get('cart');
         if (!$cart) {
             $cart = json_decode(Cookie::get('cart_' . $user->id), true);

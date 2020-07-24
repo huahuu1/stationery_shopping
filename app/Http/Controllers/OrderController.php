@@ -161,7 +161,7 @@ class OrderController extends Controller
         return back();
     }
 
-    public function removeProductFromCart(Order $order, $id, $product_id)
+    public function removeProductFromCart($product_id)
     {
         DB::table('order_product')->where('product_id', $product_id)->delete();
         return back();
